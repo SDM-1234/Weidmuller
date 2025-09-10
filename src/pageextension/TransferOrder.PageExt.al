@@ -18,7 +18,19 @@ pageextension 50022 TransferOrder extends "Transfer Order"
                 ToolTip = 'Specifies the approval status for transfer order.';
             }
         }
+        addlast(factboxes)
+        {
+            part("Attached Documents List"; "Doc. Attachment List Factbox")
+            {
+                ApplicationArea = All;
+                Caption = 'Documents';
+                UpdatePropagation = Both;
+                SubPageLink = "Table ID" = const(Database::"Transfer Header"),
+                              "No." = field("No.");
+            }
+        }
     }
+
     actions
     {
         addafter("Re&lease")

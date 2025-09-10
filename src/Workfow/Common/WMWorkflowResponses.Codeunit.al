@@ -110,6 +110,15 @@ Codeunit 50080 WMWorkflowResponses
                     if DocAttachment.IsEmpty then
                         Error('No attachment found for %1 %2', recRef.Caption, FieldRef.Value);
                 end;
+            Database::"Transfer Header",
+            Database::"Warehouse Receipt Header":
+                Begin
+                    FieldRef := recRef.Field(1);
+                    DocAttachment.SetRange("Table ID", recRef.Number);
+                    DocAttachment.SetRange("No.", FieldRef.Value);
+                    if DocAttachment.IsEmpty then
+                        Error('No attachment found for %1 %2', recRef.Caption, FieldRef.Value);
+                end;
         end;
     end;
 }

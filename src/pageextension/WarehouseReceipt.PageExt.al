@@ -78,7 +78,7 @@ pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
                     action(SendApprovalRequestJournalLine)
                     {
                         ApplicationArea = Basic, Suite;
-                        Caption = 'Selected Journal Lines';
+                        Caption = 'Send Warehouse Receipt for approval';
                         Enabled = EnabledWhseRecptWorkflowsExist;
                         Image = SendApprovalRequest;
                         ToolTip = 'Send selected journal lines for approval.';
@@ -98,7 +98,7 @@ pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
                     action(CancelApprovalRequestJournalLine)
                     {
                         ApplicationArea = Basic, Suite;
-                        Caption = 'Selected Journal Lines';
+                        Caption = 'Cancel Warehouse Receipt for approval';
                         Enabled = EnabledWhseRecptWorkflowsExist;
                         Image = CancelApprovalRequest;
                         ToolTip = 'Cancel sending selected journal lines for approval.';

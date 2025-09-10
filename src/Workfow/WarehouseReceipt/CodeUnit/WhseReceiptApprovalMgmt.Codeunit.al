@@ -23,9 +23,11 @@ codeunit 50160 "Whse Receipt Approval Mgmt"
     [EventSubscriber(ObjectType::Table, Database::"Warehouse Receipt Line", OnBeforeModifyEvent, '', false, false)]
     local procedure WhseReceiptLine_OnBeforeModifyEvent(RunTrigger: Boolean; var Rec: Record "Warehouse Receipt Line"; var xRec: Record "Warehouse Receipt Line")
     var
+        WhseReceipt: Record "Warehouse Receipt Header";
         RecordRestriction: Codeunit "Record Restriction Mgt.";
     begin
-        RecordRestriction.CheckRecordHasUsageRestrictions(Rec);
+        WhseReceipt.GET(Rec."No.");
+        RecordRestriction.CheckRecordHasUsageRestrictions(WhseReceipt);
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Warehouse Receipt Header", OnBeforeDeleteEvent, '', false, false)]
@@ -39,9 +41,11 @@ codeunit 50160 "Whse Receipt Approval Mgmt"
     [EventSubscriber(ObjectType::Table, Database::"Warehouse Receipt Line", OnBeforeDeleteEvent, '', false, false)]
     local procedure WhseReceiptLine_OnBeforeDeleteEvent(RunTrigger: Boolean; var Rec: Record "Warehouse Receipt Line")
     var
+        WhseReceipt: Record "Warehouse Receipt Header";
         RecordRestriction: Codeunit "Record Restriction Mgt.";
     begin
-        RecordRestriction.CheckRecordHasUsageRestrictions(Rec);
+        WhseReceipt.GET(Rec."No.");
+        RecordRestriction.CheckRecordHasUsageRestrictions(WhseReceipt);
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Post Receipt (Yes/No)", OnBeforeConfirmWhseReceiptPost, '', false, false)]
@@ -52,21 +56,24 @@ codeunit 50160 "Whse Receipt Approval Mgmt"
         ApprovalMgmt: Codeunit "Approval Mgt. WM";
         WorkflowEventHandling: Codeunit "WhseRecpt WF Evt Handling";
         ApprovalStatusName: Text[20];
+        CanExecuteWorkflow: Boolean;
     begin
+        CanExecuteWorkflow := WorkflowManagement.CanExecuteWorkflow(WhseReceiptLine, WorkflowEventHandling.RunWorkflowOnSendWhseReceiptForApprovalCode());
+        if not CanExecuteWorkflow then
+            exit;
         WhseReceipt.GET(WhseReceiptLine."No.");
-        ApprovalMgmt.GetApprovalStatus(WhseReceipt, ApprovalStatusName, WorkflowManagement.CanExecuteWorkflow(WhseReceipt, WorkflowEventHandling.RunWorkflowOnCancelWhseReceiptForApprovalCode()));
+        ApprovalMgmt.GetApprovalStatus(WhseReceipt, ApprovalStatusName, CanExecuteWorkflow);
         if ApprovalStatusName = '' then
             Error('The Warehouse Receipt must be submitted for approval before it can be posted.');
     end;
 
-    [EventSubscriber(ObjectType::Page, Page::"Whse. Receipt Subform", OnAfterWhsePostRcptYesNo, '', false, false)]
-    local procedure "Whse. Receipt Subform_OnAfterWhsePostRcptYesNo"(var WarehouseReceiptLine: Record "Warehouse Receipt Line")
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Post Receipt", OnPostUpdateWhseDocumentsOnAfterWhseRcptHeaderDelete, '', false, false)]
+    local procedure "Whse.-Post Receipt_OnPostUpdateWhseDocumentsOnAfterWhseRcptHeaderDelete"(var WhseReceiptHeader: Record "Warehouse Receipt Header")
     var
-        WhseReceipt: Record "Warehouse Receipt Header";
         ApprovalMgt: Codeunit "Approvals Mgmt.";
     begin
-        WhseReceipt.GET(WarehouseReceiptLine."No.");
-        ApprovalMgt.PostApprovalEntries(WhseReceipt.RecordId, WhseReceipt.RecordId, WhseReceipt."No.");
-        ApprovalMgt.DeleteApprovalEntries(WhseReceipt.RecordId);
+        ApprovalMgt.PostApprovalEntries(WhseReceiptHeader.RecordId, WhseReceiptHeader.RecordId, WhseReceiptHeader."No.");
+        ApprovalMgt.DeleteApprovalEntries(WhseReceiptHeader.RecordId);
     end;
+
 }
