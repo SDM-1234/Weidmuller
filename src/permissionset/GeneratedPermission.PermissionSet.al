@@ -14,7 +14,6 @@ permissionset 50100 GeneratedPermission
         codeunit SalesSubscriber = X,
         codeunit "Single Instance CU" = X,
         codeunit "Subscriber CodeUnit" = X,
-        codeunit "Test CU" = X,
         page "Actual Inventory" = X,
         page "BinContent FactBox" = X,
         page "Industry Segment Group list" = X,
@@ -74,10 +73,16 @@ permissionset 50100 GeneratedPermission
         codeunit "ProdBom Workflow Response" = X,
         codeunit "Production BOM Workflow Setup" = X,
         codeunit "Transfer Approval Mgmt" = X,
-        codeunit "Transfer Order Subscriber" = X,
         codeunit "Transfer Order workflow Setup" = X,
         codeunit "Transfer Workflow Evt Handling" = X,
         codeunit "Transfer Workflow Response" = X,
         codeunit WMWorkflowResponses = X,
-        page "WF Mandatory Fields List" = X;
+        page "WF Mandatory Fields List" = X,
+        report "Expiring Sales Quote Email" = X,
+        codeunit "Expiring Sales Quote Email" = X,
+        codeunit "Transfer Subscriber" = X,
+        codeunit "Whse Receipt Approval Mgmt" = X,
+        codeunit "WhseRecpt WF Evt Handling" = X,
+        codeunit "WhseRecpt Workflow Response" = X,
+        codeunit "WhseRecpt workflow Setup" = X;
 }

@@ -6,6 +6,9 @@ tableextension 50012 TransferHeader extends "Transfer Header"
         {
             Caption = 'Approval Status';
             DataClassification = CustomerContent;
+            editable = false;
+            ToolTip = 'Specifies the approval status for Transfer Header.';
+            Initvalue = Open;
         }
     }
 }

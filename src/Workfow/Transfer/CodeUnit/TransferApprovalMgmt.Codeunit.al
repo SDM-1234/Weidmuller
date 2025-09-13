@@ -20,6 +20,14 @@ codeunit 50015 "Transfer Approval Mgmt"
         RecordRestriction.CheckRecordHasUsageRestrictions(Rec);
     end;
 
+    [EventSubscriber(ObjectType::Table, Database::"Transfer Header", OnBeforeDeleteEvent, '', false, false)]
+    local procedure TransferHeader_OnBeforeDeleteEvent(RunTrigger: Boolean; var Rec: Record "Transfer Header")
+    var
+        RecordRestriction: Codeunit "Record Restriction Mgt.";
+    begin
+        RecordRestriction.CheckRecordHasUsageRestrictions(Rec);
+    end;
+
     [EventSubscriber(ObjectType::Table, Database::"Transfer Line", OnBeforeModifyEvent, '', false, false)]
     local procedure TransferLine_OnBeforeModifyEvent(var Rec: Record "Transfer Line"; var xRec: Record "Transfer Line"; RunTrigger: Boolean)
     var
@@ -28,6 +36,14 @@ codeunit 50015 "Transfer Approval Mgmt"
     begin
         TransferHeader.Get(Rec."Document No.");
         RecordRestriction.CheckRecordHasUsageRestrictions(TransferHeader);
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Transfer Line", OnBeforeDeleteEvent, '', false, false)]
+    local procedure TransferLine_OnBeforeDeleteEvent(RunTrigger: Boolean; var Rec: Record "Transfer Line")
+    var
+        RecordRestriction: Codeunit "Record Restriction Mgt.";
+    begin
+        RecordRestriction.CheckRecordHasUsageRestrictions(Rec);
     end;
 
 }

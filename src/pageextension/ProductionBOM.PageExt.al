@@ -2,6 +2,10 @@ pageextension 50026 ProductionBOM extends "Production BOM"
 {
     layout
     {
+        modify(Status)
+        {
+            editable = false;
+        }
 
     }
     actions
@@ -46,6 +50,36 @@ pageextension 50026 ProductionBOM extends "Production BOM"
                         ProdBOMApprovalsMgmt.OnCancelRequestForApproval(Rec);
                         WorkflowWebhookMgt.FindAndCancel(Rec.RecordId);
                     end;
+                }
+                action(Reopen)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Reopen';
+                    Image = ReOpen;
+                    ToolTip = 'Reopen';
+
+                    trigger OnAction()
+                    begin
+                        Rec.Validate("Status", Rec."Status"::"Under Development");
+                        Rec.Modify(true);
+                        CurrPage.Update();
+                    end;
+                }
+            }
+        }
+        addlast(Promoted)
+        {
+            group("Category_Request Approval")
+            {
+                Caption = 'Request Approval';
+                actionref(SendApprovalRequest_Promoted; SendApprovalRequest)
+                {
+                }
+                actionref(CancelApprovalRequest_Promoted; CancelApprovalRequest)
+                {
+                }
+                actionref(Reopen_Promoted; Reopen)
+                {
                 }
             }
         }

@@ -16,7 +16,8 @@ codeunit 50014 "Transfer Workflow Response"
             DATABASE::"Transfer Header":
                 BEGIN
                     RecRef.SetTable(TransferHeader);
-                    TransferHeader.Validate("Approval Status", TransferHeader."Approval Status"::Created);
+                    TransferHeader.Validate("Approval Status", TransferHeader."Approval Status"::Open);
+                    TransferHeader.Validate("Status", TransferHeader.Status::Open);
                     TransferHeader.Modify(true);
                     Handled := true;
                 END;
@@ -35,6 +36,7 @@ codeunit 50014 "Transfer Workflow Response"
                 BEGIN
                     RecRef.SetTable(TransferHeader);
                     TransferHeader.Validate("Approval Status", TransferHeader."Approval Status"::Approved);
+                    TransferHeader.Validate("Status", TransferHeader.Status::Released);
                     TransferHeader.Modify(true);
                     Handled := true;
                 END;

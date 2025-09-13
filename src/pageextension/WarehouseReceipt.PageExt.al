@@ -49,6 +49,17 @@ pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
                 ToolTip = 'Specifies the approval status for Warehouse Receipt.';
             }
         }
+        addlast(factboxes)
+        {
+            part("Attached Documents List"; "Doc. Attachment List Factbox")
+            {
+                ApplicationArea = All;
+                Caption = 'Documents';
+                UpdatePropagation = Both;
+                SubPageLink = "Table ID" = const(Database::"Warehouse Receipt Header"),
+                              "No." = field("No.");
+            }
+        }
     }
     actions
     {

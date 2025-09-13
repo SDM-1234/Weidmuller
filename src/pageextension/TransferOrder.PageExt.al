@@ -4,18 +4,10 @@ pageextension 50022 TransferOrder extends "Transfer Order"
     {
         addafter(Status)
         {
-            // field("Approval Status"; Rec."Approval Status")
-            // {
-            //     ApplicationArea = All;
-            //     ToolTip = 'Specifies the value of the Approval Status field.', Comment = '%';
-            // }
-            field(TransferApprovalStatus; TransferApprovalStatus)
+            field("Approval Status"; Rec."Approval Status")
             {
-                ApplicationArea = Basic, Suite;
-                Caption = 'Approval Status';
-                Editable = false;
-                Visible = EnabledTransferWorkflowsExist;
-                ToolTip = 'Specifies the approval status for transfer order.';
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Approval Status field.', Comment = '%';
             }
         }
         addlast(factboxes)
@@ -38,10 +30,6 @@ pageextension 50022 TransferOrder extends "Transfer Order"
             action("Send for Approval")
             {
                 ApplicationArea = All;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 Image = SendApprovalRequest;
                 ToolTip = 'Executes the Send for Approval action.';
 
@@ -65,22 +53,37 @@ pageextension 50022 TransferOrder extends "Transfer Order"
                     TransferAppMgt.OnCancelRequestForApproval(Rec);
                 end;
             }
+            action(Reopen)
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = 'Reopen';
+                Image = ReOpen;
+                ToolTip = 'Reopen';
+
+                trigger OnAction()
+                begin
+                    Rec.Validate("Status", Rec."Status"::Open);
+                    Rec.Validate("Approval Status", Rec."Approval Status"::Open);
+                    Rec.Modify(true);
+                    CurrPage.Update();
+                end;
+            }
+        }
+        addlast(Promoted)
+        {
+            group("Category_Request Approval")
+            {
+                Caption = 'Request Approval';
+                actionref(SendApprovalRequest_Promoted; "Send for Approval")
+                {
+                }
+                actionref(CancelApprovalRequest_Promoted; "Cancel Approval Request")
+                {
+                }
+                actionref(Reopen_Promoted; Reopen)
+                {
+                }
+            }
         }
     }
-    trigger OnAfterGetRecord()
-    begin
-        ApprovalMgmt.GetApprovalStatus(Rec, TransferApprovalStatus, EnabledTransferWorkflowsExist);
-    end;
-
-    trigger OnOpenPage()
-    begin
-        EnabledTransferWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(DATABASE::"Transfer Header", WorkflowEventHandling.RunWorkflowOnSendTransferForApprovalCode());
-    end;
-
-    var
-        ApprovalMgmt: Codeunit "Approval Mgt. WM";
-        WorkflowManagement: Codeunit "Workflow Management";
-        WorkflowEventHandling: Codeunit "Transfer Workflow Evt Handling";
-        TransferApprovalStatus: Text[20];
-        EnabledTransferWorkflowsExist: Boolean;
 }

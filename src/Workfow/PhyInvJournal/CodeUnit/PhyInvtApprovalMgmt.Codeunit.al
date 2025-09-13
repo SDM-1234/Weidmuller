@@ -35,8 +35,12 @@ codeunit 50018 "Phy Invt Approval Mgmt"
         ApprovalMgmt: Codeunit "Approval Mgt. WM";
         WorkflowEventHandling: Codeunit "PhysInvt Workflow Evt Handling";
         ApprovalStatusName: Text[20];
+        ApprovalRequired: Boolean;
     begin
-        ApprovalMgmt.GetApprovalStatus(ItemJnlLine, ApprovalStatusName, WorkflowManagement.CanExecuteWorkflow(ItemJnlLine, WorkflowEventHandling.RunWorkflowOnSendPhysInvtForApprovalCode()));
+        ApprovalRequired := WorkflowManagement.CanExecuteWorkflow(ItemJnlLine, WorkflowEventHandling.RunWorkflowOnSendPhysInvtForApprovalCode());
+        if not ApprovalRequired then
+            exit;
+        ApprovalMgmt.GetApprovalStatus(ItemJnlLine, ApprovalStatusName, ApprovalRequired);
         if ApprovalStatusName = '' then
             Error('The journal line must be submitted for approval before it can be posted.');
     end;

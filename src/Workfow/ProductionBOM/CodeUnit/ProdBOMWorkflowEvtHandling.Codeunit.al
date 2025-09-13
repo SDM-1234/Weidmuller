@@ -34,7 +34,6 @@ codeunit 50155 "ProdBOM Workflow Evt Handling"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"ProdBOM Approval Mgmt", 'OnCancelRequestForApproval', '', false, false)]
     local procedure OnCancelRequestForApproval(var ProdBOMHeader: Record "Production BOM Header")
     begin
-
         workflowMgt.HandleEvent(RunWorkflowOnCancelPRODBOMForApprovalCode(), ProdBOMHeader);
     end;
 
@@ -55,7 +54,7 @@ codeunit 50155 "ProdBOM Workflow Evt Handling"
     end;
 
 
-    procedure IsTransferPendingApproval(Var ProdBOMHeader: Record "Production BOM Header"): Boolean
+    procedure IsProdBOMPendingApproval(Var ProdBOMHeader: Record "Production BOM Header"): Boolean
     begin
         exit(isProdBOMApprovalWorkflowEnabled(ProdBOMHeader));
     end;
@@ -64,8 +63,8 @@ codeunit 50155 "ProdBOM Workflow Evt Handling"
 
     procedure CheckInvcomingApprovalWorkFlowEnabled(Var ProdBOMHeader: Record "Production BOM Header"): Boolean
     begin
-        if not IsTransferPendingApproval(ProdBOMHeader) then
-            error(TransferApprovalExistErr);
+        if not IsProdBOMPendingApproval(ProdBOMHeader) then
+            error(ProdBOMApprovalExistErr);
         exit(true);
     end;
 
@@ -74,5 +73,5 @@ codeunit 50155 "ProdBOM Workflow Evt Handling"
         workflowEventHandling: Codeunit "Workflow Event Handling";
         TransferSendApprovalLbl: Label ' Prod BOM Approval Requested';
         TransferCancelApprovalLbl: Label ' Prod BOM Approval Cancelled';
-        TransferApprovalExistErr: Label 'No Approval Workflow For This Document';
+        ProdBOMApprovalExistErr: Label 'No Approval Workflow For This Document';
 }
