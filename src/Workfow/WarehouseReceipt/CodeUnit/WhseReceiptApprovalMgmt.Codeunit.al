@@ -58,10 +58,10 @@ codeunit 50160 "Whse Receipt Approval Mgmt"
         ApprovalStatusName: Text[20];
         CanExecuteWorkflow: Boolean;
     begin
-        CanExecuteWorkflow := WorkflowManagement.CanExecuteWorkflow(WhseReceiptLine, WorkflowEventHandling.RunWorkflowOnSendWhseReceiptForApprovalCode());
+        WhseReceipt.GET(WhseReceiptLine."No.");
+        CanExecuteWorkflow := WorkflowManagement.CanExecuteWorkflow(WhseReceipt, WorkflowEventHandling.RunWorkflowOnSendWhseReceiptForApprovalCode());
         if not CanExecuteWorkflow then
             exit;
-        WhseReceipt.GET(WhseReceiptLine."No.");
         ApprovalMgmt.GetApprovalStatus(WhseReceipt, ApprovalStatusName, CanExecuteWorkflow);
         if ApprovalStatusName = '' then
             Error('The Warehouse Receipt must be submitted for approval before it can be posted.');
