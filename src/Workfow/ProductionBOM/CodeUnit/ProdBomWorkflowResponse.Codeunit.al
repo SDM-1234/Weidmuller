@@ -28,7 +28,6 @@ codeunit 50157 "ProdBom Workflow Response"
     local procedure OnReleaseDocument(var Handled: Boolean; RecRef: RecordRef)
     Var
         ProdBOMHeader: record "Production BOM Header";
-        ApprovalMgt: Codeunit "Approvals Mgmt.";
     begin
         case
              RecRef.Number of
@@ -38,8 +37,6 @@ codeunit 50157 "ProdBom Workflow Response"
                     ProdBOMHeader.Validate("Status", ProdBOMHeader."Status"::Certified);
                     ProdBOMHeader.Modify(true);
                     Handled := true;
-                    ApprovalMgt.PostApprovalEntries(ProdBOMHeader.RecordId, ProdBOMHeader.RecordId, ProdBOMHeader."No.");
-                    ApprovalMgt.DeleteApprovalEntries(ProdBOMHeader.RecordId);
                 END;
 
         end;

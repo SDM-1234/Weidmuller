@@ -12,6 +12,12 @@ tableextension 50049 ItemJournalLine extends "Item Journal Line"
                     CheckIsValidEANandUpdateItem("EAN No.");
             end;
         }
+        field(50001; "Quality Inspection No."; Code[20])
+        {
+            Caption = 'Quality Inspection No.';
+            ToolTip = 'Specifies the quality inspection number for the transfer order.';
+            DataClassification = ToBeClassified;
+        }
     }
 
     local procedure CheckIsValidEANandUpdateItem(L_EAN_No: Code[13])

@@ -19,8 +19,8 @@ codeunit 50155 "ProdBOM Workflow Evt Handling"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Event Handling", 'OnAddWorkflowEventsToLibrary', '', true, true)]
     local procedure OnAddWorkflowEventsToLibrary()
     begin
-        workflowEventHandling.AddEventToLibrary(RunWorkflowOnSendPRODBOMForApprovalCode(), DATABASE::"Production BOM Header", TransferSendApprovalLbl, 0, false);
-        workflowEventHandling.AddEventToLibrary(RunWorkflowOnCancelPRODBOMForApprovalCode(), DATABASE::"Production BOM Header", TransferCancelApprovalLbl, 0, false);
+        workflowEventHandling.AddEventToLibrary(RunWorkflowOnSendPRODBOMForApprovalCode(), DATABASE::"Production BOM Header", ProdBomSendApprovalLbl, 0, false);
+        workflowEventHandling.AddEventToLibrary(RunWorkflowOnCancelPRODBOMForApprovalCode(), DATABASE::"Production BOM Header", ProdBomCancelApprovalLbl, 0, false);
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"ProdBOM Approval Mgmt", 'OnSendRequestForApproval', '', false, false)]
@@ -71,7 +71,7 @@ codeunit 50155 "ProdBOM Workflow Evt Handling"
     var
         workflowMgt: Codeunit "Workflow Management";
         workflowEventHandling: Codeunit "Workflow Event Handling";
-        TransferSendApprovalLbl: Label ' Prod BOM Approval Requested';
-        TransferCancelApprovalLbl: Label ' Prod BOM Approval Cancelled';
+        ProdBomSendApprovalLbl: Label ' Prod BOM Approval Requested';
+        ProdBomCancelApprovalLbl: Label ' Prod BOM Approval Cancelled';
         ProdBOMApprovalExistErr: Label 'No Approval Workflow For This Document';
 }

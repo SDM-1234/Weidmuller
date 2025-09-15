@@ -59,9 +59,13 @@ pageextension 50026 ProductionBOM extends "Production BOM"
                     ToolTip = 'Reopen';
 
                     trigger OnAction()
+                    var
+                        ApprovalMgt: Codeunit "Approvals Mgmt.";
                     begin
                         Rec.Validate("Status", Rec."Status"::"Under Development");
                         Rec.Modify(true);
+                        ApprovalMgt.PostApprovalEntries(Rec.RecordId, Rec.RecordId, Rec."No.");
+                        ApprovalMgt.DeleteApprovalEntries(Rec.RecordId);
                         CurrPage.Update();
                     end;
                 }

@@ -10,6 +10,13 @@ pageextension 50022 TransferOrder extends "Transfer Order"
                 ToolTip = 'Specifies the value of the Approval Status field.', Comment = '%';
             }
         }
+        addlast(General)
+        {
+            field("Quality Inspection No."; Rec."Quality Inspection No.")
+            {
+                ApplicationArea = All;
+            }
+        }
         addlast(factboxes)
         {
             part("Attached Documents List"; "Doc. Attachment List Factbox")

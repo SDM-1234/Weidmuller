@@ -10,5 +10,11 @@ tableextension 50012 TransferHeader extends "Transfer Header"
             ToolTip = 'Specifies the approval status for Transfer Header.';
             Initvalue = Open;
         }
+        field(50001; "Quality Inspection No."; Code[20])
+        {
+            Caption = 'Quality Inspection No.';
+            ToolTip = 'Specifies the quality inspection number for the transfer order.';
+            DataClassification = ToBeClassified;
+        }
     }
 }
