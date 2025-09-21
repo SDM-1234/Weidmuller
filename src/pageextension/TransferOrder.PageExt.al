@@ -32,6 +32,14 @@ pageextension 50022 TransferOrder extends "Transfer Order"
 
     actions
     {
+        modify("Re&lease")
+        {
+            Enabled = not EnabledWhseRecptWorkflowsExist;
+        }
+        modify("Reo&pen")
+        {
+            Enabled = not EnabledWhseRecptWorkflowsExist;
+        }
         addafter("Re&lease")
         {
             action("Send for Approval")
@@ -39,6 +47,7 @@ pageextension 50022 TransferOrder extends "Transfer Order"
                 ApplicationArea = All;
                 Image = SendApprovalRequest;
                 ToolTip = 'Executes the Send for Approval action.';
+                Enabled = EnabledWhseRecptWorkflowsExist;
 
                 trigger OnAction()
                 var
@@ -53,6 +62,7 @@ pageextension 50022 TransferOrder extends "Transfer Order"
                 Caption = 'Cancel Approval Request';
                 Image = CancelApprovalRequest;
                 ToolTip = 'Cancel sending the transfer order for approval.';
+                Enabled = EnabledWhseRecptWorkflowsExist;
                 trigger OnAction()
                 var
                     TransferAppMgt: Codeunit "Transfer Approval Mgmt";
@@ -66,10 +76,13 @@ pageextension 50022 TransferOrder extends "Transfer Order"
                 Caption = 'Reopen';
                 Image = ReOpen;
                 ToolTip = 'Reopen';
+                Enabled = EnabledWhseRecptWorkflowsExist;
 
                 trigger OnAction()
+                var
+                    ReleaseTransferDoc: Codeunit "Release Transfer Document";
                 begin
-                    Rec.Validate("Status", Rec."Status"::Open);
+                    ReleaseTransferDoc.Reopen(Rec);
                     Rec.Validate("Approval Status", Rec."Approval Status"::Open);
                     Rec.Modify(true);
                     CurrPage.Update();
@@ -93,4 +106,16 @@ pageextension 50022 TransferOrder extends "Transfer Order"
             }
         }
     }
+    var
+        ApprovalMgmt: Codeunit "Approval Mgt. WM";
+        WorkflowManagement: Codeunit "Workflow Management";
+        WorkflowEventHandling: Codeunit "WhseRecpt WF Evt Handling";
+        WhseRecptApprovalStatus: Text[20];
+        EnabledWhseRecptWorkflowsExist: Boolean;
+        OpenApprovalEntriesExistForCurrUser: Boolean;
+
+    trigger OnOpenPage()
+    begin
+        EnabledWhseRecptWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(DATABASE::"Warehouse Receipt Header", WorkflowEventHandling.RunWorkflowOnSendWhseReceiptForApprovalCode());
+    end;
 }

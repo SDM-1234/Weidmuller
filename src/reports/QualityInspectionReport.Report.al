@@ -57,18 +57,24 @@ report 50010 "Quality Inspection Report"
                 begin
                     AcceptQty := 0;
                     RejectedQty := 0;
+                    Clear(ReasonDict);
                     if "Inspection Reason Code" = '' then
                         AcceptQty := Quantity
                     Else begin
                         RejectedQty := Quantity;
-                        if ReasonDict.Get("Inspection Reason Code", DictQty) then
-                            ReasonDict.Set("Inspection Reason Code", DictQty + RejectedQty)
-                        Else
-                            ReasonDict.Add("Inspection Reason Code", RejectedQty);
-                        if not ItemDict.Get("Transfer Receipt Header"."Quality Inspection No." + '-' + "Item No.", ReasonDict1) Then
+                        if not ItemDict.Get("Transfer Receipt Header"."Quality Inspection No." + '-' + "Item No.", ReasonDict) Then begin
+                            if ReasonDict.Get("Inspection Reason Code", DictQty) then
+                                ReasonDict.Set("Inspection Reason Code", DictQty + RejectedQty)
+                            Else
+                                ReasonDict.Add("Inspection Reason Code", RejectedQty);
                             ItemDict.Add("Transfer Receipt Header"."Quality Inspection No." + '-' + "Item No.", ReasonDict)
-                        else
-                            ItemDict.set("Transfer Receipt Header"."Quality Inspection No." + '-' + "Item No.", ReasonDict)
+                        end else begin
+                            if ReasonDict.Get("Inspection Reason Code", DictQty) then
+                                ReasonDict.Set("Inspection Reason Code", DictQty + RejectedQty)
+                            Else
+                                ReasonDict.Add("Inspection Reason Code", RejectedQty);
+                            ItemDict.set("Transfer Receipt Header"."Quality Inspection No." + '-' + "Item No.", ReasonDict);
+                        end;
                     end;
                 end;
             }

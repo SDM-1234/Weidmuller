@@ -4,7 +4,7 @@ codeunit 50022 "Expiring Sales Quote Email"
     begin
         SalesSetup.Get();
         SalesSetup.TestField("Sales Quote Expiring - Emails");
-        Recipients.Add(SalesSetup."Sales Quote Expiring - Emails");
+        Recipients := SalesSetup."Sales Quote Expiring - Emails".Split(';');
         TempBlob.CreateOutStream(OutStream);
         MyReport.SaveAs(HtmlContent, ReportFormat::Html, OutStream); // Save report as HTML to OutStream
 
@@ -13,7 +13,7 @@ codeunit 50022 "Expiring Sales Quote Email"
 
         Body := HtmlContent; // Set the HTML content as the email body
 
-        EmailMessage.Create(Recipients, Subject, Body, true); // true for HTML body
+        EmailMessage.Create(Recipients, Subject_Lbl, Body, true); // true for HTML body
         Email.Send(EmailMessage);
 
     end;
@@ -28,6 +28,6 @@ codeunit 50022 "Expiring Sales Quote Email"
         InStream: InStream;
         HtmlContent: Text;
         Recipients: List of [Text];
-        Subject: Text;
+        Subject_Lbl: TextConst ENU = 'List of Quotations expired next week';
         Body: Text;
 }

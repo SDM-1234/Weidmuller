@@ -92,7 +92,8 @@ codeunit 50001 AmountToWords
 
         if CurrencyCode <> '' then begin
             CurrRec.Get(CurrencyCode);
-            AddToNoText(NoText, NoTextIndex, PrintExponent, ' ' + CurrRec.Code);
+            //AddToNoText(NoText, NoTextIndex, PrintExponent, ' ' + CurrRec.Code);
+            AddToNoText(NoText, NoTextIndex, PrintExponent, '');
         end else
             AddToNoText(NoText, NoTextIndex, PrintExponent, 'RUPEES');
 

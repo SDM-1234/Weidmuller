@@ -31,6 +31,13 @@ tableextension 50021 ManufacturingSetup extends "Manufacturing Setup"
             TableRelation = Location where("Use as In-Transit" = const(false));
             ToolTip = 'Specifies the location to which items are reclassified.';
         }
+        field(50005; "Reclass To Bin Code"; Code[10])
+        {
+            Caption = 'Reclass To Location';
+            DataClassification = ToBeClassified;
+            TableRelation = Location where("Use as In-Transit" = const(false));
+            ToolTip = 'Specifies the location to which items are reclassified.';
+        }
     }
 
     keys

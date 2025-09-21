@@ -10,14 +10,15 @@ codeunit 50014 "Transfer Workflow Response"
     local procedure OnOpenDocument(var Handled: Boolean; RecRef: RecordRef)
     Var
         TransferHeader: record "Transfer Header";
+        ReleaseTransferDoc: Codeunit "Release Transfer Document";
     begin
         case
              RecRef.Number of
             DATABASE::"Transfer Header":
                 BEGIN
                     RecRef.SetTable(TransferHeader);
+                    ReleaseTransferDoc.Reopen(TransferHeader);
                     TransferHeader.Validate("Approval Status", TransferHeader."Approval Status"::Open);
-                    TransferHeader.Validate("Status", TransferHeader.Status::Open);
                     TransferHeader.Modify(true);
                     Handled := true;
                 END;
@@ -35,9 +36,10 @@ codeunit 50014 "Transfer Workflow Response"
             DATABASE::"Transfer Header":
                 BEGIN
                     RecRef.SetTable(TransferHeader);
+                    CODEUNIT.Run(CODEUNIT::"Release Transfer Document", TransferHeader);
                     TransferHeader.Validate("Approval Status", TransferHeader."Approval Status"::Approved);
-                    TransferHeader.Validate("Status", TransferHeader.Status::Released);
                     TransferHeader.Modify(true);
+                    //Commit();
                     Handled := true;
                 END;
 
