@@ -24,6 +24,14 @@ codeunit 50151 "Price Approval Mgmt"
     begin
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Page Management", OnAfterGetPageID, '', false, false)]
+    local procedure "Page Management_OnAfterGetPageID"(var RecordRef: RecordRef; var PageID: Integer)
+    begin
+        if RecordRef.Number = Database::"Price List Header" then
+            PageID := Page::"Sales Price List";
+    end;
+
+
 
 
 }

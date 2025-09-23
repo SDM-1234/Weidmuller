@@ -27,6 +27,11 @@ pageextension 50102 PostedPurchaseCreditMemo extends "Posted Purchase Credit Mem
                     ApplicationArea = All;
                     Editable = false;
                 }
+                field("Proforma Contact Name"; Rec."Proforma Contact Name")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
             }
         }
     }

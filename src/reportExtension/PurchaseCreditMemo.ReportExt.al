@@ -10,7 +10,7 @@ reportextension 50000 PurchaseCreditMemo extends "Purchase - Credit Memo"
         }
         add(CopyLoop)
         {
-            column(YourRef_PurchCrMemoHdrWE; "Purch. Cr. Memo Hdr."."WE Your Reference")
+            column(YourRef_PurchCrMemoHdrWE; "Purch. Cr. Memo Hdr."."Vendor Cr. Memo No.")
             {
             }
             column(CompCountryName; CompCountry.GetNameInCurrentLanguage())
@@ -35,6 +35,9 @@ reportextension 50000 PurchaseCreditMemo extends "Purchase - Credit Memo"
             {
             }
             column(AmtInWords; AmtInWords[1])
+            {
+            }
+            column(ContactName; "Purch. Cr. Memo Hdr."."Proforma Contact Name")
             {
             }
         }

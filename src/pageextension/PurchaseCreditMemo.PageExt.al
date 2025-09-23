@@ -23,6 +23,10 @@ pageextension 50101 PurchaseCreditMemo extends "Purchase Credit Memo"
                 {
                     ApplicationArea = All;
                 }
+                field("Proforma Contact Name"; Rec."Proforma Contact Name")
+                {
+                    ApplicationArea = All;
+                }
             }
         }
     }

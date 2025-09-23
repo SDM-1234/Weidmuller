@@ -23,6 +23,10 @@ pageextension 50100 PurchaseReturnOrder extends "Purchase Return Order"
                 {
                     ApplicationArea = All;
                 }
+                field("Proforma Contact Name"; Rec."Proforma Contact Name")
+                {
+                    ApplicationArea = All;
+                }
             }
         }
     }

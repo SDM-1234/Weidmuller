@@ -21,7 +21,7 @@ report 50003 "Expiring Sales Quote Email"
             column(QuoteValidUntilDate; "Quote Valid Until Date")
             {
             }
-            column(PostingDate; "Posting Date")
+            column(PostingDate; "Order Date")
             {
             }
             column(SalespersonCode; "Salesperson Code")

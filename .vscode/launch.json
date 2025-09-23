@@ -32,8 +32,8 @@
             "request": "attach",
             "type": "al",
             "environmentType": "Sandbox",
-            "environmentName": "WM_IN_4000_Sandbox-Dev",
-            "sessionId": 18643,
+            "environmentName": "WIN_IN_4000_Sandbox-Dev",
+            "sessionId": 35610,
             "breakOnNext": "WebClient",
             "breakOnError": "ExcludeTry",
             "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec"

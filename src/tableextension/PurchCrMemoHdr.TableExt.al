@@ -31,6 +31,12 @@ tableextension 50010 PurchCrMemoHdr extends "Purch. Cr. Memo Hdr."
             DataClassification = ToBeClassified;
             Tooltip = 'Net Weight';
         }
+        field(50005; "Proforma Contact Name"; Text[250])
+        {
+            Caption = 'Proforma Contact Name';
+            DataClassification = ToBeClassified;
+            Tooltip = 'Proforma Contact Name';
+        }
     }
 }
 
