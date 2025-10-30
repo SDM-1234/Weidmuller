@@ -45,6 +45,11 @@ pageextension 50040 ItemCard extends "Item Card"
                 ToolTip = 'Specifies the value of the Item Type field.';
                 ApplicationArea = All;
             }
+            field(Dangerous; Rec.Dangerous)
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Dangerous field.', Comment = '%';
+            }
         }
     }
 
