@@ -2,6 +2,8 @@ table 50003 "Industry Code"
 {
     Caption = 'Industry Code';
     DataClassification = CustomerContent;
+    DrillDownPageId = "Industry Code";
+    LookupPageId = "Industry Code";
 
     fields
     {

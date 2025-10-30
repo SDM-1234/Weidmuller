@@ -90,7 +90,6 @@ tableextension 50023 Customer extends Customer
             Caption = 'Key Account';
             DataClassification = CustomerContent;
             TableRelation = "Key Account"."Code";
-
         }
         field(50008; "Key Account Relation"; Option)
         {

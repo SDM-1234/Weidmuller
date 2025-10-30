@@ -2,6 +2,8 @@ table 50006 "Key Account"
 {
     Caption = 'Key Account';
     DataClassification = CustomerContent;
+    DrillDownPageId = "Key Accounts";
+    LookupPageId = "Key Accounts";
 
     fields
     {

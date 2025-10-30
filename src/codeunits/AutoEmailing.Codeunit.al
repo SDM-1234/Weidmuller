@@ -50,9 +50,9 @@ codeunit 50002 "Auto Emailing"
                             DE_Cust.RESET();
                             DE_Cust.CHANGECOMPANY('GO_LIVE');
                             DE_Cust.SETFILTER("No.", DE_Customer."No.");
+                            CLEAR(DE_CustDunning);
                             DE_CustDunning.SETTABLEVIEW(DE_Cust);
                             DE_CustDunning.USEREQUESTPAGE := FALSE;
-                            CLEAR(DE_CustDunning);
                             TempBlob.CreateOutStream(ReportOutStream);
                             IF DE_CustDunning.SaveAs('', ReportFormat::Pdf, ReportOutStream) THEN BEGIN
                                 TempBlob.CreateInStream(ReportInStream);

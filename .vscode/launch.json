@@ -16,19 +16,26 @@
             "schemaUpdateMode": "ForceSync"
         },
         {
-            "name": "Weidmuller-UAT",
-            "request": "launch",
+            "name": "AL: Generated Snapshot request-UAT",
+            "request": "snapshotInitialize",
             "type": "al",
-            "environmentType": "Sandbox",
+            "environmentType": "Production",
             "environmentName": "WM_IN_4000_UAT",
-            "startupObjectId": 22,
-            "startupObjectType": "Page",
-            "breakOnError": "All",
-            "launchBrowser": true,
-            "enableLongRunningSqlStatements": true,
-            "enableSqlInformationDebugger": true,
-            "schemaUpdateMode": "Synchronize"
+            "sessionId": 374431,
+            "breakOnNext": "WebClient",
+            "executionContext": "DebugAndProfile",
+            "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec"
         },
-
+        {
+            "name": "AL: Generated Snapshot request",
+            "request": "snapshotInitialize",
+            "type": "al",
+            "environmentType": "Production",
+            "environmentName": "WM_IN_4000_UAT",
+            "sessionId": 374431,
+            "breakOnNext": "WebClient",
+            "executionContext": "DebugAndProfile",
+            "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec"
+        }
     ]
 }

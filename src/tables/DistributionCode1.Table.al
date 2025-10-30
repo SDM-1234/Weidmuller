@@ -2,6 +2,8 @@ table 50007 "Distribution Code1"
 {
     Caption = 'Distribution Code1';
     DataClassification = CustomerContent;
+    DrillDownPageId = "Distribution Code1 List";
+    LookupPageId = "Distribution Code1 List";
 
 
     fields
