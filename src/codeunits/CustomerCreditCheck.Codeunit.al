@@ -3,9 +3,9 @@ codeunit 50003 "Customer Credit Check"
     trigger OnRun()
     begin
         SetJobQueueLogEntry(TRUE, RetunMinutes);
-        IF RetunMinutes = 1 THEN
-            EXIT;
-
+        //IF RetunMinutes = 1 THEN
+        //  EXIT;
+        //Above two lines commented to ensure codeunit runs every time when scheduled from job queue
         BalanceAmount := 0;
         CreditLimit := 0;
         OpenOrdersCredit := 0;
@@ -216,7 +216,6 @@ codeunit 50003 "Customer Credit Check"
         NoOfdays: Duration;
     begin
         NoOfdays := CREATEDATETIME(D_Date, 000000T) - CREATEDATETIME(TODAY, 000000T);
-
         EXIT(NoOfdays);
     end;
 

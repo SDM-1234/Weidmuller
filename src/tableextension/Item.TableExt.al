@@ -65,6 +65,11 @@ tableextension 50026 Item extends Item
             OptionCaption = ' ,MRP1,MRP2,Slow moving, Non-moving, Obsolete';
             OptionMembers = " ",MRP1,MRP2,"Slow moving"," Non-moving"," Obsolete";
         }
+        field(50007; Dangerous; Boolean)
+        {
+            Caption = 'Dangerous';
+            DataClassification = CustomerContent;
+        }
     }
     keys
     {

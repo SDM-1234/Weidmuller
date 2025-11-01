@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Weidmuller",
+            "name": "Weidmuller-DEV",
             "request": "launch",
             "type": "al",
             "environmentType": "Sandbox",
@@ -16,26 +16,25 @@
             "schemaUpdateMode": "ForceSync"
         },
         {
+            "name": "AL: Generated Snapshot request-UAT",
+            "request": "snapshotInitialize",
+            "type": "al",
+            "environmentType": "Production",
+            "environmentName": "WM_IN_4000_UAT",
+            "sessionId": 374431,
+            "breakOnNext": "WebClient",
+            "executionContext": "DebugAndProfile",
+            "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec"
+        },
+        {
             "name": "AL: Generated Snapshot request",
             "request": "snapshotInitialize",
             "type": "al",
             "environmentType": "Production",
             "environmentName": "WM_IN_4000_UAT",
-            "sessionId": 54905,
+            "sessionId": 374431,
             "breakOnNext": "WebClient",
             "executionContext": "DebugAndProfile",
-            "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec",
-            "snapshotVerbosity": "Full"
-        },
-        {
-            "name": "AL: Generated Attach request",
-            "request": "attach",
-            "type": "al",
-            "environmentType": "Sandbox",
-            "environmentName": "WIN_IN_4000_Sandbox-Dev",
-            "sessionId": 35610,
-            "breakOnNext": "WebClient",
-            "breakOnError": "ExcludeTry",
             "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec"
         }
     ]

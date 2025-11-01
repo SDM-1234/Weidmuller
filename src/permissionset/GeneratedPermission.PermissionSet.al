@@ -84,5 +84,16 @@ permissionset 50100 GeneratedPermission
         codeunit "Whse Receipt Approval Mgmt" = X,
         codeunit "WhseRecpt WF Evt Handling" = X,
         codeunit "WhseRecpt Workflow Response" = X,
-        codeunit "WhseRecpt workflow Setup" = X;
+        codeunit "WhseRecpt workflow Setup" = X,
+        tabledata "WMChange Log Entry" = RIMD,
+        table "WMChange Log Entry" = X,
+        report "Quality Inspection Report" = X,
+        codeunit "Prod. Order Reclass Jnl. Mgt." = X,
+        tabledata "Distribution Code1" = RIMD,
+        tabledata "Industry Code" = RIMD,
+        tabledata "Key Account" = RIMD,
+        table "Distribution Code1" = X,
+        table "Industry Code" = X,
+        table "Key Account" = X,
+        page "Change Log Entries - NAV" = X;
 }
