@@ -27,12 +27,12 @@
             "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec"
         },
         {
-            "name": "AL: Generated Snapshot request",
+            "name": "Weidmuller-PROD",
             "request": "snapshotInitialize",
             "type": "al",
             "environmentType": "Production",
-            "environmentName": "WM_IN_4000_UAT",
-            "sessionId": 374431,
+            "environmentName": "WM_IN_4000_Production",
+            "sessionId": 5827,
             "breakOnNext": "WebClient",
             "executionContext": "DebugAndProfile",
             "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec"
