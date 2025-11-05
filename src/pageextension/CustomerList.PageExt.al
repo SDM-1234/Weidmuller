@@ -67,6 +67,8 @@ pageextension 50033 CustomerList extends "Customer List"
             field("Key Account"; Rec."Key Account")
             {
                 ApplicationArea = All;
+                Editable = not (rec."Legal status" = Rec."Legal status"::Distributor);
+
                 ToolTip = 'Specifies the value of the Key Account field.', Comment = '%';
             }
             field("Key Account Relation"; Rec."Key Account Relation")
@@ -77,6 +79,8 @@ pageextension 50033 CustomerList extends "Customer List"
             field("Distribution Code1"; Rec."Distribution Code1")
             {
                 ApplicationArea = All;
+                Editable = (rec."Legal status" = Rec."Legal status"::Distributor);
+
                 ToolTip = 'Specifies the value of the Distribution Code1 field.', Comment = '%';
             }
             field("Distri. PRO Partner"; Rec."Distri. PRO Partner")
