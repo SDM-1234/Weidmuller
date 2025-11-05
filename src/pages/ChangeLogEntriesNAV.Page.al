@@ -5,6 +5,10 @@ page 50001 "Change Log Entries - NAV"
     PageType = List;
     SourceTable = "WMChange Log Entry";
     UsageCategory = Lists;
+    InsertAllowed = false;
+    ModifyAllowed = false;
+    DeleteAllowed = false;
+    Editable = false;
 
     layout
     {
