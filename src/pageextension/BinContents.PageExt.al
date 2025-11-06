@@ -1,19 +1,21 @@
 pageextension 50021 BinContents extends "Bin Contents"
 {
-
-    //Unsupported feature: Property Modification (PageType) on ""Bin Contents"(Page 7374)".
-
     layout
     {
-        addafter("Item Description")
+
+        modify("Item Description")
         {
-            field(Desc; Desc)
-            {
-                Caption = 'Desc';
-                Editable = false;
-                ApplicationArea = all;
-            }
+            visible = true;
         }
+        // addafter("Item Description")
+        // {
+        //     field(Desc; Desc)
+        //     {
+        //         Caption = 'Desc';
+        //         Editable = false;
+        //         ApplicationArea = all;
+        //     }
+        // }
     }
 
     var
@@ -21,56 +23,33 @@ pageextension 50021 BinContents extends "Bin Contents"
 
 
 
-    trigger OnAfterGetCurrRecord()
+    // trigger OnAfterGetCurrRecord()
 
-    begin
-        /*
-        GetItemDescr("Item No.","Variant Code",ItemDescription);
-        DataCaption := STRSUBSTNO('%1 ',"Bin Code");
-        */
-        //end;
-        //>>>> MODIFIED CODE:
-        //begin
-
-        // REC.GetItemDescr(Rec."Item No.", Rec."Variant Code", ItemDescription);
-        // Desc := ItemDescription;
-        // DataCaption := STRSUBSTNO('%1 ', "Bin Code");
-
-    end;
+    // begin
 
 
-    //Unsupported feature: Code Insertion on "OnAfterGetRecord".
+    //     REC.GetItemDescr(Rec."Item No.", Rec."Variant Code", ItemDescription);
+    //     Desc := ItemDescription;
+    //     DataCaption := STRSUBSTNO('%1 ', "Bin Code");
 
-    //trigger OnAfterGetRecord()
-    //begin
-    /*
-    //SE-E859.s
-    CLEAR(ItemDescription);//SE-E859.s
-    GetItemDescr("Item No.","Variant Code",ItemDescription);
-    Desc := ItemDescription;
-    //SE-E859.e
-    */
-    //end;
+    // end;
 
 
-    //Unsupported feature: Code Modification on "OnOpenPage".
+    // trigger OnAfterGetRecord()
+    // //SE-E859.s
+    // CLEAR(ItemDescription);//SE-E859.s
+    //     Rec.GetItemDescr("Item No.", "Variant Code", ItemDescription);
+    // Desc := ItemDescription;
+    // //SE-E859.e
 
-    //trigger OnOpenPage()
-    //>>>> ORIGINAL CODE:
-    //begin
-    /*
-    ItemDescription := '';
-    GetWhseLocation(LocationCode,ZoneCode);
-    */
-    //end;
-    //>>>> MODIFIED CODE:
-    //begin
-    /*
-    ItemDescription := '';
-    Desc := '';//SE-E859.s
-    GetWhseLocation(LocationCode,ZoneCode);
-    SETFILTER("Quantity (Base)",'>%1',0);//SE-E859.s
-    */
-    //end;
+
+
+    // trigger OnOpenPage()
+    // begin
+    // ItemDescription := '';
+    // Desc := '';//SE-E859.s
+    //     Rec.GetWhseLocation(LocationCode, ZoneCode);
+    //     Rec.SETFILTER("Quantity (Base)", '>%1', 0);//SE-E859.s
+    // end;
 }
 
