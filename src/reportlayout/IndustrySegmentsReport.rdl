@@ -19,7 +19,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.00456cm</Width>
+                  <Width>1.52144cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.2831cm</Width>
@@ -28,7 +28,7 @@
                   <Width>1.21873cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.65822cm</Width>
+                  <Width>0.93991cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.16659cm</Width>
@@ -49,40 +49,40 @@
                   <Width>1.60983cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.40432cm</Width>
+                  <Width>1.95432cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.55077cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.3665cm</Width>
+                  <Width>1.4665cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.49964cm</Width>
+                  <Width>0.94964cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.48021cm</Width>
+                  <Width>1.65014cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60552cm</Width>
+                  <Width>0.98559cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.4176cm</Width>
+                  <Width>1.77315cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.59217cm</Width>
+                  <Width>0.76048cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.09445cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.5128cm</Width>
+                  <Width>0.88322cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.04627cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.32759cm</Width>
+                  <Width>0.67155cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2034,7 +2034,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>IndustryCode_Customer</rd:DefaultName>
@@ -2061,7 +2063,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Legal_status_Customer</rd:DefaultName>
@@ -2088,7 +2092,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Key_Account</rd:DefaultName>
@@ -2098,6 +2104,7 @@
                             <PaddingRight>0.2pt</PaddingRight>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2115,7 +2122,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Key_Account_Relation</rd:DefaultName>
@@ -2142,7 +2151,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Distribution_Code1</rd:DefaultName>
@@ -2169,7 +2180,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Distri_PRO_Partner</rd:DefaultName>
@@ -2619,7 +2632,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.846cm</Top>
             <Height>1.23401cm</Height>
-            <Width>29.37195cm</Width>
+            <Width>29.05877cm</Width>
             <Style />
           </Tablix>
           <Textbox Name="Customer_TABLECAPTION__________CustFilter">
@@ -2652,7 +2665,7 @@
         <Height>2.08001cm</Height>
         <Style />
       </Body>
-      <Width>29.37195cm</Width>
+      <Width>29.05877cm</Width>
       <Page>
         <PageHeader>
           <Height>1.269cm</Height>

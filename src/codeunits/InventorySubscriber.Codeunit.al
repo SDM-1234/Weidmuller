@@ -47,6 +47,23 @@ codeunit 50006 "Inventory Subscriber"
     END;
 
 
+    local procedure CheckMandatoryItemAttribute(tableID: Integer; ItemNo: Code[20])
+    var
+        ItemAttribute: Record "Item Attribute";
+        ItemAttributeValueMapping: Record "Item Attribute Value Mapping";
+    begin
+        ItemAttribute.SetRange("Mandatory", true);
+        if ItemAttribute.FindSet() then
+            repeat
+                ItemAttributeValueMapping.SetRange("Table ID", tableID);
+                ItemAttributeValueMapping.SetRange("No.", ItemNo);
+                ItemAttributeValueMapping.SetRange("Item Attribute ID", ItemAttribute.Id);
+                if ItemAttributeValueMapping.IsEmpty then
+                    Error('Attribute value is blank in Item No. %1,Please select attribute value for %2', ItemNo, ItemAttribute.Name)
+            until ItemAttribute.Next() = 0;
+    end;
+
+
     local procedure CheckMandatoryItemDimension(tableID: Integer; ItemNo: Code[20])
     var
         Dimension: Record Dimension;
@@ -75,11 +92,15 @@ codeunit 50006 "Inventory Subscriber"
             exit(true);
     end;
 
+
+
+
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Approvals Mgmt.", OnSendItemForApproval, '', False, False)]
     local procedure WM_OnSendItemForApproval(var Item: Record Item)
     begin
         if CheckItemDefDim(27, Item."No.") then
             CheckMandatoryItemDimension(27, Item."No.");
+        CheckMandatoryItemAttribute(27, Item."No.")
     end;
 
     [EventSubscriber(ObjectType::Page, Page::"Item Card", OnQueryClosePageEvent, '', false, false)]
@@ -87,6 +108,8 @@ codeunit 50006 "Inventory Subscriber"
     begin
         if CheckItemDefDim(27, Rec."No.") then
             CheckMandatoryItemDimension(27, Rec."No.");
+        CheckMandatoryItemAttribute(27, Rec."No.")
+
     end;
 
     [EventSubscriber(ObjectType::Page, Page::"Item List", OnQueryClosePageEvent, '', false, false)]
@@ -94,6 +117,8 @@ codeunit 50006 "Inventory Subscriber"
     begin
         if CheckItemDefDim(27, Rec."No.") then
             CheckMandatoryItemDimension(27, Rec."No.");
+        CheckMandatoryItemAttribute(27, Rec."No.")
+
     end;
 
 }

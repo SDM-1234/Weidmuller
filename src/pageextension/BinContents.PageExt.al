@@ -1,11 +1,13 @@
 pageextension 50021 BinContents extends "Bin Contents"
 {
-
-    //Unsupported feature: Property Modification (PageType) on ""Bin Contents"(Page 7374)".
-
     layout
     {
-        addafter("Item Description")
+
+        modify("Item Description")
+        {
+            visible = true;
+        }
+        addafter("Item No.")
         {
             field(Desc; Desc)
             {
@@ -18,59 +20,39 @@ pageextension 50021 BinContents extends "Bin Contents"
 
     var
         Desc: Text[250];
+        ItemDescription: Text[250];
 
 
 
     trigger OnAfterGetCurrRecord()
 
     begin
-        /*
-        GetItemDescr("Item No.","Variant Code",ItemDescription);
-        DataCaption := STRSUBSTNO('%1 ',"Bin Code");
-        */
-        //end;
-        //>>>> MODIFIED CODE:
-        //begin
 
-        // REC.GetItemDescr(Rec."Item No.", Rec."Variant Code", ItemDescription);
-        // Desc := ItemDescription;
-        // DataCaption := STRSUBSTNO('%1 ', "Bin Code");
+
+        REC.GetItemDescr(Rec."Item No.", Rec."Variant Code", ItemDescription);
+        Desc := ItemDescription;
+        //Rec.DataCaption := STRSUBSTNO('%1 ', Rec."Bin Code");
+
 
     end;
 
 
-    //Unsupported feature: Code Insertion on "OnAfterGetRecord".
+    trigger OnAfterGetRecord()
+    begin
+        //SE-E859.s
+        CLEAR(ItemDescription);//SE-E859.s
+        Rec.GetItemDescr(Rec."Item No.", Rec."Variant Code", ItemDescription);
+        Desc := ItemDescription;
+        //SE-E859.e
 
-    //trigger OnAfterGetRecord()
-    //begin
-    /*
-    //SE-E859.s
-    CLEAR(ItemDescription);//SE-E859.s
-    GetItemDescr("Item No.","Variant Code",ItemDescription);
-    Desc := ItemDescription;
-    //SE-E859.e
-    */
-    //end;
+    end;
 
-
-    //Unsupported feature: Code Modification on "OnOpenPage".
-
-    //trigger OnOpenPage()
-    //>>>> ORIGINAL CODE:
-    //begin
-    /*
-    ItemDescription := '';
-    GetWhseLocation(LocationCode,ZoneCode);
-    */
-    //end;
-    //>>>> MODIFIED CODE:
-    //begin
-    /*
-    ItemDescription := '';
-    Desc := '';//SE-E859.s
-    GetWhseLocation(LocationCode,ZoneCode);
-    SETFILTER("Quantity (Base)",'>%1',0);//SE-E859.s
-    */
-    //end;
+    trigger OnOpenPage()
+    begin
+        ItemDescription := '';
+        Desc := '';//SE-E859.s
+        //Rec.GetWhseLocation(LocationCode, ZoneCode);
+        Rec.SETFILTER("Quantity (Base)", '>%1', 0);//SE-E859.s
+    end;
 }
 

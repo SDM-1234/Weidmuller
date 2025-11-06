@@ -58,18 +58,19 @@ pageextension 50043 CustomerCard extends "Customer Card"
             field("Key Account"; Rec."Key Account")
             {
                 ApplicationArea = All;
+                Editable = not (rec."Legal status" = Rec."Legal status"::Distributor);
+
                 ToolTip = 'Specifies the value of the Key Account field.', Comment = '%';
             }
             field("Key Account Relation"; Rec."Key Account Relation")
             {
                 ApplicationArea = All;
-                Visible = not (rec."Legal status" = Rec."Legal status"::Distributor);
                 ToolTip = 'Specifies the value of the Key Account Relation field.', Comment = '%';
             }
             field("Distribution Code1"; Rec."Distribution Code1")
             {
                 ApplicationArea = All;
-                Visible = (rec."Legal status" = Rec."Legal status"::Distributor);
+                Editable = (rec."Legal status" = Rec."Legal status"::Distributor);
                 ToolTip = 'Specifies the value of the Distribution Code1 field.', Comment = '%';
             }
             field("Distri. PRO Partner"; Rec."Distri. PRO Partner")

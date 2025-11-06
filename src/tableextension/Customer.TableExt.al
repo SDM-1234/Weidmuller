@@ -82,8 +82,6 @@ tableextension 50023 Customer extends Customer
             DataClassification = CustomerContent;
             OptionCaption = 'Distributor,Direct,Customer Behind Distributor';
             OptionMembers = Distributor,Direct,"Customer Behind Distributor";
-
-
         }
         field(50007; "Key Account"; Code[20])
         {
@@ -105,7 +103,7 @@ tableextension 50023 Customer extends Customer
             TableRelation = "Distribution Code1"."Code";
 
         }
-        field(50010; "Distri. PRO Partner"; Code[20])
+        field(50010; "Distri. PRO Partner"; Boolean)
         {
             Caption = 'Distri. PRO Partner';
             Description = 'Distribution PRO Partner';

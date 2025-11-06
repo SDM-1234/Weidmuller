@@ -16,15 +16,18 @@
             "schemaUpdateMode": "ForceSync"
         },
         {
-            "name": "AL: Generated Snapshot request-UAT",
-            "request": "snapshotInitialize",
+            "name": "WM-UAT",
+            "request": "launch",
             "type": "al",
-            "environmentType": "Production",
-            "environmentName": "WM_IN_4000_UAT",
-            "sessionId": 374431,
-            "breakOnNext": "WebClient",
-            "executionContext": "DebugAndProfile",
-            "tenant": "e4289438-1c5f-4c95-a51a-ee553b8b18ec"
+            "environmentType": "Sandbox",
+            "environmentName": "WM_IN_4000_SANDBOX_1031",
+                        "startupObjectId": 22,
+            "startupObjectType": "Page",
+            "breakOnError": "All",
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "schemaUpdateMode": "ForceSync"
         },
         {
             "name": "Weidmuller-PROD",
