@@ -27,7 +27,6 @@ pageextension 50012 PostedSalesInvoices extends "Posted Sales Invoices"
                 trigger OnAction(Files: List of [FileUpload])
                 var
                     SalesInv: Record "Sales Invoice Header";
-                    eInvoiceJsonHandler: Codeunit "e-Invoice Json Handler";
                     JSONManagement: Codeunit "JSON Management";
                     TempBlob: Codeunit "Temp Blob";
                     QRGenerator: Codeunit "QR Generator";
@@ -41,7 +40,6 @@ pageextension 50012 PostedSalesInvoices extends "Posted Sales Invoices"
                     AcknowledgementTime: Time;
                     CurrentFile: FileUpload;
                     TempInStream: InStream;
-                    FileName: Text;
                     IRNTxt: Label 'Irn', Locked = true;
                     AcknowledgementNoTxt: Label 'AckNo', Locked = true;
                     AcknowledgementDateTxt: Label 'AckDt', Locked = true;
@@ -49,18 +47,18 @@ pageextension 50012 PostedSalesInvoices extends "Posted Sales Invoices"
                     SignedQRCodeTxt: Label 'SignedQRCode', Locked = true;
                 begin
                     foreach CurrentFile in Files do begin
-                        FileName := CopyStr(ConvertStr(CurrentFile.FileName, '_', '/'), 1, StrLen(CurrentFile.FileName) - 4);
-                        if SalesInv.Get(FileName) then begin
-                            CurrentFile.CreateInStream(TempInStream, TEXTENCODING::UTF8);
-                            Clear(eInvoiceJsonHandler);
-                            Clear(RecRef);
-                            RecRef.GetTable(SalesInv);
-                            TempInStream.ReadText(JsonString);
-                            if (JsonString = '') or (JsonString = '[]') then
-                                exit;
+                        CurrentFile.CreateInStream(TempInStream, TEXTENCODING::UTF8);
+                        Clear(RecRef);
+                        TempInStream.ReadText(JsonString);
+                        if (JsonString = '') or (JsonString = '[]') then
+                            exit;
 
-                            JSONManagement.InitializeObject(JsonString);
-                            if JSONManagement.GetValue(IRNTxt) <> '' then begin
+                        JSONManagement.InitializeObject(JsonString);
+                        if JSONManagement.GetValue(IRNTxt) <> '' then begin
+                            SalesInv.SetCurrentKey("IRN Hash");
+                            SalesInv.SetRange("IRN Hash", JSONManagement.GetValue(IRNTxt));
+                            if SalesInv.FindFirst() then begin
+                                RecRef.GetTable(SalesInv);
                                 FieldRef := RecRef.Field(SalesInv.FieldNo("IRN Hash"));
                                 FieldRef.Value := JSONManagement.GetValue(IRNTxt);
                                 FieldRef := RecRef.Field(SalesInv.FieldNo("Acknowledgement No."));
@@ -79,10 +77,10 @@ pageextension 50012 PostedSalesInvoices extends "Posted Sales Invoices"
                                 FieldRef := RecRef.Field(SalesInv.FieldNo("QR Code"));
                                 TempBlob.ToRecordRef(RecRef, SalesInv.FieldNo("QR Code"));
                                 RecRef.Modify();
-                            end else
-                                Error(IRNHashErr, TempIRNTxt);
-                            RecRef.Close();
-                        end;
+                            end;
+                        end else
+                            Error(IRNHashErr, TempIRNTxt);
+                        RecRef.Close();
                     end;
                     CurrPage.Update();
                 end;
