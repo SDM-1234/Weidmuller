@@ -47,8 +47,8 @@ pageextension 50093 WarehouseShipment extends "Warehouse Shipment"
             part("BinContent FactBox"; 50000)
             {
                 Caption = 'BinContent FactBox';
-                //Provider = "97";
-                //SubPageLink = "Item No." = FIELD("Item No.");
+                Provider = WhseShptLines;
+                SubPageLink = "Item No." = field("Item No.");
                 ApplicationArea = All;
             }
         }
