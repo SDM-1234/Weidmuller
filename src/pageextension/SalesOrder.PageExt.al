@@ -111,16 +111,19 @@ pageextension 50053 SalesOrder extends "Sales Order"
                 Caption = 'Industry Segments';
                 ToolTip = 'View the industry segments associated with the sales order.';
                 ApplicationArea = All;
-                trigger OnAction()
-                var
-                    SalesSegmentRec: Record "Sales Segment";
-                    SalesSegmentPage: Page "Sales Segments";
-                begin
-                    SalesSegmentPage.SetOrderInvNo(Rec."No.", '', '', Rec."Bill-to Customer No.");
-                    SalesSegmentRec.SetRange("Sales Order No.", Rec."No.");
-                    SalesSegmentPage.SetTableView(SalesSegmentRec);
-                    SalesSegmentPage.Run();
-                end;
+                RunObject = page "Sales Segments";
+                RunPageLink = "Customer No." = field("Sell-to Customer No."), "Sales Order No." = field("No."), "Sales Invoice No." = filter('');
+                // Customer No.=FIELD(Sell-to Customer No.),Sales Order No.=FIELD(No.),Sales Invoice No.=FILTER('')
+                // trigger OnAction()
+                // var
+                //     SalesSegmentRec: Record "Sales Segment";
+                //     SalesSegmentPage: Page "Sales Segments";
+                // begin
+                //     SalesSegmentPage.SetOrderInvNo(Rec."No.", '', '', Rec."Bill-to Customer No.");
+                //     SalesSegmentRec.SetRange("Sales Order No.", Rec."No.");
+                //     SalesSegmentPage.SetTableView(SalesSegmentRec);
+                //     SalesSegmentPage.Run();
+                // end;
             }
         }
     }
