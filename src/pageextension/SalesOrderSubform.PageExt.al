@@ -90,7 +90,6 @@ pageextension 50057 SalesOrderSubform extends "Sales Order Subform"
                 ApplicationArea = All;
             }
 
-
         }
     }
 
