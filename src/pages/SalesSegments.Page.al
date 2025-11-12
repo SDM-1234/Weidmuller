@@ -83,7 +83,6 @@ page 50014 "Sales Segments"
             }
         }
     }
-
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     begin
         Rec."Sales Order No." := SalesOrderNo;
@@ -103,6 +102,7 @@ page 50014 "Sales Segments"
 
     trigger OnAfterGetRecord()
     begin
+
         Rec.UpdateUnassignedPercentage(Rec."Customer No.", 0);
     end;
 
@@ -119,6 +119,11 @@ page 50014 "Sales Segments"
 
     trigger OnOpenPage()
     begin
+
+        Rec."Sales Order No." := SalesOrderNo;
+        Rec."Sales Invoice No." := SalesInvNo;
+        Rec."Posted Sales Invoice No." := PostedSalesInvNo;
+        Rec."Customer No." := CustNo;
         FieldEditable := TRUE;
     end;
 

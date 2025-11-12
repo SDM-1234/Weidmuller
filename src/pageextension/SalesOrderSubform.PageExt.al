@@ -86,10 +86,9 @@ pageextension 50057 SalesOrderSubform extends "Sales Order Subform"
             }
             field("GST Ship-to State Code"; SH."GST Ship-to State Code")
             {
-                Caption = 'GST Bill-to State Code';
+                Caption = 'GST Ship-to State Code';
                 ApplicationArea = All;
             }
-
 
         }
     }
