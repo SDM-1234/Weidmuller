@@ -70,7 +70,7 @@ codeunit 50023 "Prod. Order Reclass Jnl. Mgt."
                 ItemJnlLine.Validate("Variant Code", ProdOrderComp."Variant Code");
                 ItemJnlLine.Validate("Bin Code", ProdOrderComp."Bin Code");
                 ItemJnlLine.Validate("New Location Code", ManuSetup."Reclass To Location");
-                ItemJnlLine.Validate(Quantity, ProdOrderComp.Quantity);
+                ItemJnlLine.Validate(Quantity, ProdOrderComp."Expected Quantity");
                 ItemJnlLine.Validate("Unit of Measure Code", ProdOrderComp."Unit of Measure Code");
                 ItemJnlLine.Insert(true);
                 LastItemJnlLine := ItemJnlLine;
