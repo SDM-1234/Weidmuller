@@ -64,10 +64,56 @@ tableextension 50023 Customer extends Customer
             Description = 'SE_E969';
             TableRelation = "G/L Account" WHERE("Direct Posting" = CONST(true), "Account Type" = CONST(Posting), Blocked = CONST(false));
         }
+        field(50004; "Weidmuller Industry Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            toolTip = 'Specifies the Weidmuller Industry Code.';
+            caption = 'Weidmuller Industry Code (WIC)';
+        }
+        field(50005; "Industry Code"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'ISIC1 Code,The 5 digits of the Industry Code';
+            TableRelation = "Industry Code"."Code";
+        }
+        field(50006; "Legal status"; Option)
+        {
+            Caption = 'Legal status';
+            DataClassification = CustomerContent;
+            OptionCaption = 'Distributor,Direct,Customer Behind Distributor';
+            OptionMembers = Distributor,Direct,"Customer Behind Distributor";
+        }
+        field(50007; "Key Account"; Code[20])
+        {
+            Caption = 'Key Account';
+            DataClassification = CustomerContent;
+            TableRelation = "Key Account"."Code";
+        }
+        field(50008; "Key Account Relation"; Option)
+        {
+            Caption = 'Key Account Relation';
+            DataClassification = CustomerContent;
+            OptionCaption = 'Direct,Indirect';
+            OptionMembers = Direct,Indirect;
+        }
+        field(50009; "Distribution Code1"; Code[20])
+        {
+            Caption = 'Distribution Code1';
+            DataClassification = CustomerContent;
+            TableRelation = "Distribution Code1"."Code";
+
+        }
+        field(50010; "Distri. PRO Partner"; Boolean)
+        {
+            Caption = 'Distri. PRO Partner';
+            Description = 'Distribution PRO Partner';
+            DataClassification = CustomerContent;
+        }
     }
 
     var
         MailManagement: Codeunit "Mail Management";
+        EnableKeyAccount: Boolean;
 
 }
 

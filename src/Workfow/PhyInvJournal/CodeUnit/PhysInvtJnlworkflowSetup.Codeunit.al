@@ -21,18 +21,7 @@ codeunit 50019 "Phys Invt Jnl workflow Setup"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Setup", 'OnInsertWorkflowTemplates', '', true, true)]
     local procedure OnInsertWorkflowTemplates()
     begin
-        DeletePhysInvtTemplate();
         InsertPhysInvtTemplate()
-    end;
-
-    local procedure DeletePhysInvtTemplate()
-    var
-        workflow: record Workflow;
-    begin
-        if workflow.Get(WorkflowTemplateCodeLbl) then begin
-            workflow.Template := false;
-            workflow.Delete(true);
-        end;
     end;
 
     local procedure InsertPhysInvtTemplate()

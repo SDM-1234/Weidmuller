@@ -59,6 +59,33 @@ codeunit 50009 "Warehouse Subscriber"
         PostedWhseShipmentHeader."Date of Removal" := WarehouseShipmentHeader."Date of Removal";
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Document Attachment Mgmt", OnAfterGetRefTable, '', false, false)]
+    local procedure "Document Attachment Mgmt_OnAfterGetRefTable"(var RecRef: RecordRef; DocumentAttachment: Record "Document Attachment")
+    var
+        WhseRecptHdr: Record "Warehouse Receipt Header";
+    begin
+        case DocumentAttachment."Table ID" of
+            Database::"Warehouse Receipt Header":
+                begin
+                    RecRef.Open(Database::"Warehouse Receipt Header");
+                    if WhseRecptHdr.Get(DocumentAttachment."No.") then
+                        RecRef.GetTable(WhseRecptHdr);
+                end;
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Document Attachment Mgmt", OnAfterTableHasNumberFieldPrimaryKey, '', false, false)]
+    local procedure "Document Attachment Mgmt_OnAfterTableHasNumberFieldPrimaryKey"(TableNo: Integer; var Result: Boolean; var FieldNo: Integer)
+    begin
+        case TableNo of
+            Database::"Warehouse Receipt Header":
+                begin
+                    FieldNo := 1;
+                    Result := true;
+                end;
+        end;
+    end;
+
 
 
 

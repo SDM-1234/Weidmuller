@@ -4,34 +4,50 @@ pageextension 50022 TransferOrder extends "Transfer Order"
     {
         addafter(Status)
         {
-            // field("Approval Status"; Rec."Approval Status")
-            // {
-            //     ApplicationArea = All;
-            //     ToolTip = 'Specifies the value of the Approval Status field.', Comment = '%';
-            // }
-            field(TransferApprovalStatus; TransferApprovalStatus)
+            field("Approval Status"; Rec."Approval Status")
             {
-                ApplicationArea = Basic, Suite;
-                Caption = 'Approval Status';
-                Editable = false;
-                Visible = EnabledTransferWorkflowsExist;
-                ToolTip = 'Specifies the approval status for transfer order.';
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Approval Status field.', Comment = '%';
+            }
+        }
+        addlast(General)
+        {
+            field("Quality Inspection No."; Rec."Quality Inspection No.")
+            {
+                ApplicationArea = All;
+            }
+        }
+        addlast(factboxes)
+        {
+            part("Attached Documents List"; "Doc. Attachment List Factbox")
+            {
+                ApplicationArea = All;
+                Caption = 'Documents';
+                UpdatePropagation = Both;
+                SubPageLink = "Table ID" = const(Database::"Transfer Header"),
+                              "No." = field("No.");
             }
         }
     }
+
     actions
     {
+        modify("Re&lease")
+        {
+            Enabled = not EnabledWhseRecptWorkflowsExist;
+        }
+        modify("Reo&pen")
+        {
+            Enabled = not EnabledWhseRecptWorkflowsExist;
+        }
         addafter("Re&lease")
         {
             action("Send for Approval")
             {
                 ApplicationArea = All;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 Image = SendApprovalRequest;
                 ToolTip = 'Executes the Send for Approval action.';
+                Enabled = EnabledWhseRecptWorkflowsExist;
 
                 trigger OnAction()
                 var
@@ -46,6 +62,7 @@ pageextension 50022 TransferOrder extends "Transfer Order"
                 Caption = 'Cancel Approval Request';
                 Image = CancelApprovalRequest;
                 ToolTip = 'Cancel sending the transfer order for approval.';
+                Enabled = EnabledWhseRecptWorkflowsExist;
                 trigger OnAction()
                 var
                     TransferAppMgt: Codeunit "Transfer Approval Mgmt";
@@ -53,22 +70,52 @@ pageextension 50022 TransferOrder extends "Transfer Order"
                     TransferAppMgt.OnCancelRequestForApproval(Rec);
                 end;
             }
+            action(Reopen)
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = 'Reopen';
+                Image = ReOpen;
+                ToolTip = 'Reopen';
+                Enabled = EnabledWhseRecptWorkflowsExist;
+
+                trigger OnAction()
+                var
+                    ReleaseTransferDoc: Codeunit "Release Transfer Document";
+                begin
+                    ReleaseTransferDoc.Reopen(Rec);
+                    Rec.Validate("Approval Status", Rec."Approval Status"::Open);
+                    Rec.Modify(true);
+                    CurrPage.Update();
+                end;
+            }
+        }
+        addlast(Promoted)
+        {
+            group("Category_Request Approval")
+            {
+                Caption = 'Request Approval';
+                actionref(SendApprovalRequest_Promoted; "Send for Approval")
+                {
+                }
+                actionref(CancelApprovalRequest_Promoted; "Cancel Approval Request")
+                {
+                }
+                actionref(Reopen_Promoted; Reopen)
+                {
+                }
+            }
         }
     }
-    trigger OnAfterGetRecord()
-    begin
-        ApprovalMgmt.GetApprovalStatus(Rec, TransferApprovalStatus, EnabledTransferWorkflowsExist);
-    end;
-
-    trigger OnOpenPage()
-    begin
-        EnabledTransferWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(DATABASE::"Transfer Header", WorkflowEventHandling.RunWorkflowOnSendTransferForApprovalCode());
-    end;
-
     var
         ApprovalMgmt: Codeunit "Approval Mgt. WM";
         WorkflowManagement: Codeunit "Workflow Management";
-        WorkflowEventHandling: Codeunit "Transfer Workflow Evt Handling";
-        TransferApprovalStatus: Text[20];
-        EnabledTransferWorkflowsExist: Boolean;
+        WorkflowEventHandling: Codeunit "WhseRecpt WF Evt Handling";
+        WhseRecptApprovalStatus: Text[20];
+        EnabledWhseRecptWorkflowsExist: Boolean;
+        OpenApprovalEntriesExistForCurrUser: Boolean;
+
+    trigger OnOpenPage()
+    begin
+        EnabledWhseRecptWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(DATABASE::"Warehouse Receipt Header", WorkflowEventHandling.RunWorkflowOnSendWhseReceiptForApprovalCode());
+    end;
 }

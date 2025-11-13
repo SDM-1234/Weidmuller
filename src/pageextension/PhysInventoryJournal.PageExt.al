@@ -3,14 +3,14 @@ pageextension 50025 PhysInventoryJournal extends "Phys. Inventory Journal"
     layout
     {
         // Add changes to page layout here
-        addlast(content)
+        addlast(Control1)
         {
             field(PhysInvtApprovalStatus; PhysInvtApprovalStatus)
             {
-                ApplicationArea = Basic, Suite;
+                ApplicationArea = All;
                 Caption = 'Approval Status';
                 Editable = false;
-                Visible = EnabledPhysInvtWorkflowsExist;
+                Visible = true;
                 ToolTip = 'Specifies the approval status for Physical Inventory Journal.';
             }
         }
@@ -144,8 +144,6 @@ pageextension 50025 PhysInventoryJournal extends "Phys. Inventory Journal"
                 }
             }
         }
-
-
     }
     trigger OnAfterGetRecord()
     begin
@@ -157,17 +155,36 @@ pageextension 50025 PhysInventoryJournal extends "Phys. Inventory Journal"
         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
     begin
         OpenApprovalEntriesExistForCurrUser := ApprovalsMgmt.HasOpenApprovalEntriesForCurrentUser(Rec.RecordId);
+        ApprovalMgmt.GetApprovalStatus(Rec, PhysInvtApprovalStatus, EnabledPhysInvtWorkflowsExist);
+    end;
+
+    trigger OnModifyRecord(): Boolean
+    var
+        ApprovalStatusName: Text[20];
+    begin
+        ApprovalMgmt.GetApprovalStatus(Rec, ApprovalStatusName, EnabledPhysInvtWorkflowsExist);
+        if ApprovalStatusName = 'Approved' then
+            Error('You cannot modify an approved journal line.');
+    end;
+
+    trigger OnDeleteRecord(): Boolean
+    var
+        ApprovalStatusName: Text[20];
+    begin
+        ApprovalMgmt.GetApprovalStatus(Rec, ApprovalStatusName, EnabledPhysInvtWorkflowsExist);
+        if ApprovalStatusName = 'Approved' then
+            Error('You cannot delete an approved journal line.');
     end;
 
     trigger OnOpenPage()
     begin
-        EnabledPhysInvtWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(DATABASE::"Item Journal Line", WorkflowEventHandling.RunWorkflowOnSendTransferForApprovalCode());
+        EnabledPhysInvtWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(DATABASE::"Item Journal Line", WorkflowEventHandling.RunWorkflowOnSendPhysInvtForApprovalCode());
     end;
 
     var
         ApprovalMgmt: Codeunit "Approval Mgt. WM";
         WorkflowManagement: Codeunit "Workflow Management";
-        WorkflowEventHandling: Codeunit "Transfer Workflow Evt Handling";
+        WorkflowEventHandling: Codeunit "PhysInvt Workflow Evt Handling";
         PhysInvtApprovalStatus: Text[20];
         EnabledPhysInvtWorkflowsExist: Boolean;
         OpenApprovalEntriesExistForCurrUser: Boolean;

@@ -21,35 +21,32 @@ codeunit 50154 "Production BOM Workflow Setup"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Setup", 'OnInsertWorkflowTemplates', '', true, true)]
     local procedure OnInsertWorkflowTemplates()
     begin
-        InsertTransferOrderTemplate()
+        InsertProdBOMTemplate()
     end;
 
-    procedure InsertTransferOrderTemplate()
+    procedure InsertProdBOMTemplate()
     var
         workflow: record Workflow;
     begin
         workflowsetup.InsertWorkflowTemplate(workflow, WorkflowTemplateCodeLbl, WorkflowTemplateDescLbl, workflowCategoryCodeLbl);
-        InsertTransferOrderApprovalWorkFlowDetails(workflow);
+        InsertProdBOMApprovalWorkFlowDetails(workflow);
         workflowsetup.MarkWorkflowAsTemplate(workflow);
     end;
 
-    procedure InsertTransferOrderApprovalWorkFlowDetails(var workflow: record Workflow)
+    procedure InsertProdBOMApprovalWorkFlowDetails(var workflow: record Workflow)
     var
         ProductionBomHeader: record "Production Bom Header";
         WorkflowStepArgument: Record "Workflow Step Argument";
-        workflowEventHandling: Codeunit "Transfer Workflow Evt Handling";
+        workflowEventHandling: Codeunit "ProdBOM Workflow Evt Handling";
         BlankDateFormula: DateFormula;
 
     begin
         workflowsetup.InitWorkflowStepArgument(WorkflowStepArgument, WorkflowStepArgument."Approver Type"::Approver, WorkflowStepArgument."Approver Limit Type"::"Direct Approver", 0, '', BlankDateFormula, true);
-
-
-        workflowsetup.InsertDocApprovalWorkflowSteps(workflow, BuildTransferTypeConditions(ProductionBomHeader.Status::"Under Development"), workflowEventHandling.RunWorkflowOnSendTransferForApprovalCode(),
-        BuildTransferTypeConditions(ProductionBomHeader.Status::"Pending Approval"), workflowEventHandling.RunWorkflowOnCancelTransferForApprovalCode(), WorkflowStepArgument, true);
+        workflowsetup.InsertDocApprovalWorkflowSteps(workflow, BuildTransferTypeConditions(ProductionBomHeader.Status::"Under Development"), workflowEventHandling.RunWorkflowOnSendPRODBOMForApprovalCode(),
+        BuildTransferTypeConditions(ProductionBomHeader.Status::"Pending Approval"), workflowEventHandling.RunWorkflowOnCancelPRODBOMForApprovalCode(), WorkflowStepArgument, true);
     end;
 
     local procedure BuildTransferTypeConditions(Status: Enum "Approval Status"): Text
-
     var
         ProductionBomHeader: record "Production Bom Header";
     begin
@@ -65,6 +62,6 @@ codeunit 50154 "Production BOM Workflow Setup"
         WorkflowTemplateDescLbl: TextConst ENU = 'Production BOM Workflow';
         workflowCategoryCodeLbl: TextConst ENU = 'Weidmuller';
         workflowCategoryDescLbl: TextConst ENU = 'Weidmuller Workflow Category';
-        WorkFlowCondLbl: label '<?xml version="1.0" encoding="utf-8" standalone="yes"?><ReportParameters><DataItems><DataItem name="Transfer Header">%1</DataItem></DataItems></ReportParameters>', Locked = true;
+        WorkFlowCondLbl: label '<?xml version="1.0" encoding="utf-8" standalone="yes"?><ReportParameters><DataItems><DataItem name="Production BOM Header">%1</DataItem></DataItems></ReportParameters>', Locked = true;
 
 }

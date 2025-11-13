@@ -3,6 +3,10 @@ pageextension 50034 SalesPriceList extends "Sales Price List"
     layout
     {
         // Add changes to page layout here
+        modify(Status)
+        {
+            Editable = false;
+        }
     }
 
     actions

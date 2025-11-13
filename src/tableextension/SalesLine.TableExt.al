@@ -129,12 +129,6 @@ tableextension 50030 SalesLine extends "Sales Line"
         Item: Record Item;
         SalesHeader: Record "Sales Header";
 
-    trigger OnInsert()
-    begin
-        SalesHeader.Get("Document Type", "Document No.");
-        Item.Get("No.");
-    end;
-
     //Need to Update Sales Header variable Where to call or Set
     local procedure UpdateConfirmShipDate()
 

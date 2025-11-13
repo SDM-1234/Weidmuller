@@ -6,22 +6,22 @@ codeunit 50002 "Auto Emailing"
     end;
 
     var
-        SMTPMail: Codeunit "Email Message";
         Email: Codeunit Email;
+        SMTPMail: Codeunit "Email Message";
 
     local procedure DunningEmail()
     var
-        DE_Customer, DE_Cust : Record Customer;
         DE_CLE: Record "Cust. Ledger Entry";
-        DE_CustDunning: Report "Customer-wise Dunning";
+        DE_Customer, DE_Cust : Record Customer;
+        GenLedgerSetup: Record "General Ledger Setup";
         Base64: Codeunit "Base64 Convert";
         TempBlob: Codeunit "Temp Blob";
+        DE_CustDunning: Report "Customer-wise Dunning";
+        ReportInStream: InStream;
+        ReportOutStream: OutStream;
+        EmailRecipientType: Enum "Email Recipient Type";
         DE_CustEmail: Text;
         DE_EmailBody: Text;
-        ReportOutStream: OutStream;
-        ReportInStream: InStream;
-        EmailRecipientType: Enum "Email Recipient Type";
-        GenLedgerSetup: Record "General Ledger Setup";
     begin
         GenLedgerSetup.Get();
 
@@ -50,9 +50,9 @@ codeunit 50002 "Auto Emailing"
                             DE_Cust.RESET();
                             DE_Cust.CHANGECOMPANY('GO_LIVE');
                             DE_Cust.SETFILTER("No.", DE_Customer."No.");
+                            CLEAR(DE_CustDunning);
                             DE_CustDunning.SETTABLEVIEW(DE_Cust);
                             DE_CustDunning.USEREQUESTPAGE := FALSE;
-                            CLEAR(DE_CustDunning);
                             TempBlob.CreateOutStream(ReportOutStream);
                             IF DE_CustDunning.SaveAs('', ReportFormat::Pdf, ReportOutStream) THEN BEGIN
                                 TempBlob.CreateInStream(ReportInStream);

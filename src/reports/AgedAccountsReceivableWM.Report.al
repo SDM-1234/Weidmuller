@@ -38,6 +38,9 @@ report 50013 "Aged Accounts Receivable WM"
             column(AgedbyDocumnetDate; STRSUBSTNO(Text004, SELECTSTR(AgingBy + 1, Text009)))
             {
             }
+            column(HeaderText6; HeaderText[6])
+            {
+            }
             column(HeaderText5; HeaderText[5])
             {
             }
@@ -58,6 +61,10 @@ report 50013 "Aged Accounts Receivable WM"
             }
             column(PrintPaymentDate; PrintPaymentDate)
             {
+            }
+            column(GrandTotalCLE6RemAmt; GrandTotalCustLedgEntry[6]."Remaining Amt. (LCY)")
+            {
+                AutoFormatType = 1;
             }
             column(GrandTotalCLE5RemAmt; GrandTotalCustLedgEntry[5]."Remaining Amt. (LCY)")
             {
@@ -93,6 +100,9 @@ report 50013 "Aged Accounts Receivable WM"
             {
             }
             column(GrandTotalCLE4CustRemAmtLCY; Pct(GrandTotalCustLedgEntry[4]."Remaining Amt. (LCY)", GrandTotalCustLedgEntry[1]."Amount (LCY)"))
+            {
+            }
+            column(GrandTotalCLE6CustRemAmtLCY; Pct(GrandTotalCustLedgEntry[6]."Remaining Amt. (LCY)", GrandTotalCustLedgEntry[1]."Amount (LCY)"))
             {
             }
             column(GrandTotalCLE5CustRemAmtLCY; Pct(GrandTotalCustLedgEntry[5]."Remaining Amt. (LCY)", GrandTotalCustLedgEntry[1]."Amount (LCY)"))
@@ -241,6 +251,10 @@ report 50013 "Aged Accounts Receivable WM"
                     {
                         AutoFormatType = 1;
                     }
+                    column(AgedCLE6RemAmtLCY; AgedCustLedgEntry[6]."Remaining Amt. (LCY)")
+                    {
+                        AutoFormatType = 1;
+                    }
                     column(CLEEndDateAmtLCY; CustLedgEntryEndingDate."Amount (LCY)")
                     {
                         AutoFormatType = 1;
@@ -259,6 +273,11 @@ report 50013 "Aged Accounts Receivable WM"
                     }
                     column(CLEPostingDate; FORMAT(CustLedgEntryEndingDate."Posting Date"))
                     {
+                    }
+                    column(AgedCLE6TempRemAmt; AgedCustLedgEntry[6]."Remaining Amount")
+                    {
+                        AutoFormatExpression = CurrencyCode;
+                        AutoFormatType = 1;
                     }
                     column(AgedCLE5TempRemAmt; AgedCustLedgEntry[5]."Remaining Amount")
                     {
@@ -322,9 +341,17 @@ report 50013 "Aged Accounts Receivable WM"
                     {
                         AutoFormatType = 1;
                     }
+                    column(TotalCLE6RemAmtLCY; TotalCustLedgEntry[6]."Remaining Amt. (LCY)")
+                    {
+                        AutoFormatType = 1;
+                    }
                     column(CurrrencyCode; CurrencyCode)
                     {
                         AutoFormatExpression = CurrencyCode;
+                        AutoFormatType = 1;
+                    }
+                    column(TotalCLE6RemAmt; TotalCustLedgEntry[6]."Remaining Amount")
+                    {
                         AutoFormatType = 1;
                     }
                     column(TotalCLE5RemAmt; TotalCustLedgEntry[5]."Remaining Amount")
@@ -358,6 +385,9 @@ report 50013 "Aged Accounts Receivable WM"
                     {
                         AutoFormatType = 1;
                     }
+                    column(GrandTotalCLE6PctRemAmtLCY; Pct(GrandTotalCustLedgEntry[6]."Remaining Amt. (LCY)", GrandTotalCustLedgEntry[1]."Amount (LCY)"))
+                    {
+                    }
                     column(GrandTotalCLE5PctRemAmtLCY; Pct(GrandTotalCustLedgEntry[5]."Remaining Amt. (LCY)", GrandTotalCustLedgEntry[1]."Amount (LCY)"))
                     {
                     }
@@ -369,6 +399,10 @@ report 50013 "Aged Accounts Receivable WM"
                     }
                     column(GrandTotalCLE1PctRemAmtLCY; Pct(GrandTotalCustLedgEntry[1]."Remaining Amt. (LCY)", GrandTotalCustLedgEntry[1]."Amount (LCY)"))
                     {
+                    }
+                    column(GrandTotalCLE6RemAmtLCY; GrandTotalCustLedgEntry[6]."Remaining Amt. (LCY)")
+                    {
+                        AutoFormatType = 1;
                     }
                     column(GrandTotalCLE5RemAmtLCY; GrandTotalCustLedgEntry[5]."Remaining Amt. (LCY)")
                     {
@@ -565,6 +599,11 @@ report 50013 "Aged Accounts Receivable WM"
                 AutoFormatExpression = CurrencyCode;
                 AutoFormatType = 1;
             }
+            column(AgedCLE7RemAmt; AgedCustLedgEntry[7]."Remaining Amount")
+            {
+                AutoFormatExpression = CurrencyCode;
+                AutoFormatType = 1;
+            }
             column(AgedCLE6RemAmt; AgedCustLedgEntry[6]."Remaining Amount")
             {
                 AutoFormatExpression = CurrencyCode;
@@ -616,7 +655,7 @@ report 50013 "Aged Accounts Receivable WM"
                             AgedCustLedgEntry[GetPeriodIndex(TempCurrencyAmount.Date)]."Remaining Amount" :=
                               TempCurrencyAmount.Amount
                         ELSE
-                            AgedCustLedgEntry[6]."Remaining Amount" := TempCurrencyAmount.Amount;
+                            AgedCustLedgEntry[7]."Remaining Amount" := TempCurrencyAmount.Amount;
                     UNTIL TempCurrencyAmount.NEXT() = 0;
             end;
         }
@@ -717,9 +756,9 @@ report 50013 "Aged Accounts Receivable WM"
         GLSetup: Record "General Ledger Setup";
         TempCustLedgEntry: Record "Cust. Ledger Entry" temporary;
         CustLedgEntryEndingDate: Record "Cust. Ledger Entry";
-        TotalCustLedgEntry: array[5] of Record "Cust. Ledger Entry";
-        GrandTotalCustLedgEntry: array[5] of Record "Cust. Ledger Entry";
-        AgedCustLedgEntry: array[6] of Record "Cust. Ledger Entry";
+        TotalCustLedgEntry: array[6] of Record "Cust. Ledger Entry";
+        GrandTotalCustLedgEntry: array[6] of Record "Cust. Ledger Entry";
+        AgedCustLedgEntry: array[7] of Record "Cust. Ledger Entry";
         TempCurrency: Record Currency temporary;
         TempCurrency2: Record Currency temporary;
         TempCurrencyAmount: Record "Currency Amount" temporary;
@@ -733,10 +772,10 @@ report 50013 "Aged Accounts Receivable WM"
         HeadingType: Option "Date Interval","Number of Days";
         NewPagePercustomer: Boolean;
         PrintPaymentDate: Boolean;
-        PeriodStartDate: array[5] of Date;
-        PeriodEndDate: array[5] of Date;
+        PeriodStartDate: array[6] of Date;
+        PeriodEndDate: array[6] of Date;
         PaymentDate: Text;
-        HeaderText: array[5] of Text[30];
+        HeaderText: array[6] of Text[30];
         Text000: Label 'Not Due';
         Text001: Label 'Before';
         CurrencyCode: Code[10];

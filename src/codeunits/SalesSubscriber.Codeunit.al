@@ -8,7 +8,7 @@ codeunit 50100 SalesSubscriber
     end;
 
     [EventSubscriber(ObjectType::Table, Database::Customer, 'OnBeforeCheckBlockedCust', '', false, false)]
-    local procedure OnBeforeCheckBlockedCust_WM(var IsHandled: Boolean; Customer: Record Customer; DocType: Option; Shipment: Boolean; Transaction: Boolean)
+    local procedure OnBeforeCheckBlockedCust_WM(Customer: Record Customer; DocType: Option; Shipment: Boolean; Source: Option; Transaction: Boolean; var IsHandled: Boolean)
     var
         SingleInstanceCU: Codeunit "Single Instance CU";
     begin
@@ -16,14 +16,23 @@ codeunit 50100 SalesSubscriber
         IF Customer."Privacy Blocked" THEN
             Customer.CustPrivacyBlockedErrorMessage(Customer, Transaction);
 
-        IF ((Customer.Blocked = Customer.Blocked::All) OR
-            ((Customer.Blocked = Customer.Blocked::Invoice) AND (DocType IN [0, 1, 2, 4]) AND (NOT SingleInstanceCU.GetBlockParameterFromDocs())) OR
-            ((Customer.Blocked = Customer.Blocked::Ship) AND (DocType IN [0, 1, 4]) AND
-             (NOT Transaction) AND (NOT SingleInstanceCU.GetBlockParameterFromDocs())) OR
-            ((Customer.Blocked = Customer.Blocked::Ship) AND (DocType IN [0, 1, 2, 4]) AND
-             Shipment AND Transaction) AND (NOT SingleInstanceCU.GetBlockParameterFromDocs()))
-        THEN
-            Customer.CustBlockedErrorMessage(Customer, Transaction);
+        case Source of
+            1: //DOcument
+                IF ((Customer.Blocked = Customer.Blocked::All) OR
+                    ((Customer.Blocked = Customer.Blocked::Invoice) AND (DocType IN [0, 1, 2, 4]) AND (NOT SingleInstanceCU.GetBlockParameterFromDocs())) OR
+                    ((Customer.Blocked = Customer.Blocked::Ship) AND (DocType IN [0, 1, 4]) AND
+                    (NOT Transaction) AND (NOT SingleInstanceCU.GetBlockParameterFromDocs())) OR
+                    ((Customer.Blocked = Customer.Blocked::Ship) AND (DocType IN [0, 1, 2, 4]) AND
+                    Shipment AND Transaction) AND (NOT SingleInstanceCU.GetBlockParameterFromDocs()))
+                THEN
+                    Customer.CustBlockedErrorMessage(Customer, Transaction);
+            0: //Journal
+                IF (Customer.Blocked = Customer.Blocked::All) OR
+                   ((Customer.Blocked = Customer.Blocked::Invoice) AND (DocType IN [2]))
+
+                THEN
+                    Customer.CustBlockedErrorMessage(Customer, Transaction);
+        end;
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnValidatePostingDateOnBeforeAssignDocumentDate, '', false, false)]
@@ -327,6 +336,38 @@ codeunit 50100 SalesSubscriber
     begin
         SalesHeader.CheckAttachment(SalesHeader);
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", OnAfterPostSalesDoc, '', false, false)]
+    local procedure "Sales-Post_OnAfterPostSalesDoc"(var SalesHeader: Record "Sales Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; SalesShptHdrNo: Code[20]; RetRcpHdrNo: Code[20]; SalesInvHdrNo: Code[20]; SalesCrMemoHdrNo: Code[20]; CommitIsSuppressed: Boolean; InvtPickPutaway: Boolean; var CustLedgerEntry: Record "Cust. Ledger Entry"; WhseShip: Boolean; WhseReceiv: Boolean; PreviewMode: Boolean)
+    var
+        SalesInvHeader: Record "Sales Invoice Header";
+        eInvoiceJsonHandler: Codeunit "e-Invoice Json Handler";
+        eInvoiceManagement: Codeunit "e-Invoice Management";
+        eInvoiceNonGSTTransactionErr: Label 'E-Invoicing is not applicable for Non-GST Transactions.';
+    begin
+        if eInvoiceManagement.IsGSTApplicable(SalesInvHdrNo, Database::"Sales Invoice Header") then begin
+            SalesInvHeader.Reset();
+            SalesInvHeader.SetRange("No.", SalesInvHdrNo);
+            if SalesInvHeader.FindFirst() then begin
+                Clear(eInvoiceJsonHandler);
+                SalesInvHeader.Mark(true);
+                eInvoiceJsonHandler.SetSalesInvHeader(SalesInvHeader);
+                eInvoiceJsonHandler.Run();
+            end;
+        end else
+            Error(eInvoiceNonGSTTransactionErr);
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Quote to Order (Yes/No)", OnBeforeConfirmConvertToOrder, '', false, false)]
+    local procedure "Sales-Quote to Order (Yes/No)_OnBeforeConfirmConvertToOrder"(SalesHeader: Record "Sales Header"; var Result: Boolean; var IsHandled: Boolean)
+    begin
+        if SalesHeader."Document Type" <> SalesHeader."Document Type"::Quote then
+            exit;
+        if SalesHeader."Quote Valid Until Date" < Today() then
+            Error('The quote %1 date has been exceeded. You cannot convert an expired quote to an order.', SalesHeader."No.");
+    end;
+
+
 
 
 

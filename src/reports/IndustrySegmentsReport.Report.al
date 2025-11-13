@@ -140,7 +140,31 @@ report 50012 "Industry Segments Report"
             column(AmtLCY_CustLedgerEntry; Customer."Inv. Amounts (LCY)")
             {
             }
+            column(IndustryCode_Customer; Customer."Industry Code")
+            {
+            }
+            column(Legal_status_Customer; Customer."Legal Status")
+            {
+            }
 
+            column(Key_Account; Customer."Key Account")
+            {
+            }
+
+
+
+            column(Key_Account_Relation; Customer."Key Account Relation")
+            {
+            }
+
+
+            column(Distribution_Code1; Customer."Distribution Code1")
+            {
+            }
+
+            column(Distri_PRO_Partner; Customer."Distri. PRO Partner")
+            {
+            }
             trigger OnAfterGetRecord()
             var
                 IndustrySegmentTemp: Record "Industry Segment" temporary;

@@ -9,12 +9,8 @@ codeunit 50021 "PhysInvt Workflow Response"
     local procedure OnAddWorkflowResponsePredecessorsToLibrary(ResponseFunctionName: Code[128])
     begin
         case ResponseFunctionName of
-            workflowResponseHandling.SetStatusToPendingApprovalCode():
-                workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.SetStatusToPendingApprovalCode(), workflowHandling.RunWorkflowOnSendPhysInvtForApprovalCode());
             workflowResponseHandling.CancelAllApprovalRequestsCode():
                 workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.CancelAllApprovalRequestsCode(), workflowHandling.RunWorkflowOnCancelPhysInvtForApprovalCode());
-            workflowResponseHandling.OpenDocumentCode():
-                workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.OpenDocumentCode(), workflowHandling.RunWorkflowOnSendPhysInvtForApprovalCode());
         end
 
     end;

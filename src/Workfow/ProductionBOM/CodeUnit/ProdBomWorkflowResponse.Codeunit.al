@@ -13,7 +13,7 @@ codeunit 50157 "ProdBom Workflow Response"
     begin
         case
              RecRef.Number of
-            DATABASE::"Transfer Header":
+            DATABASE::"Production BOM Header":
                 BEGIN
                     RecRef.SetTable(ProdBOMHeader);
                     ProdBOMHeader.Validate("Status", ProdBOMHeader."Status"::"Under Development");
@@ -31,7 +31,7 @@ codeunit 50157 "ProdBom Workflow Response"
     begin
         case
              RecRef.Number of
-            DATABASE::"Transfer Header":
+            DATABASE::"Production BOM Header":
                 BEGIN
                     RecRef.SetTable(ProdBOMHeader);
                     ProdBOMHeader.Validate("Status", ProdBOMHeader."Status"::Certified);
@@ -49,11 +49,12 @@ codeunit 50157 "ProdBom Workflow Response"
     begin
         case
              RecRef.Number of
-            DATABASE::"Transfer Header":
+            DATABASE::"Production BOM Header":
                 BEGIN
                     RecRef.SetTable(ProdBOMHeader);
                     ProdBOMHeader.Validate("Status", ProdBOMHeader."Status"::"Pending Approval");
                     ProdBOMHeader.Modify(true);
+                    Variant := ProdBomHeader;
                     IsHandled := true;
                 END;
         end;
@@ -65,16 +66,16 @@ codeunit 50157 "ProdBom Workflow Response"
     begin
         case ResponseFunctionName of
             workflowResponseHandling.SetStatusToPendingApprovalCode():
-                workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.SetStatusToPendingApprovalCode(), workflowHandling.RunWorkflowOnSendPriceForApprovalCode());
+                workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.SetStatusToPendingApprovalCode(), workflowHandling.RunWorkflowOnSendPRODBOMForApprovalCode());
             workflowResponseHandling.CancelAllApprovalRequestsCode():
-                workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.CancelAllApprovalRequestsCode(), workflowHandling.RunWorkflowOnCancelPriceForApprovalCode());
+                workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.CancelAllApprovalRequestsCode(), workflowHandling.RunWorkflowOnCancelPRODBOMForApprovalCode());
             workflowResponseHandling.OpenDocumentCode():
-                workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.OpenDocumentCode(), workflowHandling.RunWorkflowOnSendPriceForApprovalCode());
+                workflowResponseHandling.AddResponsePredecessor(workflowResponseHandling.OpenDocumentCode(), workflowHandling.RunWorkflowOnSendPRODBOMForApprovalCode());
         end
 
     end;
 
     var
         workflowResponseHandling: Codeunit "Workflow Response Handling";
-        workflowHandling: Codeunit "Price Workflow Evt Handling";
+        workflowHandling: Codeunit "ProdBOM Workflow Evt Handling";
 }

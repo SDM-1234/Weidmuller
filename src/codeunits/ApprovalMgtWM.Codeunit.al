@@ -28,7 +28,7 @@ codeunit 50017 "Approval Mgt. WM"
         exit(FieldRef.GetEnumValueCaption(ApprovalEntry.Status.AsInteger() + 1));
     end;
 
-    procedure GetApprovalStatus(RecVariant: Variant; var TransferApprovalStatus: Text[20]; EnabledTransferWorkflowsExist: Boolean)
+    procedure GetApprovalStatus(RecVariant: Variant; var TransferApprovalStatus: Text[20]; EnabledWorkflowsExist: Boolean)
     var
         ApprovalEntry: Record "Approval Entry";
         RecRef: RecordRef;
@@ -38,7 +38,7 @@ codeunit 50017 "Approval Mgt. WM"
         RecRef.GetTable(RecVariant);
 
         Clear(TransferApprovalStatus);
-        if not EnabledTransferWorkflowsExist then
+        if not EnabledWorkflowsExist then
             exit;
 
         if ApprovalMgt.FindLastApprovalEntryForCurrUser(ApprovalEntry, RecRef.RecordId) then

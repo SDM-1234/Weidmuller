@@ -60,10 +60,10 @@ report 50031 "Sales - Credit Memo"
                     column(GSTComponentCode1; CGSTLbl + ' Amount')
                     {
                     }
-                    column(GSTComponentCode2; SGSTLbl + ' Amount')
+                    column(GSTComponentCode2; IGSTLbl + ' Amount')
                     {
                     }
-                    column(GSTComponentCode3; IGSTLbl + ' Amount')
+                    column(GSTComponentCode3; SGSTLbl + ' Amount')
                     {
                     }
                     column(GSTComponentCode4; CessLbl + 'Amount')

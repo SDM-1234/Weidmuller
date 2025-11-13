@@ -26,7 +26,10 @@ codeunit 50020 "PhysInvt Workflow Evt Handling"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Phy Invt Approval Mgmt", 'OnSendRequestForApproval', '', false, false)]
     local procedure OnSendRequestForApproval(var ItemJnlLine: Record "Item Journal Line")
     begin
-        workflowMgt.HandleEvent(RunWorkflowOnSendPhysInvtForApprovalCode(), ItemJnlLine);
+        if ItemJnlLine.FindSet() then
+            repeat
+                workflowMgt.HandleEvent(RunWorkflowOnSendPhysInvtForApprovalCode(), ItemJnlLine);
+            until ItemJnlLine.Next() = 0;
     end;
 
 
@@ -34,8 +37,10 @@ codeunit 50020 "PhysInvt Workflow Evt Handling"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Phy Invt Approval Mgmt", 'OnCancelRequestForApproval', '', false, false)]
     local procedure OnCancelRequestForApproval(var ItemJnlLine: Record "Item Journal Line")
     begin
-
-        workflowMgt.HandleEvent(RunWorkflowOnCancelPhysInvtForApprovalCode(), ItemJnlLine);
+        if ItemJnlLine.FindSet() then
+            repeat
+                workflowMgt.HandleEvent(RunWorkflowOnCancelPhysInvtForApprovalCode(), ItemJnlLine);
+            until ItemJnlLine.Next() = 0;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Event Handling", 'OnAddWorkflowEventPredecessorsToLibrary', '', false, false)]

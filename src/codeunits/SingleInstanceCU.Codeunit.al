@@ -32,9 +32,30 @@ codeunit 50000 "Single Instance CU"
         exit(SetBlockParameterFromDocsValue);
     end;
 
+    procedure SetBulkEInvoices(pBulkEInvoice: Boolean)
+    begin
+        BulkEInvoice := pBulkEInvoice;
+    end;
+
+    procedure GetBulkEInvoices(): Boolean
+    begin
+        exit(BulkEInvoice);
+    end;
+
+    procedure AddEinvoiceJsonArray(JObject: JsonObject)
+    begin
+        JsonArrayData.Add(JObject);
+    end;
+
+    procedure GetEinvoiceJsonArray(): JsonArray
+    begin
+        exit(JsonArrayData);
+    end;
+
     var
-        SetBlockParameterFromDocsValue: Boolean;
+        SetBlockParameterFromDocsValue, BulkEInvoice : Boolean;
         DocNO: Code[20];
+        JsonArrayData: JsonArray;
 
     // Need to shift in single instance
 
