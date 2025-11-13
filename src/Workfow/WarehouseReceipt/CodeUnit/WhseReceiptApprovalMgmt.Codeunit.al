@@ -76,4 +76,14 @@ codeunit 50160 "Whse Receipt Approval Mgmt"
         ApprovalMgt.DeleteApprovalEntries(WhseReceiptHeader.RecordId);
     end;
 
+    procedure ReOpenWhseReceipt(VAR WhseReceipt: Record "Warehouse Receipt Header")
+    var
+        RestrictedRecord: Record "Restricted Record";
+        ApprovalMgt: Codeunit "Approvals Mgmt.";
+    begin
+        RestrictedRecord.SetRange("Record ID", WhseReceipt.RecordId);
+        RestrictedRecord.deleteAll(true);
+        ApprovalMgt.DeleteApprovalEntries(WhseReceipt.RecordId);
+    end;
+
 }

@@ -122,6 +122,26 @@ pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
                         end;
                     }
                 }
+                group(ReOpenDocument)
+                {
+                    Caption = 'Reopen Document';
+                    Image = Open;
+                    action(ReopenDocumentJournalLine)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Reopen Warehouse Receipt';
+                        Enabled = WhseRecptApprovalStatus = 'Approved';
+                        Image = Open;
+                        ToolTip = 'Reopen an approved warehouse receipt.';
+
+                        trigger OnAction()
+                        var
+                            ApprovalsMgmt: Codeunit "Whse Receipt Approval Mgmt";
+                        begin
+                            ApprovalsMgmt.ReOpenWhseReceipt(Rec);
+                        end;
+                    }
+                }
             }
             group(Approval)
             {
