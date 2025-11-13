@@ -7,11 +7,8 @@ pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
         modify("Posting Date")
         {
             trigger OnAfterValidate()
-            var
-                myInt: Integer;
             begin
                 CurrPage."BinContent FactBox".PAGE.GetPostingDate(Rec."Posting Date", Rec."Location Code");
-
             end;
         }
         addafter("Assignment Date")

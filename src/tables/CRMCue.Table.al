@@ -154,6 +154,13 @@ table 50001 "CRM Cue"
         {
             FieldClass = FlowFilter;
         }
+        field(107; "Requests to Approve"; Integer)
+        {
+            CalcFormula = count("Approval Entry" where("Approver ID" = field("User ID Filter"),
+                                                        Status = filter(Open)));
+            Caption = 'Requests to Approve';
+            FieldClass = FlowField;
+        }
     }
 
     keys

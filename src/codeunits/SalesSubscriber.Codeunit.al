@@ -139,7 +139,7 @@ codeunit 50100 SalesSubscriber
             exit;
         SalesHeader.TESTFIELD("Currency Code");
         SalesHeader.TESTFIELD("External Document No.");
-        SalesHeader.CheckIndustrySegments();
+        //SalesHeader.CheckIndustrySegments();
         SalesPriceManagement.ApprovalProcessMandatory(SalesHeader);
     end;
 
