@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Finance.TaxBase;
-    
+
 pageextension 50024 BankPaymentVoucher extends "Bank Payment Voucher"
 {
     layout
@@ -11,6 +11,7 @@ pageextension 50024 BankPaymentVoucher extends "Bank Payment Voucher"
             field("Line No."; Rec."Line No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Line No. field.';
             }
         }
     }

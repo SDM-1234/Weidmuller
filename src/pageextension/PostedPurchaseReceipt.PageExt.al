@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Purchases.History;
-    
+
 pageextension 50008 PostedPurchaseReceipt extends "Posted Purchase Receipt"
 {
     layout
@@ -19,6 +19,7 @@ pageextension 50008 PostedPurchaseReceipt extends "Posted Purchase Receipt"
                     Promoted = true;
                     PromotedCategory = Process;
                     ApplicationArea = All;
+                    ToolTip = 'Executes the Goods Receipt Note action.';
 
                     trigger OnAction()
                     var

@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Purchases.Document;
-    
+
 pageextension 50069 PurchaseInvoice extends "Purchase Invoice"
 {
     layout
@@ -11,6 +11,7 @@ pageextension 50069 PurchaseInvoice extends "Purchase Invoice"
             field("Your Reference"; Rec."Your Reference")
             {
                 ApplicationArea = all;
+                ToolTip = 'Specifies the vendor''s reference.';
             }
         }
     }

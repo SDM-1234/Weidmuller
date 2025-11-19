@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Warehouse.Document;
-    
+
 pageextension 50095 WhseShipmentSubform extends "Whse. Shipment Subform"
 {
     layout
@@ -11,6 +11,7 @@ pageextension 50095 WhseShipmentSubform extends "Whse. Shipment Subform"
             field("EAN No."; Rec."EAN No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the EAN No. field.';
             }
         }
     }

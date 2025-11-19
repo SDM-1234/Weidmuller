@@ -26,7 +26,7 @@ using Microsoft.Sales.Reminder;
 using Microsoft.Sales.Setup;
 using System.Globalization;
 using System.Utilities;
-    
+
 report 50005 "Posted Sales Invoice"
 {
 

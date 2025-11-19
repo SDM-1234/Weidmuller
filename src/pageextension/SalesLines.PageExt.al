@@ -2,7 +2,7 @@ namespace WM.WeidmullerDEV;
 
 using Microsoft.Inventory.Item;
 using Microsoft.Sales.Document;
-    
+
 pageextension 50049 SalesLines extends "Sales Lines"
 {
 
@@ -16,22 +16,26 @@ pageextension 50049 SalesLines extends "Sales Lines"
             {
                 Caption = 'Inventory - FG';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Inventory - FG field.';
             }
 
             field("Order Date"; SH."Order Date")
             {
                 Caption = 'Order Date';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Order Date field.';
             }
             field("GST Bill-to State Code"; SH."GST Bill-to State Code")
             {
                 Caption = 'GST Bill-to State Code';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the GST Bill-to State Code field.';
             }
             field("GST Ship-to State Code"; SH."GST Ship-to State Code")
             {
                 Caption = 'GST Ship-to State Code';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the GST Ship-to State Code field.';
             }
 
         }

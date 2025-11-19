@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Sales.Setup;
-    
+
 pageextension 50050 SalesReceivablesSetup extends "Sales & Receivables Setup"
 {
     layout
@@ -14,6 +14,7 @@ pageextension 50050 SalesReceivablesSetup extends "Sales & Receivables Setup"
                 field("Sales Quote Expiring - Emails"; Rec."Sales Quote Expiring - Emails")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Sales Quote Expiring - Emails field.';
                 }
 
             }

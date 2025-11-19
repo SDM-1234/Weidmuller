@@ -2,7 +2,7 @@ namespace WM.WeidmullerDEV;
 
 using Microsoft.Inventory.Journal;
 using Microsoft.Inventory.Ledger;
-    
+
 pageextension 50048 ItemReclassJournal extends "Item Reclass. Journal"
 {
     layout
@@ -29,11 +29,13 @@ pageextension 50048 ItemReclassJournal extends "Item Reclass. Journal"
             field("EAN No."; Rec."EAN No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the EAN No. field.';
 
             }
             field(Inventory; Inventory)
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Inventory field.';
 
             }
         }

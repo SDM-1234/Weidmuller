@@ -6,7 +6,8 @@ using Microsoft.Finance.TaxEngine.TaxTypeHandler;
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Ledger;
 using Microsoft.Sales.Document;
-    
+using Microsoft.Sales.Customer;
+
 tableextension 50030 SalesLine extends "Sales Line"
 {
     fields

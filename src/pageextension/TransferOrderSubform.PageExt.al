@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Inventory.Transfer;
-    
+
 pageextension 50029 TransferOrderSubform extends "Transfer Order Subform"
 {
     layout
@@ -12,6 +12,7 @@ pageextension 50029 TransferOrderSubform extends "Transfer Order Subform"
             field("Inspection Reason Code"; Rec."Inspection Reason Code")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Inspection Reason Code field.';
             }
         }
     }

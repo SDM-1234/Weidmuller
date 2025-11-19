@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Finance.GeneralLedger.Account;
-    
+
 pageextension 50031 GLAccountList extends "G/L Account List"
 {
     layout
@@ -11,6 +11,7 @@ pageextension 50031 GLAccountList extends "G/L Account List"
             field("SAP GL No."; Rec."SAP GL No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the SAP GL No. field.';
             }
         }
     }

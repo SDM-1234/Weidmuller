@@ -2,7 +2,7 @@ namespace WM.WeidmullerDEV;
 
 using Microsoft.Finance.TaxEngine.Core;
 using System.Reflection;
-    
+
 page 50080 "WF Mandatory Fields List"
 {
     PageType = List;
@@ -73,6 +73,7 @@ page 50080 "WF Mandatory Fields List"
                 field("Mandatory Condition"; Rec."Mandatory Condition")
                 {
                     Visible = Rec."Parent Table No." = 0;
+                    ToolTip = 'Specifies the value of the Mandatory Condition field.';
                 }
             }
         }

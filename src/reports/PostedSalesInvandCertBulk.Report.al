@@ -23,7 +23,7 @@ using Microsoft.Sales.Reminder;
 using Microsoft.Sales.Setup;
 using System.Globalization;
 using System.Utilities;
-    
+
 report 50022 "Posted Sales Inv and Cert-Bulk"
 {
     Caption = ' Bulk Sales - Invoice Certificate';
@@ -1018,6 +1018,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                     {
                         Caption = 'No. of Print';
                         AppLicationArea = All;
+                        ToolTip = 'Specifies the value of the No. of Print field.';
 
                         trigger OnValidate()
                         begin
@@ -1031,12 +1032,14 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                     {
                         Caption = 'Digital Signature';
                         AppLicationArea = All;
+                        ToolTip = 'Specifies the value of the Digital Signature field.';
 
                     }
                     field(NoOfCopies; NoOfCopies)
                     {
                         Caption = 'No. of Copies';
                         AppLicationArea = All;
+                        ToolTip = 'Specifies the value of the No. of Copies field.';
 
                         trigger OnValidate()
                         begin
@@ -1048,6 +1051,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                     {
                         Caption = 'Show Internal Information';
                         AppLicationArea = All;
+                        ToolTip = 'Specifies the value of the Show Internal Information field.';
 
                     }
                     field(LogInteraction; LogInteraction)
@@ -1055,18 +1059,21 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                         Caption = 'Log Interaction';
                         Enabled = LogInteractionEnable;
                         AppLicationArea = All;
+                        ToolTip = 'Specifies the value of the Log Interaction field.';
 
                     }
                     field(DisplayAsmInformation; DisplayAssemblyInformation)
                     {
                         Caption = 'Show Assembly Components';
                         AppLicationArea = All;
+                        ToolTip = 'Specifies the value of the Show Assembly Components field.';
 
                     }
                     field(DisplayAdditionalFeeNote; DisplayAdditionalFeeNote)
                     {
                         Caption = 'Show Additional Fee Note';
                         AppLicationArea = All;
+                        ToolTip = 'Specifies the value of the Show Additional Fee Note field.';
 
                     }
                 }

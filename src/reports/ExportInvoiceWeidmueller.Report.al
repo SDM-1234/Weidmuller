@@ -12,7 +12,7 @@ using Microsoft.Sales.Customer;
 using Microsoft.Sales.History;
 using Microsoft.Sales.Receivables;
 using System.Utilities;
-    
+
 report 50009 "Export Invoice -Weidmueller"
 {
     DefaultLayout = RDLC;
@@ -1043,11 +1043,13 @@ report 50009 "Export Invoice -Weidmueller"
                 {
                     Caption = 'No. of  Print';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the No. of  Print field.';
                 }
                 field(DigitalSig; DigitalSig)
                 {
                     Caption = 'Digital Signature';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Digital Signature field.';
                 }
             }
         }

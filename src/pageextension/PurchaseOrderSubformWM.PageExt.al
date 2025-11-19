@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Purchases.Document;
-    
+
 pageextension 50076 PurchaseOrderSubformWM extends "Purchase Order Subform"
 {
     layout
@@ -34,6 +34,7 @@ pageextension 50076 PurchaseOrderSubformWM extends "Purchase Order Subform"
             field("Profit %"; Rec."Profit %")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Profit % field.';
 
             }
 

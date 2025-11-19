@@ -3,7 +3,7 @@ namespace WM.WeidmullerDEV;
 using Microsoft.CRM.Opportunity;
 using Microsoft.CRM.Team;
 using System.Security.User;
-    
+
 pageextension 50071 OpportunityList extends "Opportunity List"
 {
 
@@ -19,10 +19,12 @@ pageextension 50071 OpportunityList extends "Opportunity List"
             field("Calendar Week"; Rec."Calendar Week")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Calendar Week field.';
             }
             field(Comment; Comment)
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Comment field.';
             }
         }
     }

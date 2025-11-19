@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Finance.Dimension;
-    
+
 pageextension 50075 DimensionValues extends "Dimension Values"
 {
     layout
@@ -11,6 +11,7 @@ pageextension 50075 DimensionValues extends "Dimension Values"
             field(Description; Rec.Description)
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Description field.';
             }
         }
     }

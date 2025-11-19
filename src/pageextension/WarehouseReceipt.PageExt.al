@@ -2,7 +2,8 @@ namespace WM.WeidmullerDEV;
 
 using Microsoft.Warehouse.Document;
 using System.Automation;
-    
+using Microsoft.Foundation.Attachment;
+
 pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
 {
     layout
@@ -21,6 +22,7 @@ pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
             field("EAN No."; Rec."EAN No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the EAN No. field.';
 
                 trigger OnValidate()
                 begin

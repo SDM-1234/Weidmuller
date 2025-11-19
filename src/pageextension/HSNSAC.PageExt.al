@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Finance.GST.Base;
-    
+
 pageextension 50020 HSNSAC extends "HSN/SAC"
 {
 
@@ -14,6 +14,7 @@ pageextension 50020 HSNSAC extends "HSN/SAC"
             field(Hide; Rec.Hide)
             {
                 ApplicationArea = all;
+                ToolTip = 'Specifies the value of the Hide field.';
             }
         }
     }
