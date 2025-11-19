@@ -114,7 +114,6 @@ tableextension 50023 Customer extends Customer
 
     var
         MailManagement: Codeunit "Mail Management";
-        EnableKeyAccount: Boolean;
 
 }
 
