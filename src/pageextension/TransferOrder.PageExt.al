@@ -107,12 +107,9 @@ pageextension 50022 TransferOrder extends "Transfer Order"
         }
     }
     var
-        ApprovalMgmt: Codeunit "Approval Mgt. WM";
         WorkflowManagement: Codeunit "Workflow Management";
         WorkflowEventHandling: Codeunit "WhseRecpt WF Evt Handling";
-        WhseRecptApprovalStatus: Text[20];
         EnabledWhseRecptWorkflowsExist: Boolean;
-        OpenApprovalEntriesExistForCurrUser: Boolean;
 
     trigger OnOpenPage()
     begin

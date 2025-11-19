@@ -614,12 +614,12 @@ report 50007 "Quotation-Confirmation"
         //Language: Record Language;
         ShiptoAddress: Record "Ship-to Address";
         SalesHeaderArchaive: Record "Sales Header Archive";
-        loopint, tempint, Var_Count, No : Integer;
+        Var_Count, No : Integer;
         Taxform: Text[50];
         CurrencyCode: Code[20];
         SalesHeadNo: Code[50];
         AmountCap: Code[30];
-        OrderText, TransPortCode, PaymentTermsDesc, Text5, Text14, Tax5, Tax14, CurrencyCaption, Shipmentcode, space : Text;
+        OrderText, TransPortCode, PaymentTermsDesc, CurrencyCaption, Shipmentcode : Text;
         LineAmt_SalesLine, GstAmount, GrossWeight, Unitcost : Decimal;
 #pragma warning disable
         Tax: Label 'Add VAT';

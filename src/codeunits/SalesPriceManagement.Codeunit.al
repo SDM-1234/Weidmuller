@@ -117,8 +117,6 @@ codeunit 50007 "Sales Price Management"
     end;
 
     procedure UpdateMoQ(var Rec: Record "Price Source")
-    var
-        Item: Record Item;
     begin
 
         // IF NOT Item.GET(Rec."Item No.") THEN
@@ -159,9 +157,6 @@ codeunit 50007 "Sales Price Management"
     //end;
 
     local procedure GetSalesHeader(var SalesHeader: Record "Sales Header"; SalesLine: Record "Sales Line")
-    var
-        IsReleased: Boolean;
-        ReleaseSalesDoc: Codeunit "Release Sales Document";
     begin
         // IF (SalesLine."Document Type" <> SalesHeader."Document Type") OR (SalesLine."Document No." <> SalesHeader."No.") THEN BEGIN
         //  IF (IsReleased) AND (NOT SpecialPrice(SalesHeader."Transaction Type")) THEN

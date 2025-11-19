@@ -841,8 +841,6 @@ report 50031 "Sales - Credit Memo"
             }
 
             trigger OnAfterGetRecord()
-            var
-                SalesCrMemoLine: Record "Sales Cr.Memo Line";
             begin
                 IsGSTApplicable := CheckGSTDoc("Sales Cr.Memo Line");
                 Customer.GET("Bill-to Customer No.");
@@ -981,7 +979,6 @@ report 50031 "Sales - Credit Memo"
         CompanyInfo2: Record "Company Information";
         CompanyInfo3: Record "Company Information";
         Customer: Record Customer;
-        SalesSetup: Record "Sales & Receivables Setup";
         VATAmountLine: Record "VAT Amount Line" temporary;
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
@@ -1035,7 +1032,6 @@ report 50031 "Sales - Credit Memo"
         Text13700: Label 'Total %1 Incl. Taxes';
         Text13701: Label 'Total %1 Excl. Taxes';
         SupplementaryText: Text[30];
-        Text16500: Label 'Supplementary Credit Memo';
         NNC_TotalAmountToCustomer: Decimal;
         NNC_TotalExciseAmount: Decimal;
         NNC_TotalTaxAmount: Decimal;
@@ -1092,11 +1088,8 @@ report 50031 "Sales - Credit Memo"
         NNC_TotalKKCessAmount: Decimal;
         KKCessAmtCaptionLbl: Label 'KK Cess Amount';
         IsGSTApplicable: Boolean;
-        J: Integer;
         CompanyRegistrationLbl: Label 'Company Registration No.';
         CustomerRegistrationLbl: Label 'Customer GST Reg No.';
-        GSTCompAmount: array[20] of Decimal;
-        GSTComponentCode: array[20] of Code[10];
         CGSTLbl: Label 'CGST';
         SGSTLbl: Label 'SGST';
         IGSTLbl: Label 'IGST';

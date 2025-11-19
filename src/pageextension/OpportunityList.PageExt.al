@@ -22,7 +22,6 @@ pageextension 50071 OpportunityList extends "Opportunity List"
     }
 
     var
-        Opportunity: Record Opportunity;
         Team: Record Team;
         Comment: Text[250];
 

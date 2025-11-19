@@ -844,7 +844,6 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
             trigger OnAfterGetRecord()
             var
                 SalesInvLine: Record "Sales Invoice Line";
-                Location: Record "Location";
                 States: Record State;
                 TotalAmttoCustomer: Decimal;
                 NumToWords: Codeunit AmounttoWords;
@@ -1098,24 +1097,18 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         SalesPurchPerson: Record "Salesperson/Purchaser";
         CompanyInfo: Record "Company Information";
         CompanyInfo1: Record "Company Information";
-        CompanyInfo2: Record "Company Information";
-        CompanyInfo3: Record "Company Information";
         //GSTComponent: Record "GST Component";
         Customer: Record "Customer";
-        DetailedGSTLedgerEntry: Record "Detailed GST Ledger Entry";
         SalesSetup: Record "Sales & Receivables Setup";
         Cust: Record "Customer";
 
         DimSetEntry1: Record "Dimension Set Entry";
-        DimSetEntry2: Record "Dimension Set Entry";
         RespCenter: Record "Responsibility Center";
         LanguageMgt: Codeunit "Language";
-        CurrExchRate: Record "Currency Exchange Rate";
         TempPostedAsmLine: Record "Posted Assembly Line" temporary;
         TempLineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist." temporary;
         SalesInvCountPrinted: Codeunit "Sales Inv.-Printed";
         FormatAddr: Codeunit "Format Address";
-        SegManagement: Codeunit SegManagement;
         SalesShipmentBuffer: Record "Sales Shipment Buffer" temporary;
         GSTCompAmount: array[20] of Decimal;
         GSTCompPer: array[20] of Decimal;
@@ -1135,22 +1128,10 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         NoOfCopies: Integer;
         NoOfLoops: Integer;
         CopyText: Text[30];
-        ShowShippingAddr: Boolean;
-        i: Integer;
         NextEntryNo: Integer;
         FirstValueEntryNo: Integer;
-        DimText: Text[120];
-        OldDimText: Text[75];
         ShowInternalInfo: Boolean;
-        Continue: Boolean;
         LogInteraction: Boolean;
-        VALVATBaseLCY: Decimal;
-        VALVATAmountLCY: Decimal;
-        VALSpecLCYHeader: Text[80];
-        Text008: Label 'Local Currency';
-        VALExchRate: Text[50];
-        Text009: Label 'Exchange rate: %1/%2';
-        CalculatedExchRate: Decimal;
         Text010: Label 'Sales - Prepayment Invoice %1';
         OutputNo: Integer;
         TotalSubTotal: Decimal;
@@ -1187,22 +1168,12 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         InvoiceNoCaptionLbl: Label 'Invoice No.';
         PostingDateCaptionLbl: Label 'Invoice Date';
         UnitPriceCaptionLbl: Label 'Unit Price';
-        DiscountCaptionLbl: Label 'Discount %';
         AmountCaptionLbl: Label 'Amt';
-        LineDiscountCaptionLbl: Label 'Line Discount Amount';
         SubtotalCaptionLbl: Label 'Subtotal';
-        ChargesAmountCaptionLbl: Label 'Charges Amount';
-        OtherTaxesAmountCaptionLbl: Label 'Other Taxes Amount';
-        LineAmountCaptionLbl: Label 'Line Amount';
-        ShipToAddressCaptionLbl: Label 'Ship-to Address';
-        ServiceTaxRegistrationNo: Code[20];
         InvDiscountAmountCaptionLbl: Label 'Invoice Discount Amount';
-        VATPercentageCaptionLbl: Label 'VAT %';
         TotalCaptionLbl: Label 'Total';
         PaymentTermsCaptionLbl: Label 'Payment Terms';
         ShipmentMethodCaptionLbl: Label 'Shipment Method';
-        EMailCaptionLbl: Label 'E-Mail';
-        DocumentDateCaptionLbl: Label 'Document Date';
         DisplayAdditionalFeeNote: Boolean;
         ServiceTaxSBCAmount: Decimal;
         ServiceTaxSBCAmt: Decimal;
@@ -1211,7 +1182,6 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         KKCessAmt: Decimal;
         AppliedKKCessAmt: Decimal;
         IsGSTApplicable: Boolean;
-        J: Integer;
         ShipToAddress: Record "Ship-to Address";
         StateName: Text[50];
         ShipToStateName: Text[50];
@@ -1297,7 +1267,6 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         Cert_Article: Code[50];
         Cert_Disp: Boolean;
         Cert_SalInvLn1: Record "Sales Invoice Line";
-        LineAMtToCustomer: Decimal;
         CGSTAmt, CGSTPer : Decimal;
         SGSTAmt, SGSTPer : Decimal;
         IGSTAmt, IGSTPer : Decimal;

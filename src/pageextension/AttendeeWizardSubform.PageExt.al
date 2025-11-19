@@ -15,8 +15,5 @@ pageextension 50074 AttendeeWizardSubform extends "Attendee Wizard Subform"
         */
         //end;
     }
-
-    var
-        Attendee: Record Attendee;
 }
 

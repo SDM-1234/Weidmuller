@@ -49,9 +49,6 @@ table 50080 "WF Mandatory Fields"
         // Add changes to field groups here
     }
 
-    var
-        myInt: Integer;
-
     trigger OnInsert()
     begin
 

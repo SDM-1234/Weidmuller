@@ -805,7 +805,6 @@ report 50013 "Aged Accounts Receivable WM"
         TotalLCYCptnLbl: Label 'Total (LCY)';
         CurrSpecificationCptnLbl: Label 'Currency Specification';
         EnterDateFormulaErr: Label 'Enter a date formula in the Period Length field.';
-        MessageText: Text;
         PurchaseOrderNo: Code[50];
 
     local procedure CalcDates()
@@ -859,7 +858,6 @@ report 50013 "Aged Accounts Receivable WM"
     local procedure InsertTemp(var CustLedgEntry: Record "Cust. Ledger Entry")
     var
         Currency: Record Currency;
-        PaymentDate: Date;
     begin
         IF TempCustLedgEntry.GET(CustLedgEntry."Entry No.") THEN
             EXIT;

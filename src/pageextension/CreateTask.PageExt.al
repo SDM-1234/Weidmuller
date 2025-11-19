@@ -91,9 +91,6 @@ pageextension 50068 CreateTask extends "Create Task"
         //end;
     }
 
-    var
-        Contact: Record Contact;
-
 
     //Unsupported feature: Code Modification on "ShowStep(PROCEDURE 2)".
 

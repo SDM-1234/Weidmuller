@@ -790,11 +790,8 @@ report 50005 "Posted Sales Invoice"
 
             trigger OnAfterGetRecord()
             var
-                SalesInvLine: Record "Sales Invoice Line";
-                Location: Record Location;
                 States: Record State;
                 NumToWords: Codeunit AmountToWords;
-                TotalAmttoCustomer: Decimal;
             begin
                 //CurrReport.LANGUAGE := LanguageVar.get("Language Code");
                 IsGSTApplicable := CheckGSTDoc("Sales Invoice Line");

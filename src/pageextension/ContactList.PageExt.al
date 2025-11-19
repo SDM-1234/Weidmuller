@@ -34,14 +34,6 @@ pageextension 50063 ContactList extends "Contact List"
     }
 
     var
-    // CRMCUE: Record "50001";
-
-    var
-        User: Record User;
-        Team: Record Team;
-        TeamSalesperson: Record "Team Salesperson";
-        Salesperson: Code[20];
-        Contact: Page "Contact Card";
 
 
     // procedure GetTeamCode(): Text[250]

@@ -220,7 +220,6 @@ report 50006 GoodsReceiptNote
 
             trigger OnAfterGetRecord()
             var
-                PurchCommentLine: Record "Purch. Comment Line";
                 PurchRcptLine: Record "Purch. Rcpt. Line";
             begin
                 /*PurchCommentLine.RESET;
@@ -340,44 +339,13 @@ report 50006 GoodsReceiptNote
         CheckedbycaptionLbl: Label 'Checked By';
         GoodsReceiptCaptionLbl: Label 'Goods Receipts Note';
         SNo: Integer;
-        TermsDescription: Text;
-        DeliveryDescription: Text;
-        CurrencyCode: Code[20];
-        CurrencyCaption: Text;
         loopint: Integer;
         tempint: Integer;
         space: Text;
-        PurchCommentLine: Record "Purch. Comment Line";
-        Comnt: Text[1024];
-        Tax5: Decimal;
-        Tax14: Decimal;
-        Text5: Text;
-        Text14: Text;
-        //StructureOrderDetails: Record "13794";
-        PackingCharges: Decimal;
-        InsuranceCharges: Decimal;
-        carriagecost: Decimal;
-        Loc: Record "Location";
-        Name_Location: Text;
-        Name2_Location: Text;
-        Address_Location: Text;
-        Address2_Location: Text;
-        City_Location: Text;
-        PostCode_Location: Text;
-        Country_Location: Text;
-        CommentCounter: Integer;
-        PurchaseHeaderArchive: Record "Purchase Header Archive";
-        PurchaseHeadNo: Code[50];
         Tcaption: Label 'T+';
         CINCaption: Label 'CIN:';
-        GSTnoCaption: Label 'GST No.';
-        Phonecaption: Label 'Phone : +';
         Vendor: Record "Vendor";
         Var_Count: Integer;
-        Currency: Record "Currency";
-        CurrencyDesc: Text;
-        ShipmentMethod: Record "Shipment Method";
-        Shipmentcode: Text;
         SupplierNameCaptionLbl: Label 'Supplier Name:';
         SupplierCaptionLbl: Label 'Supplier #:';
         GoodsReceiptDateCaptionLbl: Label 'Goods Receipts Date:';

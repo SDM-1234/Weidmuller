@@ -566,7 +566,6 @@ report 50018 "Purchase Order-Bulk"
         Loc: Record Location;
         PaymentTerms: Record "Payment Terms";
         PurchaseHeaderArchive: Record "Purchase Header Archive";
-        PurchCommentLine: Record "Purch. Comment Line";
         PurchLn: Record "Purchase Line";
         ShipmentMethod: Record "Shipment Method";
         //StructureOrderDetails: Record "13794";// Commented By RSF
@@ -587,7 +586,6 @@ report 50018 "Purchase Order-Bulk"
         loopint: Integer;
         SNo: Integer;
         tempint: Integer;
-        Var_Count: Integer;
         Address2_Location: Text;
         Address_Location: Text;
         City_Location: Text;
@@ -605,7 +603,6 @@ report 50018 "Purchase Order-Bulk"
         Shipmentcode: Text;
         space: Text;
         TermsDescription: Text;
-        Text14: Text;
         Text5: Text;
         AmendmentNoCaptionlbl: Label 'Amendment No.';
         AMOUNTlblCaption: Label 'Total Value  ';

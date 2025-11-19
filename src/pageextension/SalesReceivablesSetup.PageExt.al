@@ -20,7 +20,4 @@ pageextension 50050 SalesReceivablesSetup extends "Sales & Receivables Setup"
     {
         // Add changes to page actions here
     }
-
-    var
-        myInt: Integer;
 }

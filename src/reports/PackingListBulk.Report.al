@@ -321,7 +321,6 @@ report 50017 "Packing List-Bulk"
 
     var
         Var_companyinfo: Record "Company Information";
-        Var_salesLine: Record "Sales Shipment Line";
         Var_Count: Integer;
         "Var_SLNo.": Integer;
         Rec_Dim: Record "Dimension Value";
@@ -359,9 +358,6 @@ report 50017 "Packing List-Bulk"
         TotalnoofBoxesCaptionLbl: Label 'Total No of Boxes:';
         DeliveryNoCaptionLbl: Label 'Delivery No.';
         PhoneNoCaptionLbl: Label 'Phone No.';
-        loopint: Integer;
-        tempint: Integer;
-        space: Text;
         Cust: Record Customer;
         salesheader: Record "Sales Header";
         CustomerNoCaptionLbl: Label 'Customer No.';
@@ -370,7 +366,6 @@ report 50017 "Packing List-Bulk"
         PINCaptionLbl: Label 'PIN';
         GSTINCaptionLbl: Label 'GSTIN';
         ShiptoAddress: Record "Ship-to Address";
-        SalesLine: Record "Sales Line";
         PaymentTerms: Record "Payment Terms";
         BinCodeCaptionLbl: Label 'Bin Code';
 }

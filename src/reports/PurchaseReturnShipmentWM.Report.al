@@ -386,8 +386,6 @@ report 50029 "Purchase - Return Shipment WM"
             }
 
             trigger OnAfterGetRecord()
-            var
-                Language: Record Language;
             begin
                 //CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
                 CompanyInfo.GET();
