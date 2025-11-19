@@ -53,6 +53,17 @@ tableextension 50050 WarehouseShipmentHeader extends "Warehouse Shipment Header"
             ERROR(Text031_Tok);
     end;
 
+    procedure ClearBins()
+    var
+        WarehouseShipmentLine: Record "Warehouse Shipment Line";
+    begin
+        WarehouseShipmentLine.RESET();
+        WarehouseShipmentLine.SETCURRENTKEY("No.", "Bin Code");
+        WarehouseShipmentLine.SETRANGE("No.", "No.");
+        WarehouseShipmentLine.SETFILTER("Bin Code", '<>%1', '');
+        WarehouseShipmentLine.MODIFYALL("Bin Code", '');
+    end;
+
     var
         Text029_Tok: Label 'Your EAN number is not valid. Its is more than 13.';
         Text030_Tok: Label 'Your EAN number is not valid. Its is less than 13.';

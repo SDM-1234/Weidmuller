@@ -8,8 +8,13 @@ codeunit 50023 "Prod. Order Reclass Jnl. Mgt."
     [EventSubscriber(ObjectType::Table, Database::"Production Order", OnAfterValidateEvent, 'Location Code', false, false)]
     local procedure ProdOrder_OnafterValidateLoc(CurrFieldNo: Integer; var Rec: Record "Production Order"; var xRec: Record "Production Order")
     var
+        ProdOrderLine: Record "Prod. Order Line";
         ProdOrderComp: Record "Prod. Order Component";
         ManuSetup: Record "Manufacturing Setup";
+        ReservEntry2, ReservEntry3 : Record "Reservation Entry";
+        ReservEngineMgt: Codeunit "Reservation Engine Mgt.";
+        ReservationPage: Page Reservation;
+        RecordsFound: Boolean;
     begin
         if rec."Location Code" = xRec."Location Code" then
             exit;
@@ -20,9 +25,35 @@ codeunit 50023 "Prod. Order Reclass Jnl. Mgt."
         ManuSetup.Get();
         if ManuSetup."Reclass To Location" = '' then
             exit;
+
+        ProdOrderLine.SetRange(Status, Rec.Status);
+        ProdOrderLine.SetRange("Prod. Order No.", Rec."No.");
+        ProdOrderLine.ModifyAll("Location Code", Rec."Location Code", true);
+
         ProdOrderComp.SetRange("Prod. Order No.", Rec."No.");
         ProdOrderComp.SetRange(Status, Rec.Status);
         ProdOrderComp.ModifyAll("Location Code", ManuSetup."Reclass To Location", true);
+
+        Clear(ProdOrderComp);
+        ProdOrderComp.Reset();
+        ProdOrderComp.SetRange("Prod. Order No.", Rec."No.");
+        ProdOrderComp.SetRange(Status, Rec.Status);
+        ProdOrderComp.ModifyAll("Bin Code", '', true);
+
+        ReservEntry2.SetRange("Source ID", Rec."No.");
+        ReservEntry2.SetFilter("Source Prod. Order Line", '<>%1', 0);
+        ReservEntry2.SetFilter("Source Ref. No.", '<>%1', 0);
+        ReservEntry2.SetRange("Reservation Status", ReservEntry2."Reservation Status"::Reservation);
+        ReservEntry2.SetRange("Disallow Cancellation", false);
+        if ReservEntry2.FindSet() then
+            repeat
+                ReservEntry3.Get(ReservEntry2."Entry No.", not ReservEntry2.Positive);
+                ReservEngineMgt.CancelReservation(ReservEntry2);
+                RecordsFound := true;
+            until ReservEntry2.Next() = 0;
+
+        // if RecordsFound then
+        //     ReservationPage.UpdateReservFrom();
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Prod. Order Status Management", OnAfterChangeStatusOnProdOrder, '', false, false)]
