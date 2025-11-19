@@ -47,6 +47,7 @@ tableextension 50023 Customer extends Customer
             CalcFormula = Count("Industry Segment" WHERE("Customer No." = FIELD("No.")));
             Editable = false;
             FieldClass = FlowField;
+            Caption = 'Weidmuller Industry Code (WIC)';
         }
         field(50001; "Invoice Print Check"; Boolean)
         {
@@ -68,7 +69,7 @@ tableextension 50023 Customer extends Customer
         {
             DataClassification = ToBeClassified;
             toolTip = 'Specifies the Weidmuller Industry Code.';
-            caption = 'Weidmuller Industry Code (WIC)';
+            caption = 'Weidmuller Industry Code (WIC) - OLD';
         }
         field(50005; "Industry Code"; Code[20])
         {
