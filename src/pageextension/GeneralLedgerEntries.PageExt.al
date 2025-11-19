@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Dimension;
+using Microsoft.Finance.GeneralLedger.Ledger;
+    
 pageextension 50032 GeneralLedgerEntries extends "General Ledger Entries"
 {
     layout

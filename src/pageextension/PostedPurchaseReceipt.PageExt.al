@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 pageextension 50008 PostedPurchaseReceipt extends "Posted Purchase Receipt"
 {
     layout

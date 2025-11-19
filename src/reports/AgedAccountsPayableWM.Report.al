@@ -1,3 +1,11 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Currency;
+using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Purchases.Payables;
+using Microsoft.Purchases.Vendor;
+using System.Utilities;
+    
 report 50030 "Aged Accounts Payable-WM"
 {
     DefaultLayout = RDLC;

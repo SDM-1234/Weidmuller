@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 tableextension 50003 SalesInvoiceHeader extends "Sales Invoice Header"
 {
     fields

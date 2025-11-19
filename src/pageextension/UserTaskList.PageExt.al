@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Task;
+    
 pageextension 50067 UserTaskList extends "User Task List"
 {
 

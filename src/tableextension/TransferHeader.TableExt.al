@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Transfer;
+using System.Automation;
+    
 tableextension 50012 TransferHeader extends "Transfer Header"
 {
     fields

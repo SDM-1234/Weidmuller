@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Pricing;
+using System.Security.User;
+    
 pageextension 50094 CustomerPriceGroups extends "Customer Price Groups"
 {
 

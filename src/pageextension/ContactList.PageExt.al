@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Contact;
+    
 pageextension 50063 ContactList extends "Contact List"
 {
 

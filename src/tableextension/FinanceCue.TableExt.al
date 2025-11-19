@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.RoleCenters;
+using Microsoft.Foundation.Task;
+    
 tableextension 50054 FinanceCue extends "Finance Cue"
 {
     fields

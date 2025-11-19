@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.AuditCodes;
+using Microsoft.Inventory.Transfer;
+    
 tableextension 50040 "TransferLine" extends "Transfer Line"
 {
     fields

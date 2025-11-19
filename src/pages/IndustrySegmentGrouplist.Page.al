@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 page 50009 "Industry Segment Group list"
 {
     DelayedInsert = true;

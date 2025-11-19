@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using System.Automation;
+    
 codeunit 50163 "WhseRecpt Workflow Response"
 {
     trigger OnRun()

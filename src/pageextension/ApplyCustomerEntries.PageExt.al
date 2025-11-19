@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Receivables;
+    
 pageextension 50035 ApplyCustomerEntries extends "Apply Customer Entries"
 {
 

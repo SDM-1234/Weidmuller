@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Company;
+    
 pageextension 50001 CompanyInformationWM extends "Company Information"
 {
     layout

@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 page 50021 "CRM Activities"
 {
     Caption = 'Activities';

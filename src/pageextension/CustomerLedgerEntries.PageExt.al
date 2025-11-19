@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Receivables;
+    
 pageextension 50037 CustomerLedgerEntries extends "Customer Ledger Entries"
 {
     layout

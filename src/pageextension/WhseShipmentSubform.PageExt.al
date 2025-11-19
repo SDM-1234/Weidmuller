@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Document;
+    
 pageextension 50095 WhseShipmentSubform extends "Whse. Shipment Subform"
 {
     layout

@@ -1,3 +1,13 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Currency;
+using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.History;
+using Microsoft.Sales.Receivables;
+using System.Utilities;
+    
 report 50013 "Aged Accounts Receivable WM"
 {
     DefaultLayout = RDLC;

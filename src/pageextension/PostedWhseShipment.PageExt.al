@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.History;
+    
 pageextension 50010 PostedWhseShipment extends "Posted Whse. Shipment"
 {
     layout

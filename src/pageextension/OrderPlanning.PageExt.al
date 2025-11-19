@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Requisition;
+    
 pageextension 50078 OrderPlanning extends "Order Planning"
 {
     layout

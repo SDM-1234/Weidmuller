@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Task;
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.RoleCenters;
+    
 tableextension 50055 SalesCue extends "Sales Cue"
 {
     fields

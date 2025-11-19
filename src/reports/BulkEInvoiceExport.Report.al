@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Sales;
+using Microsoft.Sales.History;
+using System.Utilities;
+    
 report 50008 "Bulk E-Invoice Export"
 {
     ApplicationArea = All;

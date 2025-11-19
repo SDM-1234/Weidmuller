@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Ledger;
+    
 pageextension 50046 ItemLedgerEntries extends "Item Ledger Entries"
 {
     layout

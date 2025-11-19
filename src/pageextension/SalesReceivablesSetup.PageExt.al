@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Setup;
+    
 pageextension 50050 SalesReceivablesSetup extends "Sales & Receivables Setup"
 {
     layout

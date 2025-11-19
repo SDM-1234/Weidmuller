@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Interaction;
+using Microsoft.CRM.Team;
+using System.Security.User;
+    
 pageextension 50064 InteractionLogEntries extends "Interaction Log Entries"
 {
 

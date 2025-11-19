@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 tableextension 50005 SalesCrMemoLine extends "Sales Cr.Memo Line"
 {
     fields

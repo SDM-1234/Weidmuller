@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Analysis;
+    
 pageextension 50052 GLBalance extends "G/L Balance"
 {
     layout

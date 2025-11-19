@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GeneralLedger.Account;
+    
 pageextension 50030 GLAccountCard extends "G/L Account Card"
 {
     layout

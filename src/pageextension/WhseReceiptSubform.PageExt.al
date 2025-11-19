@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Document;
+    
 pageextension 50085 WhseReceiptSubform extends "Whse. Receipt Subform"
 {
     layout

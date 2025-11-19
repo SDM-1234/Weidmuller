@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Transfer;
+using Microsoft.Warehouse.Document;
+using System.Automation;
+    
 pageextension 50022 TransferOrder extends "Transfer Order"
 {
     layout

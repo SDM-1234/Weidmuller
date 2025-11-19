@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Manufacturing.ProductionBOM;
+using System.Automation;
+    
 codeunit 50156 "ProdBOM Approval Mgmt"
 {
 

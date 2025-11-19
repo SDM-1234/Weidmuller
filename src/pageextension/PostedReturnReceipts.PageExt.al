@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 pageextension 50092 PostedReturnReceipts extends "Posted Return Receipts"
 {
     layout

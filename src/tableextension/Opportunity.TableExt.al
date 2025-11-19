@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Opportunity;
+    
 tableextension 50039 Opportunity extends Opportunity
 {
     fields

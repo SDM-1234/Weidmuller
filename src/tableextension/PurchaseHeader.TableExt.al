@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Attachment;
+using Microsoft.Purchases.Document;
+    
 tableextension 50031 PurchaseHeader extends "Purchase Header"
 {
     fields

@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.NoSeries;
+using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Posting;
+using Microsoft.Inventory.Tracking;
+using Microsoft.Manufacturing.Document;
+using Microsoft.Manufacturing.Setup;
+    
 codeunit 50023 "Prod. Order Reclass Jnl. Mgt."
 {
     trigger OnRun()

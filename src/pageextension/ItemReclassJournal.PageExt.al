@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Ledger;
+    
 pageextension 50048 ItemReclassJournal extends "Item Reclass. Journal"
 {
     layout

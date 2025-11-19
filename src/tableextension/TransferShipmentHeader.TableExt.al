@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Transfer;
+    
 tableextension 50041 TransferShipmentHeader extends "Transfer Shipment Header"
 {
     fields

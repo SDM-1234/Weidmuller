@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using System.Automation;
+    
 codeunit 50021 "PhysInvt Workflow Response"
 {
     trigger OnRun()

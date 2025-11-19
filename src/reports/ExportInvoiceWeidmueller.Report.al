@@ -1,3 +1,18 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Bank.VoucherInterface;
+using Microsoft.CRM.Team;
+using Microsoft.Finance.GST.Base;
+using Microsoft.Finance.TaxBase;
+using Microsoft.Finance.TaxEngine.TaxTypeHandler;
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Foundation.Shipping;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.History;
+using Microsoft.Sales.Receivables;
+using System.Utilities;
+    
 report 50009 "Export Invoice -Weidmueller"
 {
     DefaultLayout = RDLC;

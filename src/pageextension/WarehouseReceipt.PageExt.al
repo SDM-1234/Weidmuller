@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Document;
+using System.Automation;
+    
 pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
 {
     layout

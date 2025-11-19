@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Document;
+    
 pageextension 50101 PurchaseCreditMemo extends "Purchase Credit Memo"
 {
     layout

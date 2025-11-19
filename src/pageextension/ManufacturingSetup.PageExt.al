@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Manufacturing.Setup;
+    
 pageextension 50027 ManufacturingSetup extends "Manufacturing Setup"
 {
     layout

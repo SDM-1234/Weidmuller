@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Opportunity;
+    
 pageextension 50070 CreateOpportunity extends "Create Opportunity"
 {
     layout

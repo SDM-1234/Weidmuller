@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 table 50000 "Industry Segment Group"
 {
     Caption = 'Industry Segment Group';

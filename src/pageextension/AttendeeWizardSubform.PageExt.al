@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Task;
+    
 pageextension 50074 AttendeeWizardSubform extends "Attendee Wizard Subform"
 {
     layout

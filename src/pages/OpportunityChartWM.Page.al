@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Opportunity;
+using System.Utilities;
+using System.Visualization;
+    
 page 50010 "Opportunity Chart WM"
 {
     Caption = 'Opportunities';

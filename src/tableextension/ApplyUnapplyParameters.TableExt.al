@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.ReceivablesPayables;
+    
 tableextension 50009 "ApplyUnapplyParameters" extends "Apply Unapply Parameters"
 {
     fields

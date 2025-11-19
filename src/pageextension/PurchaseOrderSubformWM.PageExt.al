@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Document;
+    
 pageextension 50076 PurchaseOrderSubformWM extends "Purchase Order Subform"
 {
     layout

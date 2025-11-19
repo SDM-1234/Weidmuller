@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GeneralLedger.Account;
+    
 pageextension 50031 GLAccountList extends "G/L Account List"
 {
     layout

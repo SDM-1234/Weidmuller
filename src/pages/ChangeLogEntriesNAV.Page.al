@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 page 50001 "Change Log Entries - NAV"
 {
     ApplicationArea = All;

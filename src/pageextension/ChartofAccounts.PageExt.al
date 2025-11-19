@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GeneralLedger.Account;
+    
 pageextension 50018 ChartofAccounts extends "Chart of Accounts"
 {
     layout

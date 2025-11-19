@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Opportunity;
+using Microsoft.CRM.Team;
+using System.Security.User;
+    
 pageextension 50071 OpportunityList extends "Opportunity List"
 {
 

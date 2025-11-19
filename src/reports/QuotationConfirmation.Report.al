@@ -1,3 +1,16 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.TaxBase;
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Foundation.Shipping;
+using Microsoft.Inventory.Intrastat;
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Archive;
+using Microsoft.Sales.Comment;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+    
 report 50007 "Quotation-Confirmation"
 {
     DefaultLayout = RDLC;

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using System.Reflection;
+    
 table 50080 "WF Mandatory Fields"
 {
     DataClassification = ToBeClassified;

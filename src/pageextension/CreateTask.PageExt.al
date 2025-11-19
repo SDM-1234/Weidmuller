@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Task;
+    
 pageextension 50068 CreateTask extends "Create Task"
 {
 

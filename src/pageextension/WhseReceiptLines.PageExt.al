@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Document;
+    
 pageextension 50097 WhseReceiptLines extends "Whse. Receipt Lines"
 {
     layout

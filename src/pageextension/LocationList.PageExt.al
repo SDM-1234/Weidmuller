@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Location;
+    
 pageextension 50017 LocationList extends "Location List"
 {
     layout

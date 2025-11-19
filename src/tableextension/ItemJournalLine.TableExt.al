@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Journal;
+    
 tableextension 50049 ItemJournalLine extends "Item Journal Line"
 {
     fields

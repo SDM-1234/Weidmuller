@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GeneralLedger.Account;
+using Microsoft.Sales.Customer;
+using System.EMail;
+    
 tableextension 50023 Customer extends Customer
 {
     fields

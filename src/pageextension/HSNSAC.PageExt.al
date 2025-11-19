@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Base;
+    
 pageextension 50020 HSNSAC extends "HSN/SAC"
 {
 

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Document;
+    
 pageextension 50061 PurchaseOrder extends "Purchase Order"
 {
 

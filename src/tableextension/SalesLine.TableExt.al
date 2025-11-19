@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Base;
+using Microsoft.Finance.Reports;
+using Microsoft.Finance.TaxEngine.TaxTypeHandler;
+using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Ledger;
+using Microsoft.Sales.Document;
+    
 tableextension 50030 SalesLine extends "Sales Line"
 {
     fields

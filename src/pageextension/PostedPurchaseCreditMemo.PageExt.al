@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 pageextension 50102 PostedPurchaseCreditMemo extends "Posted Purchase Credit Memo"
 {
     layout

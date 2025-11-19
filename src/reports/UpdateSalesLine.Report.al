@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+using System.Utilities;
+    
 report 50028 "Update Sales Line"
 {
     DefaultLayout = RDLC;

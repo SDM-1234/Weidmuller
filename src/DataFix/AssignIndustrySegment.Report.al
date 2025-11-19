@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 report 50115 AssignIndustrySegment
 {
     ApplicationArea = All;

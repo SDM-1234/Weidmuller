@@ -1,3 +1,11 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Purchases.History;
+using Microsoft.Purchases.Vendor;
+using System.Utilities;
+    
 report 50006 GoodsReceiptNote
 {
     DefaultLayout = RDLC;

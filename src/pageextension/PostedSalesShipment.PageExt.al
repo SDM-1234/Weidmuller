@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 pageextension 50004 PostedSalesShipment extends "Posted Sales Shipment"
 {
     actions

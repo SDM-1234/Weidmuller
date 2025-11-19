@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Transfer;
+    
 pageextension 50029 TransferOrderSubform extends "Transfer Order Subform"
 {
     layout

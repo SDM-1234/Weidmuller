@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Setup;
+    
 table 50005 "Sales Segment"
 {
     DrillDownPageID = "Sales Segments";

@@ -1,3 +1,11 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Attachment;
+using Microsoft.Inventory.Item;
+using Microsoft.Warehouse.Document;
+using Microsoft.Warehouse.History;
+using Microsoft.Warehouse.Request;
+    
 codeunit 50009 "Warehouse Subscriber"
 {
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Create Source Document", OnBeforeWhseShptLineInsert, '', false, false)]

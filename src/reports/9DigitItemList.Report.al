@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+    
 report 50016 "9 Digit Item List"
 {
     DefaultLayout = RDLC;

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using System.Automation;
+    
 pageextension 50090 ApprovalEntries extends "Approval Entries"
 {
     layout

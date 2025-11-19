@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Document;
+    
 pageextension 50100 PurchaseReturnOrder extends "Purchase Return Order"
 {
     layout

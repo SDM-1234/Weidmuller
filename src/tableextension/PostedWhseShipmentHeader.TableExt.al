@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.History;
+    
 tableextension 50052 PostedWhseShipmentHeader extends "Posted Whse. Shipment Header"
 {
     fields

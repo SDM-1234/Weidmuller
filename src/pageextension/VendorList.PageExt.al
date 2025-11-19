@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Vendor;
+    
 pageextension 50039 VendorList extends "Vendor List"
 {
     layout

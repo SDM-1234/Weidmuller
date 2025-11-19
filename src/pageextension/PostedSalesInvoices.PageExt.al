@@ -1,3 +1,10 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.QRGeneration;
+using Microsoft.Sales.History;
+using System.Text;
+using System.Utilities;
+    
 pageextension 50012 PostedSalesInvoices extends "Posted Sales Invoices"
 {
     layout

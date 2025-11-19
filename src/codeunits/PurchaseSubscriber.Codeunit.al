@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Document;
+using Microsoft.Purchases.History;
+using Microsoft.Purchases.Posting;
+using Microsoft.Warehouse.Document;
+using Microsoft.Warehouse.History;
+using System.Automation;
+    
 codeunit 50005 "Purchase Subscriber"
 {
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", OnInsertReceiptLineOnBeforeCreatePostedRcptLine, '', false, false)]

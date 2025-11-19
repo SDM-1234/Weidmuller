@@ -1,3 +1,13 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Dimension;
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.History;
+using System.Utilities;
+    
 report 50017 "Packing List-Bulk"
 {
     DefaultLayout = RDLC;

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+    
 pageextension 50043 CustomerCard extends "Customer Card"
 {
     layout

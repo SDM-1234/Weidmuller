@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.TaxBase;
+    
 pageextension 50023 JournalVoucher extends "Journal Voucher"
 {
     layout

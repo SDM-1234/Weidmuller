@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item.Attribute;
+    
 tableextension 50014 ItemAttribute extends "Item Attribute"
 {
     fields

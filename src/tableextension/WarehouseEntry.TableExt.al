@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Ledger;
+    
 tableextension 50047 WarehouseEntry extends "Warehouse Entry"
 {
     keys

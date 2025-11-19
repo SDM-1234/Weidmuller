@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Document;
+    
 pageextension 50049 SalesLines extends "Sales Lines"
 {
 

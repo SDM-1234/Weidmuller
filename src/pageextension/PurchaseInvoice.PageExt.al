@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Document;
+    
 pageextension 50069 PurchaseInvoice extends "Purchase Invoice"
 {
     layout

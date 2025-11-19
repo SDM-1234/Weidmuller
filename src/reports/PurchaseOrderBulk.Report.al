@@ -1,3 +1,16 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Currency;
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Foundation.Shipping;
+using Microsoft.Inventory.Location;
+using Microsoft.Purchases.Archive;
+using Microsoft.Purchases.Comment;
+using Microsoft.Purchases.Document;
+using Microsoft.Purchases.Vendor;
+using System.Utilities;
+    
 report 50018 "Purchase Order-Bulk"
 {
     // Project: Weidmuller

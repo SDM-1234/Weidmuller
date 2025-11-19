@@ -1,3 +1,11 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Sales;
+using Microsoft.QRGeneration;
+using Microsoft.Sales.History;
+using System.Text;
+using System.Utilities;
+    
 pageextension 50013 PostedSalesCreditMemos extends "Posted Sales Credit Memos"
 {
     actions

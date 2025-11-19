@@ -1,3 +1,15 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Segment;
+using Microsoft.CRM.Team;
+using Microsoft.Finance.Dimension;
+using Microsoft.Foundation.Address;
+using Microsoft.Foundation.Company;
+using Microsoft.Inventory.Location;
+using Microsoft.Purchases.History;
+using Microsoft.Purchases.Vendor;
+using System.Utilities;
+    
 report 50029 "Purchase - Return Shipment WM"
 {
     DefaultLayout = RDLC;

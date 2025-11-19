@@ -1,3 +1,15 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Foundation.Shipping;
+using Microsoft.Inventory.Intrastat;
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Archive;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using System.Utilities;
+    
 report 50002 "Proforma Invoice"
 {
     Caption = 'Proforma Invoice';

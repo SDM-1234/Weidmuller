@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.ReturnSettlement;
+    
 pageextension 50028 GSTLiabilityAdjJournal extends "GST Liability Adj. Journal"
 {
     actions

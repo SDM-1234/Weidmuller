@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using System.Automation;
+    
 enumextension 50001 ApprovalStatus extends "Approval Status"
 {
 

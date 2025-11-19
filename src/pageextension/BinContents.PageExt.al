@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Structure;
+    
 pageextension 50021 BinContents extends "Bin Contents"
 {
     layout

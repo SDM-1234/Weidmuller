@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Document;
+    
 pageextension 50057 SalesOrderSubform extends "Sales Order Subform"
 {
     layout

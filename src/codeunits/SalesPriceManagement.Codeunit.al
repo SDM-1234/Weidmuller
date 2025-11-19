@@ -1,3 +1,10 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Intrastat;
+using Microsoft.Pricing.Source;
+using Microsoft.Sales.Document;
+using System.Security.User;
+    
 codeunit 50007 "Sales Price Management"
 {
 
