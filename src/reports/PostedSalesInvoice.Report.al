@@ -249,7 +249,7 @@ report 50005 "Posted Sales Invoice"
                     column(CompanyInfo1Picture; CompanyInfo1.Picture)
                     {
                     }
-                    column(DocumentCaptionCopyText; STRSUBSTNO(DocumentCaption, CopyText))
+                    column(DocumentCaptionCopyText; STRSUBSTNO(DocumentCaption(), CopyText))
                     {
                     }
                     column(CompanyInfo_GST_RegistrationNo; CompanyInfo."GST Registration No.")
@@ -802,7 +802,7 @@ report 50005 "Posted Sales Invoice"
                 States.RESET();
                 IF States.GET(Customer."State Code") THEN
                     StateName := States.Description;
-                ShipToAddress.RESET;
+                ShipToAddress.RESET();
                 IF ShipToAddress.GET("Sales Invoice Header"."Sell-to Customer No.", "Sales Invoice Header"."Ship-to Code") THEN BEGIN
                     States.RESET();
                     IF States.GET(ShipToAddress.State) THEN
@@ -877,14 +877,14 @@ report 50005 "Posted Sales Invoice"
                     Currency := "Sales Invoice Header"."Currency Code";
                 IF "Sales Invoice Header"."Location Code" <> '' THEN
                     IF NOT Location1.GET("Sales Invoice Header"."Location Code") THEN
-                        Location1.INIT;
+                        Location1.INIT();
 
                 CLEAR(SalesShipmentHeader);
                 CLEAR(SH);
-                SalesInvoiceLine.RESET;
+                SalesInvoiceLine.RESET();
                 SalesInvoiceLine.SETRANGE(SalesInvoiceLine."Document No.", "Sales Invoice Header"."No.");
                 SalesInvoiceLine.SETFILTER(SalesInvoiceLine.Type, '%1', SalesInvoiceLine.Type::Item);
-                IF SalesInvoiceLine.FINDFIRST THEN
+                IF SalesInvoiceLine.FINDFIRST() THEN
                     IF SalesShipmentHeader.GET(SalesInvoiceLine."Shipment No.") THEN
                         IF SH.GET(SH."Document Type"::Order, SalesShipmentHeader."Order No.") THEN;
                 CLEAR(SACode);
@@ -895,10 +895,10 @@ report 50005 "Posted Sales Invoice"
 
 
                 CLEAR(GSTJurisdiction);
-                SalesInvoiceLine2.RESET;
+                SalesInvoiceLine2.RESET();
                 SalesInvoiceLine2.SETFILTER(SalesInvoiceLine2."Document No.", "Sales Invoice Header"."No.");
                 SalesInvoiceLine2.SETRANGE(SalesInvoiceLine2.Type, SalesInvoiceLine2.Type::Item);
-                IF SalesInvoiceLine2.FINDFIRST THEN BEGIN
+                IF SalesInvoiceLine2.FINDFIRST() THEN BEGIN
                     IF SalesInvoiceLine2."GST Jurisdiction Type" = SalesInvoiceLine2."GST Jurisdiction Type"::Interstate THEN
                         GSTJurisdiction := 'Interstate';
                     IF SalesInvoiceLine2."GST Jurisdiction Type" = SalesInvoiceLine2."GST Jurisdiction Type"::Intrastate THEN
@@ -1282,20 +1282,20 @@ report 50005 "Posted Sales Invoice"
                 EXIT(0D);
         END;
 
-        SalesShipmentBuffer.RESET;
+        SalesShipmentBuffer.RESET();
         SalesShipmentBuffer.SETRANGE("Document No.", "Sales Invoice Line"."Document No.");
         SalesShipmentBuffer.SETRANGE("Line No.", "Sales Invoice Line"."Line No.");
         IF SalesShipmentBuffer.FIND('-') THEN BEGIN
             SalesShipmentBuffer2 := SalesShipmentBuffer;
-            IF SalesShipmentBuffer.NEXT = 0 THEN BEGIN
+            IF SalesShipmentBuffer.NEXT() = 0 THEN BEGIN
                 SalesShipmentBuffer.GET(
                   SalesShipmentBuffer2."Document No.", SalesShipmentBuffer2."Line No.", SalesShipmentBuffer2."Entry No.");
-                SalesShipmentBuffer.DELETE;
+                SalesShipmentBuffer.DELETE();
                 EXIT(SalesShipmentBuffer2."Posting Date");
             END;
             SalesShipmentBuffer.CALCSUMS(Quantity);
             IF SalesShipmentBuffer.Quantity <> "Sales Invoice Line".Quantity THEN BEGIN
-                SalesShipmentBuffer.DELETEALL;
+                SalesShipmentBuffer.DELETEALL();
                 EXIT("Sales Invoice Header"."Posting Date");
             END;
         END ELSE
@@ -1330,7 +1330,7 @@ report 50005 "Posted Sales Invoice"
                     TotalQuantity := TotalQuantity + ValueEntry."Invoiced Quantity";
                 END;
                 FirstValueEntryNo := ValueEntry."Entry No." + 1;
-            UNTIL (ValueEntry.NEXT = 0) OR (TotalQuantity = 0);
+            UNTIL (ValueEntry.NEXT() = 0) OR (TotalQuantity = 0);
     end;
 
 
@@ -1357,8 +1357,8 @@ report 50005 "Posted Sales Invoice"
                 IF SalesInvoiceLine2.FIND('-') THEN
                     REPEAT
                         TotalQuantity := TotalQuantity + SalesInvoiceLine2.Quantity;
-                    UNTIL SalesInvoiceLine2.NEXT = 0;
-            UNTIL SalesInvoiceHeader.NEXT = 0;
+                    UNTIL SalesInvoiceLine2.NEXT() = 0;
+            UNTIL SalesInvoiceHeader.NEXT() = 0;
 
         SalesShipmentLine.SETCURRENTKEY("Order No.", "Order Line No.");
         SalesShipmentLine.SETRANGE("Order No.", "Sales Invoice Header"."Order No.");
@@ -1390,7 +1390,7 @@ report 50005 "Posted Sales Invoice"
                           Quantity,
                           SalesShipmentHeader."Posting Date");
                 END;
-            UNTIL (SalesShipmentLine.NEXT = 0) OR (TotalQuantity = 0);
+            UNTIL (SalesShipmentLine.NEXT() = 0) OR (TotalQuantity = 0);
     end;
 
 
@@ -1404,7 +1404,7 @@ report 50005 "Posted Sales Invoice"
         IF SalesInvoiceLine.FIND('-') THEN
             REPEAT
                 SalesShipmentLine.Quantity := SalesShipmentLine.Quantity - SalesInvoiceLine.Quantity;
-            UNTIL SalesInvoiceLine.NEXT = 0;
+            UNTIL SalesInvoiceLine.NEXT() = 0;
     end;
 
 
@@ -1415,7 +1415,7 @@ report 50005 "Posted Sales Invoice"
         SalesShipmentBuffer.SETRANGE("Posting Date", PostingDate);
         IF SalesShipmentBuffer.FIND('-') THEN BEGIN
             SalesShipmentBuffer.Quantity := SalesShipmentBuffer.Quantity + QtyOnShipment;
-            SalesShipmentBuffer.MODIFY;
+            SalesShipmentBuffer.MODIFY();
             EXIT;
         END;
 
@@ -1427,7 +1427,7 @@ report 50005 "Posted Sales Invoice"
             "No." := SalesInvoiceLine."No.";
             Quantity := QtyOnShipment;
             "Posting Date" := PostingDate;
-            INSERT;
+            INSERT();
             NextEntryNo := NextEntryNo + 1
         END;
     end;
@@ -1457,7 +1457,7 @@ report 50005 "Posted Sales Invoice"
         PostedAsmLine: Record "Posted Assembly Line";
         SalesShipmentLine: Record "Sales Shipment Line";
     begin
-        TempPostedAsmLine.DELETEALL;
+        TempPostedAsmLine.DELETEALL();
         IF "Sales Invoice Line".Type <> "Sales Invoice Line".Type::Item THEN
             EXIT;
         WITH ValueEntry DO BEGIN
@@ -1466,7 +1466,7 @@ report 50005 "Posted Sales Invoice"
             SETRANGE("Document Type", "Document Type"::"Sales Invoice");
             SETRANGE("Document Line No.", "Sales Invoice Line"."Line No.");
             SETRANGE(Adjustment, FALSE);
-            IF NOT FINDSET THEN
+            IF NOT FINDSET() THEN
                 EXIT;
         END;
         REPEAT
@@ -1475,13 +1475,13 @@ report 50005 "Posted Sales Invoice"
                     SalesShipmentLine.GET(ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
                     IF SalesShipmentLine.AsmToShipmentExists(PostedAsmHeader) THEN BEGIN
                         PostedAsmLine.SETRANGE("Document No.", PostedAsmHeader."No.");
-                        IF PostedAsmLine.FINDSET THEN
+                        IF PostedAsmLine.FINDSET() THEN
                             REPEAT
                                 TreatAsmLineBuffer(PostedAsmLine);
-                            UNTIL PostedAsmLine.NEXT = 0;
+                            UNTIL PostedAsmLine.NEXT() = 0;
                     END;
                 END;
-        UNTIL ValueEntry.NEXT = 0;
+        UNTIL ValueEntry.NEXT() = 0;
     end;
 
 
@@ -1493,13 +1493,13 @@ report 50005 "Posted Sales Invoice"
         TempPostedAsmLine.SETRANGE("Variant Code", PostedAsmLine."Variant Code");
         TempPostedAsmLine.SETRANGE(Description, PostedAsmLine.Description);
         TempPostedAsmLine.SETRANGE("Unit of Measure Code", PostedAsmLine."Unit of Measure Code");
-        IF TempPostedAsmLine.FINDFIRST THEN BEGIN
+        IF TempPostedAsmLine.FINDFIRST() THEN BEGIN
             TempPostedAsmLine.Quantity += PostedAsmLine.Quantity;
-            TempPostedAsmLine.MODIFY;
+            TempPostedAsmLine.MODIFY();
         END ELSE BEGIN
             CLEAR(TempPostedAsmLine);
             TempPostedAsmLine := PostedAsmLine;
-            TempPostedAsmLine.INSERT;
+            TempPostedAsmLine.INSERT();
         END;
     end;
 
@@ -1525,10 +1525,10 @@ report 50005 "Posted Sales Invoice"
         CustLedgerEntry: Record "Cust. Ledger Entry";
         Customer: Record Customer;
     begin
-        TempLineFeeNoteOnReportHist.DELETEALL;
+        TempLineFeeNoteOnReportHist.DELETEALL();
         CustLedgerEntry.SETRANGE("Document Type", CustLedgerEntry."Document Type"::Invoice);
         CustLedgerEntry.SETRANGE("Document No.", SalesInvoiceHeaderNo);
-        IF NOT CustLedgerEntry.FINDFIRST THEN
+        IF NOT CustLedgerEntry.FINDFIRST() THEN
             EXIT;
 
         IF NOT Customer.GET(CustLedgerEntry."Customer No.") THEN
@@ -1536,20 +1536,20 @@ report 50005 "Posted Sales Invoice"
 
         LineFeeNoteOnReportHist.SETRANGE("Cust. Ledger Entry No", CustLedgerEntry."Entry No.");
         LineFeeNoteOnReportHist.SETRANGE("Language Code", Customer."Language Code");
-        IF LineFeeNoteOnReportHist.FINDSET THEN BEGIN
+        IF LineFeeNoteOnReportHist.FINDSET() THEN BEGIN
             REPEAT
-                TempLineFeeNoteOnReportHist.INIT;
+                TempLineFeeNoteOnReportHist.INIT();
                 TempLineFeeNoteOnReportHist.COPY(LineFeeNoteOnReportHist);
-                TempLineFeeNoteOnReportHist.INSERT;
-            UNTIL LineFeeNoteOnReportHist.NEXT = 0;
+                TempLineFeeNoteOnReportHist.INSERT();
+            UNTIL LineFeeNoteOnReportHist.NEXT() = 0;
         END ELSE BEGIN
             LineFeeNoteOnReportHist.SETRANGE("Language Code", LanguageVar.Code);
-            IF LineFeeNoteOnReportHist.FINDSET THEN
+            IF LineFeeNoteOnReportHist.FINDSET() THEN
                 REPEAT
-                    TempLineFeeNoteOnReportHist.INIT;
+                    TempLineFeeNoteOnReportHist.INIT();
                     TempLineFeeNoteOnReportHist.COPY(LineFeeNoteOnReportHist);
-                    TempLineFeeNoteOnReportHist.INSERT;
-                UNTIL LineFeeNoteOnReportHist.NEXT = 0;
+                    TempLineFeeNoteOnReportHist.INSERT();
+                UNTIL LineFeeNoteOnReportHist.NEXT() = 0;
         END;
     end;
 

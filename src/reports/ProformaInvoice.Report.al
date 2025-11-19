@@ -381,7 +381,7 @@ report 50002 "Proforma Invoice"
                 column(Description_SalesLineCaption; "Sales Line".FIELDCAPTION(Description))
                 {
                 }
-                column(SalesLine_AmountToCustomer; Amount + GetGstAmounts)//"Amount To Customer"
+                column(SalesLine_AmountToCustomer; Amount + GetGstAmounts())//"Amount To Customer"
                 {
                 }
                 column(PrepmtPaymentTermsDescription; PrepmtPaymentTerms.Description)
@@ -576,13 +576,13 @@ report 50002 "Proforma Invoice"
                     CurrencyCaption := 'EURO';
                 END;
 
-                ShiptoAddress.RESET;
+                ShiptoAddress.RESET();
                 ShiptoAddress.SETRANGE(ShiptoAddress.Code, "Ship-to Code");
-                IF ShiptoAddress.FINDFIRST THEN;
+                IF ShiptoAddress.FINDFIRST() THEN;
 
-                PaymentTerms.RESET;
+                PaymentTerms.RESET();
                 PaymentTerms.SETRANGE(PaymentTerms.Code, "Payment Terms Code");
-                IF PaymentTerms.FINDFIRST THEN
+                IF PaymentTerms.FINDFIRST() THEN
                     PaymentTermsDesc := PaymentTerms.Description;
 
                 // ItemCrossReference.RESET;

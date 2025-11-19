@@ -569,7 +569,7 @@ report 50031 "Sales - Credit Memo"
                                         Continue := TRUE;
                                         EXIT;
                                     END;
-                                UNTIL DimSetEntry2.NEXT = 0;
+                                UNTIL DimSetEntry2.NEXT() = 0;
                             end;
 
                             trigger OnPreDataItem()
@@ -1171,7 +1171,7 @@ report 50031 "Sales - Credit Memo"
                     TotalQuantity := TotalQuantity - ValueEntry."Invoiced Quantity";
                 END;
                 FirstValueEntryNo := ValueEntry."Entry No." + 1;
-            UNTIL (ValueEntry.NEXT = 0) OR (TotalQuantity = 0);
+            UNTIL (ValueEntry.NEXT() = 0) OR (TotalQuantity = 0);
     end;
 
     procedure GenerateBufferFromShipment(SalesCrMemoLine: Record "Sales Cr.Memo Line")
@@ -1197,8 +1197,8 @@ report 50031 "Sales - Credit Memo"
                 IF SalesCrMemoLine2.FIND('-') THEN
                     REPEAT
                         TotalQuantity := TotalQuantity + SalesCrMemoLine2.Quantity;
-                    UNTIL SalesCrMemoLine2.NEXT = 0;
-            UNTIL SalesCrMemoHeader.NEXT = 0;
+                    UNTIL SalesCrMemoLine2.NEXT() = 0;
+            UNTIL SalesCrMemoHeader.NEXT() = 0;
 
         ReturnReceiptLine.SETCURRENTKEY("Return Order No.", "Return Order Line No.");
         ReturnReceiptLine.SETRANGE("Return Order No.", "Sales Cr.Memo Header"."Return Order No.");
@@ -1230,7 +1230,7 @@ report 50031 "Sales - Credit Memo"
                           -Quantity,
                           ReturnReceiptHeader."Posting Date");
                 END;
-            UNTIL (ReturnReceiptLine.NEXT = 0) OR (TotalQuantity = 0);
+            UNTIL (ReturnReceiptLine.NEXT() = 0) OR (TotalQuantity = 0);
     end;
 
     procedure CorrectShipment(var ReturnReceiptLine: Record "Return Receipt Line")

@@ -1,7 +1,7 @@
 report 50009 "Export Invoice -Weidmueller"
 {
     DefaultLayout = RDLC;
-    ApplicationArea =all;
+    ApplicationArea = all;
     UsageCategory = ReportsAndAnalysis;
 
     RDLCLayout = 'src/reportlayout/ExportInvoiceWeidmueller.rdl';
@@ -541,7 +541,7 @@ report 50009 "Export Invoice -Weidmueller"
                     column(Text50000; '')//Text50000
                     {
                     }
-                    column(CurrReport_PAGENO; CurrReport.PAGENO)
+                    column(CurrReport_PAGENO; CurrReport.PAGENO())
                     {
                     }
                     column(NORDSONCaption; NORDSONCaptionLbl)
@@ -814,7 +814,7 @@ report 50009 "Export Invoice -Weidmueller"
                         trigger OnAfterGetRecord()
                         begin
                             IF Counter <= 0 THEN
-                                CurrReport.BREAK
+                                CurrReport.BREAK()
                             ELSE
                                 Counter := Counter - 1;
                         end;
@@ -824,7 +824,7 @@ report 50009 "Export Invoice -Weidmueller"
                     begin
                         HeaderPreSection1();
                         HeaderPresection2();
-                        CompInfo.GET;
+                        CompInfo.GET();
                         CompInfo.CALCFIELDS(Picture);
                     end;
                 }
@@ -855,7 +855,7 @@ report 50009 "Export Invoice -Weidmueller"
                             IF CustLedgEntry1.FIND('-') THEN
                                 REPEAT
                                     CustLedgEntry1.MARK(TRUE);
-                                UNTIL NEXT = 0;
+                                UNTIL NEXT() = 0;
 
                             CustLedgEntry1.SETCURRENTKEY("Entry No.");
                             CustLedgEntry1.SETRANGE("Closed by Entry No.");
@@ -1060,7 +1060,7 @@ report 50009 "Export Invoice -Weidmueller"
         PandF := 0;
         Freight := 0;
         AdvAmt := 0;
-        CompInfo.GET;
+        CompInfo.GET();
         CompInfo.CALCFIELDS("Digital Signature");
     end;
 
@@ -1301,7 +1301,7 @@ report 50009 "Export Invoice -Weidmueller"
 
     procedure HeaderPreSection1()
     begin
-        CompInfo.GET;
+        CompInfo.GET();
         /*SalesInvLine.INIT;
         SalesInvLine.RESET;
         SalesInvLine.SETFILTER(SalesInvLine."Document No.","Sales Invoice Header"."No.");
@@ -1380,7 +1380,7 @@ report 50009 "Export Invoice -Weidmueller"
         ELSE
             CG_Curr2 := "Sales Invoice Header"."Currency Code";
 
-        RecCustomer.RESET;
+        RecCustomer.RESET();
         RecCustomer.SETRANGE(RecCustomer."No.", "Sales Invoice Header"."Bill-to Customer No.");
         IF RecCustomer.FIND('-') THEN BEGIN
             IF RecCustomer.Name = '' THEN
@@ -1392,7 +1392,7 @@ report 50009 "Export Invoice -Weidmueller"
         IF "Sales Invoice Header"."Ship-to Code" <> '' THEN
             TxtCustNameval := "Sales Invoice Header"."Ship-to Name"
         ELSE BEGIN
-            RecCustomer.RESET;
+            RecCustomer.RESET();
             RecCustomer.SETRANGE(RecCustomer."No.", "Sales Invoice Header"."Sell-to Customer No.");
             IF RecCustomer.FIND('-') THEN BEGIN
                 IF RecCustomer.Name = '' THEN
@@ -1407,7 +1407,7 @@ report 50009 "Export Invoice -Weidmueller"
     procedure HeaderPresection2()
     begin
 
-        CompInfo.GET;
+        CompInfo.GET();
         /*
         SalesInvLine.INIT;
         SalesInvLine.RESET;
@@ -1485,7 +1485,7 @@ report 50009 "Export Invoice -Weidmueller"
         ELSE
             CG_Curr2 := "Sales Invoice Header"."Currency Code";
 
-        RecCustomer.RESET;
+        RecCustomer.RESET();
         RecCustomer.SETRANGE(RecCustomer."No.", "Sales Invoice Header"."Bill-to Customer No.");
         IF RecCustomer.FIND('-') THEN BEGIN
             IF RecCustomer.Name = '' THEN
@@ -1497,7 +1497,7 @@ report 50009 "Export Invoice -Weidmueller"
         IF "Sales Invoice Header"."Ship-to Code" <> '' THEN
             TxtCustNameval := "Sales Invoice Header"."Ship-to Name"
         ELSE BEGIN
-            RecCustomer.RESET;
+            RecCustomer.RESET();
             RecCustomer.SETRANGE(RecCustomer."No.", "Sales Invoice Header"."Sell-to Customer No.");
             IF RecCustomer.FIND('-') THEN BEGIN
                 IF RecCustomer.Name = '' THEN
@@ -1531,19 +1531,19 @@ report 50009 "Export Invoice -Weidmueller"
 
         //Total := InvAmt - Disc + PF + ExciseAmt + eCessAmt + VATAmt + CSTAmtForm + CSTAmt + Freight+SHECessAmt;
         Total := InvAmt - Disc + PF + Freight;
-        Check.InitTextVariable;
+        Check.InitTextVariable();
 
         Check.FormatNoText(AmtinWords, ROUND(Total, 1, '='), "Sales Invoice Header"."Currency Code");
 
 
         TotalGST := CGSTAmt + SGSTAmt + IGSTAmt + CessAmt;
         GstAmtinWords[1] := '';
-        NoToWords.InitTextVariable;
+        NoToWords.InitTextVariable();
         NoToWords.FormatNoText(GstAmtinWords, TotalGST, '');
 
 
         VatCaption1 := 'Add : VAT ';
-        SalesInvLine.RESET;
+        SalesInvLine.RESET();
         SalesInvLine.SETFILTER("Document No.", '=%1', "Sales Invoice Header"."No.");
         IF SalesInvLine.FIND('-') THEN BEGIN
             REPEAT
@@ -1551,7 +1551,7 @@ report 50009 "Export Invoice -Weidmueller"
                     VatCaption := STRSUBSTNO('%1', SalesInvLine."VAT %");
                     VatCaption1 := 'Add : VAT ' + VatCaption + ' %';
                 END;
-            UNTIL SalesInvLine.NEXT = 0;
+            UNTIL SalesInvLine.NEXT() = 0;
         END;
 
         IF "Sales Invoice Header"."Currency Code" = '' THEN

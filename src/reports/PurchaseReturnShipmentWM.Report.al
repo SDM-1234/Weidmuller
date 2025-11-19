@@ -311,7 +311,7 @@ report 50029 "Purchase - Return Shipment WM"
                         trigger OnPreDataItem()
                         begin
                             IF "Return Shipment Header"."Buy-from Vendor No." = "Return Shipment Header"."Pay-to Vendor No." THEN
-                                CurrReport.BREAK;
+                                CurrReport.BREAK();
                         end;
                     }
                     dataitem(Total2; "Integer")

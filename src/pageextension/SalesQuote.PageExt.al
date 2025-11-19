@@ -28,5 +28,5 @@ pageextension 50051 SalesQuote extends "Sales Quote"
         Rec.UpdatePONo();
     end;
 }
-    
+
 

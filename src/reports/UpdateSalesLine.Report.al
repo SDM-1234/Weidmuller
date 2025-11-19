@@ -1,7 +1,7 @@
 report 50028 "Update Sales Line"
 {
     DefaultLayout = RDLC;
-ProcessingOnly = true;
+    ProcessingOnly = true;
     dataset
     {
         dataitem(DataItem1000000000; Integer)

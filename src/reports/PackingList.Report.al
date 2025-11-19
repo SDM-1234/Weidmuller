@@ -276,25 +276,25 @@ report 50004 "Packing List"
 
             trigger OnAfterGetRecord()
             begin
-                Var_companyinfo.GET;
+                Var_companyinfo.GET();
                 Var_companyinfo.CALCFIELDS(Var_companyinfo.Picture);
 
                 Var_DimDesc := '';
-                Rec_Dim.RESET;
+                Rec_Dim.RESET();
                 Rec_Dim.SETRANGE(Rec_Dim.Code, "Sales Shipment Header"."Shortcut Dimension 1 Code");
-                IF Rec_Dim.FINDFIRST THEN
+                IF Rec_Dim.FINDFIRST() THEN
                     Var_DimDesc := Rec_Dim.Name;
 
-                IF salesheader.FINDFIRST THEN;
-                Cust.RESET;
+                IF salesheader.FINDFIRST() THEN;
+                Cust.RESET();
                 IF Cust.GET("Sales Shipment Header"."Bill-to Customer No.") THEN;
 
-                ShiptoAddress.RESET;
+                ShiptoAddress.RESET();
                 ShiptoAddress.SETRANGE(ShiptoAddress.Code, "Ship-to Code");
-                IF ShiptoAddress.FINDFIRST THEN;
+                IF ShiptoAddress.FINDFIRST() THEN;
 
                 IF "Sales Shipment Header"."Payment Terms Code" = '' THEN
-                    PaymentTerms.INIT
+                    PaymentTerms.INIT()
                 ELSE BEGIN
                     PaymentTerms.GET("Sales Shipment Header"."Payment Terms Code");
                     PaymentTerms.TranslateDescription(PaymentTerms, "Sales Shipment Header"."Language Code");

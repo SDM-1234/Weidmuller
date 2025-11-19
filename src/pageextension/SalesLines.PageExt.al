@@ -36,7 +36,7 @@ pageextension 50049 SalesLines extends "Sales Lines"
         Item: Record Item;
         SH: Record "Sales Header";
         InventoryFG: Decimal;
-InventoryStock: Decimal;
+        InventoryStock: Decimal;
 
     trigger OnAfterGetRecord()
     begin

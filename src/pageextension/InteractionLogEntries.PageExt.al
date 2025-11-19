@@ -30,7 +30,7 @@ pageextension 50064 InteractionLogEntries extends "Interaction Log Entries"
     var
         User: Record "User Setup";
     begin
-        User.GET(USERSECURITYID);
+        User.GET(USERSECURITYID());
         IF User."Team Code" = '' THEN
             EXIT;
         IF Team.GET(User."Team Code") THEN

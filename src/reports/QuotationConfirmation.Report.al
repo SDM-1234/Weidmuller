@@ -568,13 +568,13 @@ report 50007 "Quotation-Confirmation"
                             CurrencyCaption := "Sales Header"."Currency Code";
                         end;
 
-                ShiptoAddress.RESET;
+                ShiptoAddress.RESET();
                 ShiptoAddress.SETRANGE(ShiptoAddress.Code, "Ship-to Code");
-                IF ShiptoAddress.FINDFIRST THEN;
+                IF ShiptoAddress.FINDFIRST() THEN;
 
-                PaymentTerms.RESET;
+                PaymentTerms.RESET();
                 PaymentTerms.SETRANGE(PaymentTerms.Code, "Payment Terms Code");
-                IF PaymentTerms.FINDFIRST THEN
+                IF PaymentTerms.FINDFIRST() THEN
                     PaymentTermsDesc := PaymentTerms.Description;
             end;
         }

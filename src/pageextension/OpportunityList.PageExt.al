@@ -85,7 +85,7 @@ pageextension 50071 OpportunityList extends "Opportunity List"
     var
         User: Record "User Setup";
     begin
-        User.GET(USERSECURITYID);
+        User.GET(USERSECURITYID());
         IF User."Team Code" = '' THEN
             EXIT;
         IF Team.GET(User."Team Code") THEN

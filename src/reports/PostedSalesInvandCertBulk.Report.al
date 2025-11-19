@@ -239,7 +239,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                     column(CompanyInfo1Picture; CompanyInfo1.Picture)
                     {
                     }
-                    column(DocumentCaptionCopyText; STRSUBSTNO(DocumentCaption, CopyText))
+                    column(DocumentCaptionCopyText; STRSUBSTNO(DocumentCaption(), CopyText))
                     {
                     }
                     column(CompanyInfo_GST_RegistrationNo; CompanyInfo."GST Registration No.")
@@ -447,7 +447,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                         }
                         column(LineAmount_SalesInvLine; "Line Amount")
                         {
-                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode;
+                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode();
                             AutoFormatType = 1;
                         }
                         column(Desc_SalesInvLine; Description)
@@ -473,7 +473,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                         }
                         column(UnitPrice_SalesInvLine; "Unit Price")
                         {
-                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode;
+                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode();
                             AutoFormatType = 2;
                         }
                         column(LineDiscount_SalesInvLine; "Line Discount %")
@@ -493,7 +493,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                         }
                         column(InvDiscountAmount; -"Inv. Discount Amount")
                         {
-                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode;
+                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode();
                             AutoFormatType = 1;
                         }
                         column(TotalSubTotal; TotalSubTotal)
@@ -511,7 +511,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                         }
                         column(SalesInvoiceLineAmount; Amount)
                         {
-                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode;
+                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode();
                             AutoFormatType = 1;
                         }
                         column(AmtInclVAT_SalesInvLine; 0)//"Amount To Customer"
@@ -652,7 +652,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                             LineType := "Sales Invoice Line".Type;
                             PostedShipmentDate := 0D;
                             IF Quantity <> 0 THEN
-                                PostedShipmentDate := FindPostedShipmentDate;
+                                PostedShipmentDate := FindPostedShipmentDate();
 
                             IF (Type = Type::"G/L Account") AND (NOT ShowInternalInfo) THEN
                                 "No." := '';
@@ -723,17 +723,17 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                             CLEAR(SalesInvoiceLine1);
                             IF "Sales Invoice Line".Type = "Sales Invoice Line".Type::" " THEN BEGIN
                                 IF "Sales Invoice Line"."No." = '' THEN BEGIN
-                                    SalesInvoiceLine1.RESET;
+                                    SalesInvoiceLine1.RESET();
                                     SalesInvoiceLine1.SETRANGE(SalesInvoiceLine1."Document No.", "Sales Invoice Header"."No.");
                                     SalesInvoiceLine1.SETFILTER(SalesInvoiceLine1."Line No.", '>%1', "Sales Invoice Line"."Line No.");
-                                    IF SalesInvoiceLine1.FINDFIRST THEN BEGIN
+                                    IF SalesInvoiceLine1.FINDFIRST() THEN BEGIN
                                         IF SalesShipmentHeader1.GET(SalesInvoiceLine1."Shipment No.") THEN BEGIN
                                             Desc := "Sales Invoice Line".Description;
                                             //ZE_LIJO 17/7/2019
                                             //++
-                                            SalesOrder.RESET;
+                                            SalesOrder.RESET();
                                             SalesOrder.SETFILTER(SalesOrder."No.", SalesShipmentHeader1."Order No.");
-                                            IF SalesOrder.FINDFIRST THEN BEGIN
+                                            IF SalesOrder.FINDFIRST() THEN BEGIN
                                                 Desc1 := 'PO No.:' + '' + SalesShipmentHeader1."External Document No.";
                                                 Desc2 := 'PO Date.:' + FORMAT(SalesOrder."Document Date");
                                             END ELSE BEGIN
@@ -748,21 +748,21 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
 
                             //ZE_LIJO 02.08.2019
                             //++
-                            ValueforCertTable;
+                            ValueforCertTable();
                             //--
                         end;
 
                         trigger OnPreDataItem()
                         begin
                             //VATAmountLine.DELETEALL;
-                            SalesShipmentBuffer.RESET;
-                            SalesShipmentBuffer.DELETEALL;
+                            SalesShipmentBuffer.RESET();
+                            SalesShipmentBuffer.DELETEALL();
                             FirstValueEntryNo := 0;
                             MoreLines := FIND('+');
                             WHILE MoreLines AND (Description = '') AND ("No." = '') AND (Quantity = 0) AND (Amount = 0) DO
                                 MoreLines := NEXT(-1) <> 0;
                             IF NOT MoreLines THEN
-                                CurrReport.BREAK;
+                                CurrReport.BREAK();
                             SETRANGE("Line No.", 0, "Line No.");
                             SL := 0;
                         end;
@@ -850,7 +850,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                 NumToWords: Codeunit AmounttoWords;
             begin
                 If "Language Code" <> '' then
-                CurrReport.LANGUAGE := Languagemgt.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := Languagemgt.GetLanguageID("Language Code");
                 IsGSTApplicable := CheckGSTDoc("Sales Invoice Line");
                 Customer.GET("Bill-to Customer No.");
                 States.RESET();
@@ -1336,20 +1336,20 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                 EXIT(0D);
         END;
 
-        SalesShipmentBuffer.RESET;
+        SalesShipmentBuffer.RESET();
         SalesShipmentBuffer.SETRANGE("Document No.", "Sales Invoice Line"."Document No.");
         SalesShipmentBuffer.SETRANGE("Line No.", "Sales Invoice Line"."Line No.");
         IF SalesShipmentBuffer.FIND('-') THEN BEGIN
             SalesShipmentBuffer2 := SalesShipmentBuffer;
-            IF SalesShipmentBuffer.NEXT = 0 THEN BEGIN
+            IF SalesShipmentBuffer.NEXT() = 0 THEN BEGIN
                 SalesShipmentBuffer.GET(
                   SalesShipmentBuffer2."Document No.", SalesShipmentBuffer2."Line No.", SalesShipmentBuffer2."Entry No.");
-                SalesShipmentBuffer.DELETE;
+                SalesShipmentBuffer.DELETE();
                 EXIT(SalesShipmentBuffer2."Posting Date");
             END;
             SalesShipmentBuffer.CALCSUMS(Quantity);
             IF SalesShipmentBuffer.Quantity <> "Sales Invoice Line".Quantity THEN BEGIN
-                SalesShipmentBuffer.DELETEALL;
+                SalesShipmentBuffer.DELETEALL();
                 EXIT("Sales Invoice Header"."Posting Date");
             END;
         END ELSE
@@ -1383,7 +1383,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                     TotalQuantity := TotalQuantity + ValueEntry."Invoiced Quantity";
                 END;
                 FirstValueEntryNo := ValueEntry."Entry No." + 1;
-            UNTIL (ValueEntry.NEXT = 0) OR (TotalQuantity = 0);
+            UNTIL (ValueEntry.NEXT() = 0) OR (TotalQuantity = 0);
     end;
 
     procedure GenerateBufferFromShipment(SalesInvoiceLine: Record "Sales Invoice Line")
@@ -1409,8 +1409,8 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                 IF SalesInvoiceLine2.FIND('-') THEN
                     REPEAT
                         TotalQuantity := TotalQuantity + SalesInvoiceLine2.Quantity;
-                    UNTIL SalesInvoiceLine2.NEXT = 0;
-            UNTIL SalesInvoiceHeader.NEXT = 0;
+                    UNTIL SalesInvoiceLine2.NEXT() = 0;
+            UNTIL SalesInvoiceHeader.NEXT() = 0;
 
         SalesShipmentLine.SETCURRENTKEY("Order No.", "Order Line No.");
         SalesShipmentLine.SETRANGE("Order No.", "Sales Invoice Header"."Order No.");
@@ -1442,7 +1442,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                           Quantity,
                           SalesShipmentHeader."Posting Date");
                 END;
-            UNTIL (SalesShipmentLine.NEXT = 0) OR (TotalQuantity = 0);
+            UNTIL (SalesShipmentLine.NEXT() = 0) OR (TotalQuantity = 0);
     end;
 
     procedure CorrectShipment(var SalesShipmentLine: Record "Sales Shipment Line")
@@ -1455,7 +1455,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         IF SalesInvoiceLine.FIND('-') THEN
             REPEAT
                 SalesShipmentLine.Quantity := SalesShipmentLine.Quantity - SalesInvoiceLine.Quantity;
-            UNTIL SalesInvoiceLine.NEXT = 0;
+            UNTIL SalesInvoiceLine.NEXT() = 0;
     end;
 
     procedure AddBufferEntry(SalesInvoiceLine: Record "Sales Invoice Line"; QtyOnShipment: Decimal; PostingDate: Date)
@@ -1465,7 +1465,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         SalesShipmentBuffer.SETRANGE("Posting Date", PostingDate);
         IF SalesShipmentBuffer.FIND('-') THEN BEGIN
             SalesShipmentBuffer.Quantity := SalesShipmentBuffer.Quantity + QtyOnShipment;
-            SalesShipmentBuffer.MODIFY;
+            SalesShipmentBuffer.MODIFY();
             EXIT;
         END;
 
@@ -1513,7 +1513,7 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         ValueEntry.SETRANGE("Document Type", ValueEntry."Document Type"::"Sales Invoice");
         ValueEntry.SETRANGE("Document Line No.", "Sales Invoice Line"."Line No.");
         ValueEntry.SETRANGE(Adjustment, FALSE);
-        IF NOT ValueEntry.FINDSET THEN
+        IF NOT ValueEntry.FINDSET() THEN
             EXIT;
 
         REPEAT
@@ -1522,13 +1522,13 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
                     SalesShipmentLine.GET(ItemLedgerEntry."Document No.", ItemLedgerEntry."Document Line No.");
                     IF SalesShipmentLine.AsmToShipmentExists(PostedAsmHeader) THEN BEGIN
                         PostedAsmLine.SETRANGE("Document No.", PostedAsmHeader."No.");
-                        IF PostedAsmLine.FINDSET THEN
+                        IF PostedAsmLine.FINDSET() THEN
                             REPEAT
                                 TreatAsmLineBuffer(PostedAsmLine);
-                            UNTIL PostedAsmLine.NEXT = 0;
+                            UNTIL PostedAsmLine.NEXT() = 0;
                     END;
                 END;
-        UNTIL ValueEntry.NEXT = 0;
+        UNTIL ValueEntry.NEXT() = 0;
     end;
 
     procedure TreatAsmLineBuffer(PostedAsmLine: Record "Posted Assembly Line")
@@ -1539,13 +1539,13 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         TempPostedAsmLine.SETRANGE("Variant Code", PostedAsmLine."Variant Code");
         TempPostedAsmLine.SETRANGE(Description, PostedAsmLine.Description);
         TempPostedAsmLine.SETRANGE("Unit of Measure Code", PostedAsmLine."Unit of Measure Code");
-        IF TempPostedAsmLine.FINDFIRST THEN BEGIN
+        IF TempPostedAsmLine.FINDFIRST() THEN BEGIN
             TempPostedAsmLine.Quantity += PostedAsmLine.Quantity;
-            TempPostedAsmLine.MODIFY;
+            TempPostedAsmLine.MODIFY();
         END ELSE BEGIN
             CLEAR(TempPostedAsmLine);
             TempPostedAsmLine := PostedAsmLine;
-            TempPostedAsmLine.INSERT;
+            TempPostedAsmLine.INSERT();
         END;
     end;
 
@@ -1568,10 +1568,10 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         LineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist.";
         CustLedgerEntry: Record "Cust. Ledger Entry";
     begin
-        TempLineFeeNoteOnReportHist.DELETEALL;
+        TempLineFeeNoteOnReportHist.DELETEALL();
         CustLedgerEntry.SETRANGE("Document Type", CustLedgerEntry."Document Type"::Invoice);
         CustLedgerEntry.SETRANGE("Document No.", SalesInvoiceHeaderNo);
-        IF NOT CustLedgerEntry.FINDFIRST THEN
+        IF NOT CustLedgerEntry.FINDFIRST() THEN
             EXIT;
 
         IF NOT Customer.GET(CustLedgerEntry."Customer No.") THEN
@@ -1579,20 +1579,20 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
 
         LineFeeNoteOnReportHist.SETRANGE("Cust. Ledger Entry No", CustLedgerEntry."Entry No.");
         LineFeeNoteOnReportHist.SETRANGE("Language Code", Customer."Language Code");
-        IF LineFeeNoteOnReportHist.FINDSET THEN BEGIN
+        IF LineFeeNoteOnReportHist.FINDSET() THEN BEGIN
             REPEAT
-                TempLineFeeNoteOnReportHist.INIT;
+                TempLineFeeNoteOnReportHist.INIT();
                 TempLineFeeNoteOnReportHist.COPY(LineFeeNoteOnReportHist);
-                TempLineFeeNoteOnReportHist.INSERT;
-            UNTIL LineFeeNoteOnReportHist.NEXT = 0;
+                TempLineFeeNoteOnReportHist.INSERT();
+            UNTIL LineFeeNoteOnReportHist.NEXT() = 0;
         END ELSE BEGIN
             LineFeeNoteOnReportHist.SETRANGE("Language Code", LanguageMgt.GetUserLanguageCode());
-            IF LineFeeNoteOnReportHist.FINDSET THEN
+            IF LineFeeNoteOnReportHist.FINDSET() THEN
                 REPEAT
-                    TempLineFeeNoteOnReportHist.INIT;
+                    TempLineFeeNoteOnReportHist.INIT();
                     TempLineFeeNoteOnReportHist.COPY(LineFeeNoteOnReportHist);
-                    TempLineFeeNoteOnReportHist.INSERT;
-                UNTIL LineFeeNoteOnReportHist.NEXT = 0;
+                    TempLineFeeNoteOnReportHist.INSERT();
+                UNTIL LineFeeNoteOnReportHist.NEXT() = 0;
         END;
     end;
 
@@ -1603,21 +1603,21 @@ report 50022 "Posted Sales Inv and Cert-Bulk"
         CLEAR(Cert_Qty);
         Cert_Disp := FALSE;
         IF "Sales Invoice Line".Type = "Sales Invoice Line".Type::Item THEN BEGIN
-            Cert_SalInvLn.RESET;
+            Cert_SalInvLn.RESET();
             Cert_SalInvLn.SETFILTER(Cert_SalInvLn."Document No.", "Sales Invoice Line"."Document No.");
             Cert_SalInvLn.SETFILTER(Cert_SalInvLn."No.", "Sales Invoice Line"."No.");
-            IF Cert_SalInvLn.FINDSET THEN
+            IF Cert_SalInvLn.FINDSET() THEN
                 REPEAT
                     Cert_Qty += Cert_SalInvLn.Quantity;
                     Cert_Desc := Cert_SalInvLn.Description;
                     Cert_Article := Cert_SalInvLn."No.";
                     Cert_Disp := TRUE;
-                UNTIL Cert_SalInvLn.NEXT = 0;
-            Cert_SalInvLn1.RESET;
+                UNTIL Cert_SalInvLn.NEXT() = 0;
+            Cert_SalInvLn1.RESET();
             Cert_SalInvLn1.SETFILTER(Cert_SalInvLn1."Document No.", "Sales Invoice Line"."Document No.");
             Cert_SalInvLn1.SETFILTER(Cert_SalInvLn1."No.", "Sales Invoice Line"."No.");
             Cert_SalInvLn1.SETFILTER(Cert_SalInvLn1."Line No.", '<%1', "Sales Invoice Line"."Line No.");
-            IF Cert_SalInvLn1.FINDFIRST THEN BEGIN
+            IF Cert_SalInvLn1.FINDFIRST() THEN BEGIN
                 Cert_Disp := FALSE;
             END ELSE BEGIN
                 Cert_Ln += 1;
