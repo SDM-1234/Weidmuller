@@ -1,7 +1,8 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Inventory.Item;
-    
+using Microsoft.Inventory.Ledger;
+
 tableextension 50026 Item extends Item
 {
     fields
