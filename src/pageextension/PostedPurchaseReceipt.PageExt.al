@@ -23,8 +23,8 @@ pageextension 50008 PostedPurchaseReceipt extends "Posted Purchase Receipt"
 
                     trigger OnAction()
                     var
-                        GoodsReceiptNote: Report GoodsReceiptNote;
                         L_PurchRcptHeader: Record "Purch. Rcpt. Header";
+                        GoodsReceiptNote: Report GoodsReceiptNote;
                     begin
                         L_PurchRcptHeader.RESET();
                         L_PurchRcptHeader.SETRANGE("No.", Rec."No.");
