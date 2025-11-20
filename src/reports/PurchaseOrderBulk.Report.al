@@ -400,10 +400,8 @@ report 50018 "Purchase Order-Bulk"
                             TotalLines += 1;
                         UNTIL PurchLn.NEXT() = 0;
 
-                    IF tempint >= loopint THEN BEGIN
-                        CurrReport.BREAK();
+                    IF tempint >= loopint THEN
                         tempint := 0;
-                    END;
                     tempint := tempint + 1;
 
                 end;
