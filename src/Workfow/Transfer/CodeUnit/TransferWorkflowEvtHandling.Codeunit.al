@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Transfer;
+using System.Automation;
+    
 codeunit 50016 "Transfer Workflow Evt Handling"
 
 {

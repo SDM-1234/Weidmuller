@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Contact;
+    
 tableextension 50036 Contact extends Contact
 {
     fields

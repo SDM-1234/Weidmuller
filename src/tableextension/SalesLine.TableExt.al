@@ -1,3 +1,13 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Base;
+using Microsoft.Finance.Reports;
+using Microsoft.Finance.TaxEngine.TaxTypeHandler;
+using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Ledger;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.Customer;
+
 tableextension 50030 SalesLine extends "Sales Line"
 {
     fields
@@ -40,8 +50,6 @@ tableextension 50030 SalesLine extends "Sales Line"
         modify("Unit Price")
         {
             trigger OnBeforeValidate()
-            var
-                myInt: Integer;
             begin
                 IF ((Rec."Unit Price" > 0) AND (xRec."Unit Price" <> 0)) AND (Rec.Quantity = xRec.Quantity) THEN
                     SalesPriceManagement.UnitPriceChangeValidation(Rec);

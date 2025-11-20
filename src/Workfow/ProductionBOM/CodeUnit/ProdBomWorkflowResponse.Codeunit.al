@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Manufacturing.ProductionBOM;
+using System.Automation;
+    
 codeunit 50157 "ProdBom Workflow Response"
 {
     trigger OnRun()

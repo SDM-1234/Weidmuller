@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Currency;
+    
 codeunit 50001 AmountToWords
 {
     trigger OnRun()

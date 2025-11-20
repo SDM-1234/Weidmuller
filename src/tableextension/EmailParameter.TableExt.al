@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using System.EMail;
+    
 tableextension 50034 EmailParameter extends "Email Parameter"
 {
     fields

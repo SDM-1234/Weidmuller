@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 pageextension 50058 SalesInvoiceSubform extends "Sales Invoice Subform"
 {
     layout

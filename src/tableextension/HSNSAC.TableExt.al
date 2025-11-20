@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Base;
+    
 tableextension 50016 HSNSAC extends "HSN/SAC"
 {
     fields

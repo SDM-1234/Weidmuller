@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 tableextension 50001 SalesShipmentHeader extends "Sales Shipment Header"
 {
     fields

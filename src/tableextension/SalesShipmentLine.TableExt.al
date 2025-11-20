@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 tableextension 50002 SalesShipmentLine extends "Sales Shipment Line"
 {
     fields

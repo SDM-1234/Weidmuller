@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Warehouse.Document;
+    
 tableextension 50045 WarehouseReceiptHeader extends "Warehouse Receipt Header"
 {
     fields

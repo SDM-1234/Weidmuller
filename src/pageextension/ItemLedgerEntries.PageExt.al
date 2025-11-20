@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Ledger;
+
 pageextension 50046 ItemLedgerEntries extends "Item Ledger Entries"
 {
     layout
@@ -7,6 +11,7 @@ pageextension 50046 ItemLedgerEntries extends "Item Ledger Entries"
             field("External Document No."; Rec."External Document No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the External Document No. field.';
             }
         }
     }

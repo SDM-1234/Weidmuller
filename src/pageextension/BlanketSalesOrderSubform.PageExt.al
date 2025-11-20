@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 pageextension 50065 BlanketSalesOrderSubform extends "Blanket Sales Order Subform"
 {
     layout

@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Interaction;
+using Microsoft.CRM.Team;
+using System.Security.User;
+    
 pageextension 50064 InteractionLogEntries extends "Interaction Log Entries"
 {
 
@@ -30,7 +36,7 @@ pageextension 50064 InteractionLogEntries extends "Interaction Log Entries"
     var
         User: Record "User Setup";
     begin
-        User.GET(USERSECURITYID);
+        User.GET(USERSECURITYID());
         IF User."Team Code" = '' THEN
             EXIT;
         IF Team.GET(User."Team Code") THEN

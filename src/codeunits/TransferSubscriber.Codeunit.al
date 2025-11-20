@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Attachment;
+using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Posting;
+using Microsoft.Inventory.Transfer;
+using Microsoft.Warehouse.History;
+    
 codeunit 50011 "Transfer Subscriber"
 {
 

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 report 50003 "Expiring Sales Quote Email"
 {
     DefaultRenderingLayout = WordLayoutEMail1;

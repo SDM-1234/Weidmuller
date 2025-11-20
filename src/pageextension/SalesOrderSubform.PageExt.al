@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Document;
+
 pageextension 50057 SalesOrderSubform extends "Sales Order Subform"
 {
     layout
@@ -78,16 +83,19 @@ pageextension 50057 SalesOrderSubform extends "Sales Order Subform"
             {
                 Caption = 'Order Date';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Order Date field.';
             }
             field("GST Bill-to State Code"; SH."GST Bill-to State Code")
             {
                 Caption = 'GST Bill-to State Code';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the GST Bill-to State Code field.';
             }
             field("GST Ship-to State Code"; SH."GST Ship-to State Code")
             {
                 Caption = 'GST Ship-to State Code';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the GST Ship-to State Code field.';
             }
 
         }

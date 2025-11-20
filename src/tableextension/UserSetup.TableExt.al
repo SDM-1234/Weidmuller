@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Team;
+using System.Security.User;
+    
 tableextension 50058 UserSetup extends "User Setup"
 {
     fields

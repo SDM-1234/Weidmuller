@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 tableextension 50010 PurchCrMemoHdr extends "Purch. Cr. Memo Hdr."
 {
     fields

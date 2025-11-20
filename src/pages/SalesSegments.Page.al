@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 page 50014 "Sales Segments"
 {
     DelayedInsert = true;

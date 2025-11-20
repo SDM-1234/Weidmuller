@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Structure;
+
 pageextension 50021 BinContents extends "Bin Contents"
 {
     layout
@@ -14,6 +18,7 @@ pageextension 50021 BinContents extends "Bin Contents"
                 Caption = 'Desc';
                 Editable = false;
                 ApplicationArea = all;
+                ToolTip = 'Specifies the value of the Desc field.';
             }
         }
     }

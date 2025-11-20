@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 pageextension 50011 PostedSalesShipments extends "Posted Sales Shipments"
 {
     layout

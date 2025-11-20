@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Document;
+using System.Automation;
+    
 codeunit 50161 "WhseRecpt workflow Setup"
 {
     trigger OnRun()

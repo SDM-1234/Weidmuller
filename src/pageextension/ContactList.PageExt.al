@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Contact;
+
 pageextension 50063 ContactList extends "Contact List"
 {
 
@@ -9,39 +13,36 @@ pageextension 50063 ContactList extends "Contact List"
             field(Type; Rec.Type)
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the type of contact, either company or person.';
             }
             field(Address; Rec.Address)
             {
 
                 ApplicationArea = All;
+                ToolTip = 'Specifies the contact''s address.';
             }
             field("Address 2"; Rec."Address 2")
             {
 
                 ApplicationArea = All;
+                ToolTip = 'Specifies additional address information.';
             }
             field(City; Rec.City)
             {
 
                 ApplicationArea = All;
+                ToolTip = 'Specifies the city where the contact is located.';
             }
             field("Resigned - Left Company"; Rec."Resigned - Left Company")
             {
 
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Resigned - Left Company field.';
             }
         }
     }
 
     var
-    // CRMCUE: Record "50001";
-
-    var
-        User: Record User;
-        Team: Record Team;
-        TeamSalesperson: Record "Team Salesperson";
-        Salesperson: Code[20];
-        Contact: Page "Contact Card";
 
 
     // procedure GetTeamCode(): Text[250]

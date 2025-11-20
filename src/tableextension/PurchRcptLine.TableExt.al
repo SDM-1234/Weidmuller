@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 tableextension 50007 PurchRcptLine extends "Purch. Rcpt. Line"
 {
     fields

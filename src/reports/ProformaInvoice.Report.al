@@ -1,3 +1,15 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Foundation.Shipping;
+using Microsoft.Inventory.Intrastat;
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Archive;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using System.Utilities;
+    
 report 50002 "Proforma Invoice"
 {
     Caption = 'Proforma Invoice';
@@ -381,7 +393,7 @@ report 50002 "Proforma Invoice"
                 column(Description_SalesLineCaption; "Sales Line".FIELDCAPTION(Description))
                 {
                 }
-                column(SalesLine_AmountToCustomer; Amount + GetGstAmounts)//"Amount To Customer"
+                column(SalesLine_AmountToCustomer; Amount + GetGstAmounts())//"Amount To Customer"
                 {
                 }
                 column(PrepmtPaymentTermsDescription; PrepmtPaymentTerms.Description)
@@ -576,13 +588,13 @@ report 50002 "Proforma Invoice"
                     CurrencyCaption := 'EURO';
                 END;
 
-                ShiptoAddress.RESET;
+                ShiptoAddress.RESET();
                 ShiptoAddress.SETRANGE(ShiptoAddress.Code, "Ship-to Code");
-                IF ShiptoAddress.FINDFIRST THEN;
+                IF ShiptoAddress.FINDFIRST() THEN;
 
-                PaymentTerms.RESET;
+                PaymentTerms.RESET();
                 PaymentTerms.SETRANGE(PaymentTerms.Code, "Payment Terms Code");
-                IF PaymentTerms.FINDFIRST THEN
+                IF PaymentTerms.FINDFIRST() THEN
                     PaymentTermsDesc := PaymentTerms.Description;
 
                 // ItemCrossReference.RESET;
@@ -626,65 +638,8 @@ report 50002 "Proforma Invoice"
 
     var
         CompanyInfo: Record "Company Information";
-        PageCaptionCap: Label 'Page %1 of %2';
-        OrderNoCaptionLbl: Label 'Order No.';
-        EMailCaptionLbl: Label 'E-Mail';
-        PmtTermsDescCaptionLbl: Label 'Payment Terms';
-        ShipMethodDescCaptionLbl: Label 'Shipment Method';
-        PrepmtTermsDescCaptionLbl: Label 'Prepayment Payment Terms';
-        DocDateCaptionLbl: Label 'Document Date';
-        AmtCaptionLbl: Label 'Amount ';
-        HdrDimsCaptionLbl: Label 'Header Dimensions';
         UnitPriceCaptionLbl: Label 'Unit Price';
-        DiscPercentCaptionLbl: Label 'Discount %';
-        LineDiscCaptionLbl: Label 'Line Discount Amount';
-        SubtotalCaptionLbl: Label 'Subtotal';
-        ExciseAmtCaptionLbl: Label 'Excise Amount';
-        TaxAmtCaptionLbl: Label 'Tax Amount';
-        ServTaxAmtCaptionLbl: Label 'Service Tax Amount';
-        ChargesAmtCaptionLbl: Label 'Charges Amount';
-        OtherTaxesAmtCaptionLbl: Label 'Other Taxes Amount';
-        ServTaxeCessAmtCaptionLbl: Label 'Service Tax eCess Amount';
-        TCSAmtCaptionLbl: Label 'TCS Amount';
-        ServTaxSHECessAmtCaptionLbl: Label 'Service Tax SHECess Amount';
-        VATDisctAmtCaptionLbl: Label 'Payment Discount on VAT';
-        LineDimsCaptionLbl: Label 'Line Dimensions';
-        VATAmtSpecCaptionLbl: Label 'VAT Amount Specification';
-        InvDiscBaseAmtCaptionLbl: Label 'Invoice Discount Base Amount';
-        ShipToAddrCaptionLbl: Label 'Ship-to Address';
-        PmtTermsCaptionLbl: Label 'Description';
-        GLAccNoCaptionLbl: Label 'G/L Account No.';
-        PrepmtSpecCaptionLbl: Label 'Prepayment Specification';
-        PrepmtVATAmtSpecCaptionLbl: Label 'Prepayment VAT Amount Specification';
-        InvDiscAmtCaptionLbl: Label 'Invoice Discount Amount';
-        VATPercentCaptionLbl: Label 'VAT %';
-        VATBaseCaptionLbl: Label 'VAT Base';
-        VATAmtCaptionLbl: Label 'VAT Amount';
-        LineAmtCaptionLbl: Label 'Line Amount';
-        VATIdentCaptionLbl: Label 'VAT Identifier';
         TotalCaptionLbl: Label 'Order Value';
-        ServTaxSBCAmtCaptionLbl: Label 'SBC Amount';
-        KKCessAmtCaptionLbl: Label 'KK Cess Amount';
-        NamecaptionLbl: Label 'Name';
-        CitycaptionLbl: Label 'City';
-        TelcaptionLbl: Label 'Tel.';
-        TINCaptionLbl: Label 'TIN No.';
-        FaxCaptionLbl: Label 'Fax';
-        CountrycaptionLbl: Label 'Country';
-        TermsconditionCaptionLbl: Label 'Terms & Conditions';
-        PaymentCaptionLbl: Label 'with order confirmation';
-        SalestaxformCaptionLbl: Label 'Sales Tax Form:';
-        SalesTermsCaptionLbl: Label 'Sales Terms:';
-        TransporterCaptionLbl: Label 'Transporter:   To be nominated by customer';
-        ValidityofInvCaptionLbl: Label 'Validity of Proforma Invoice:';
-        daysCaptionLbl: Label '7 days';
-        DespatchCaptionLbl: Label 'Despatch Destination:';
-        RemarkCaptionLbl: Label 'Remarks:';
-        AdvancepctCaptionLbl: Label '100% Advance';
-        RoundedoffCaptionLbl: Label 'Rounded Off';
-        PayableCaptionLbl: Label 'Payable with:';
-        AuthorisedCaptionLbl: Label 'Authorised Signatory';
-        TypeCaptionLbl: Label 'Type';
         SLNoCaptionLbl: Label 'Sl. No.';
         ItemCodeCaption_lbl: Label 'Article No';
         UnitCaptionLbl: Label 'PRICE UNIT';
@@ -696,32 +651,12 @@ report 50002 "Proforma Invoice"
         SalesLine: Record "Sales Line" temporary;
         ShipmentMethod: Record "Shipment Method";
         TransportMethod: Record "Transport Method";
-        LanguageMgt: Codeunit Language;
-        loopint: Integer;
-        tempint: Integer;
-        space: Text;
-        CustomerCaptionLbl: Label 'Customer';
         No: Integer;
-        Taxform: Text[50];
         Shipmentcode: Text;
-        CinCaptionLbl: Label 'CIN';
-        TcaptionLbl: Label 'T:';
-        PIOCNOCaptionLbl: Label 'PI/OC No.';
-        PONOCaptionLbl: Label 'P.O. No.';
-        ProjectCaptionLbl: Label 'Project';
-        DatecaptionLbl: Label 'Date';
-        AddCSTCaptionLbl: Label 'Add CST';
         CurrencyCode: Code[20];
         CurrencyCaption: Text;
-        SameasbillingCaptionLbl: Label 'Same as billing address';
-        Tax5: Decimal;
-        Tax14: Decimal;
-        Text5: Text;
-        Text14: Text;
-        Tax: Label 'Add VAT';
         SalesHeaderArchaive: Record "Sales Header Archive";
         SalesHeadNo: Code[50];
-        CSTCaptionLbl: Label 'CST:';
         AmountCap: Code[30];
         Unitcost: Decimal;
         PaymentTermsDesc: Text;

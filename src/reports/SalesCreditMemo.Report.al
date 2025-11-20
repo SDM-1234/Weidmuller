@@ -1,3 +1,22 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Contact;
+using Microsoft.CRM.Segment;
+using Microsoft.CRM.Team;
+using Microsoft.Finance.Currency;
+using Microsoft.Finance.Dimension;
+using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Finance.GST.Base;
+using Microsoft.Finance.TaxEngine.TaxTypeHandler;
+using Microsoft.Finance.VAT.Calculation;
+using Microsoft.Foundation.Address;
+using Microsoft.Foundation.Company;
+using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Location;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.History;
+using System.Utilities;
+    
 report 50031 "Sales - Credit Memo"
 {
     DefaultLayout = RDLC;
@@ -569,7 +588,7 @@ report 50031 "Sales - Credit Memo"
                                         Continue := TRUE;
                                         EXIT;
                                     END;
-                                UNTIL DimSetEntry2.NEXT = 0;
+                                UNTIL DimSetEntry2.NEXT() = 0;
                             end;
 
                             trigger OnPreDataItem()
@@ -841,8 +860,6 @@ report 50031 "Sales - Credit Memo"
             }
 
             trigger OnAfterGetRecord()
-            var
-                SalesCrMemoLine: Record "Sales Cr.Memo Line";
             begin
                 IsGSTApplicable := CheckGSTDoc("Sales Cr.Memo Line");
                 Customer.GET("Bill-to Customer No.");
@@ -981,7 +998,6 @@ report 50031 "Sales - Credit Memo"
         CompanyInfo2: Record "Company Information";
         CompanyInfo3: Record "Company Information";
         Customer: Record Customer;
-        SalesSetup: Record "Sales & Receivables Setup";
         VATAmountLine: Record "VAT Amount Line" temporary;
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
@@ -1035,7 +1051,6 @@ report 50031 "Sales - Credit Memo"
         Text13700: Label 'Total %1 Incl. Taxes';
         Text13701: Label 'Total %1 Excl. Taxes';
         SupplementaryText: Text[30];
-        Text16500: Label 'Supplementary Credit Memo';
         NNC_TotalAmountToCustomer: Decimal;
         NNC_TotalExciseAmount: Decimal;
         NNC_TotalTaxAmount: Decimal;
@@ -1092,11 +1107,8 @@ report 50031 "Sales - Credit Memo"
         NNC_TotalKKCessAmount: Decimal;
         KKCessAmtCaptionLbl: Label 'KK Cess Amount';
         IsGSTApplicable: Boolean;
-        J: Integer;
         CompanyRegistrationLbl: Label 'Company Registration No.';
         CustomerRegistrationLbl: Label 'Customer GST Reg No.';
-        GSTCompAmount: array[20] of Decimal;
-        GSTComponentCode: array[20] of Code[10];
         CGSTLbl: Label 'CGST';
         SGSTLbl: Label 'SGST';
         IGSTLbl: Label 'IGST';
@@ -1171,7 +1183,7 @@ report 50031 "Sales - Credit Memo"
                     TotalQuantity := TotalQuantity - ValueEntry."Invoiced Quantity";
                 END;
                 FirstValueEntryNo := ValueEntry."Entry No." + 1;
-            UNTIL (ValueEntry.NEXT = 0) OR (TotalQuantity = 0);
+            UNTIL (ValueEntry.NEXT() = 0) OR (TotalQuantity = 0);
     end;
 
     procedure GenerateBufferFromShipment(SalesCrMemoLine: Record "Sales Cr.Memo Line")
@@ -1197,8 +1209,8 @@ report 50031 "Sales - Credit Memo"
                 IF SalesCrMemoLine2.FIND('-') THEN
                     REPEAT
                         TotalQuantity := TotalQuantity + SalesCrMemoLine2.Quantity;
-                    UNTIL SalesCrMemoLine2.NEXT = 0;
-            UNTIL SalesCrMemoHeader.NEXT = 0;
+                    UNTIL SalesCrMemoLine2.NEXT() = 0;
+            UNTIL SalesCrMemoHeader.NEXT() = 0;
 
         ReturnReceiptLine.SETCURRENTKEY("Return Order No.", "Return Order Line No.");
         ReturnReceiptLine.SETRANGE("Return Order No.", "Sales Cr.Memo Header"."Return Order No.");
@@ -1230,7 +1242,7 @@ report 50031 "Sales - Credit Memo"
                           -Quantity,
                           ReturnReceiptHeader."Posting Date");
                 END;
-            UNTIL (ReturnReceiptLine.NEXT = 0) OR (TotalQuantity = 0);
+            UNTIL (ReturnReceiptLine.NEXT() = 0) OR (TotalQuantity = 0);
     end;
 
     procedure CorrectShipment(var ReturnReceiptLine: Record "Return Receipt Line")

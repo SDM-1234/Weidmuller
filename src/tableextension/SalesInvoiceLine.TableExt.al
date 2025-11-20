@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+using Microsoft.Sales.Customer;
+
 tableextension 50004 SalesInvoiceLine extends "Sales Invoice Line"
 {
     fields

@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Document;
+using System.Automation;
+    
 codeunit 50162 "WhseRecpt WF Evt Handling"
 
 {

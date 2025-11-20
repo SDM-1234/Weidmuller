@@ -1,3 +1,10 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Transfer;
+using Microsoft.Warehouse.Document;
+using System.Automation;
+using Microsoft.Foundation.Attachment;
+
 pageextension 50022 TransferOrder extends "Transfer Order"
 {
     layout
@@ -15,6 +22,7 @@ pageextension 50022 TransferOrder extends "Transfer Order"
             field("Quality Inspection No."; Rec."Quality Inspection No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Quality Inspection No. field.';
             }
         }
         addlast(factboxes)
@@ -107,12 +115,9 @@ pageextension 50022 TransferOrder extends "Transfer Order"
         }
     }
     var
-        ApprovalMgmt: Codeunit "Approval Mgt. WM";
         WorkflowManagement: Codeunit "Workflow Management";
         WorkflowEventHandling: Codeunit "WhseRecpt WF Evt Handling";
-        WhseRecptApprovalStatus: Text[20];
         EnabledWhseRecptWorkflowsExist: Boolean;
-        OpenApprovalEntriesExistForCurrUser: Boolean;
 
     trigger OnOpenPage()
     begin

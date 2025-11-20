@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Intrastat;
+    
 tableextension 50025 TransactionType extends "Transaction Type"
 {
     fields

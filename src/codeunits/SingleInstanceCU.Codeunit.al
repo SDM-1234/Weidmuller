@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 codeunit 50000 "Single Instance CU"
 {
     SingleInstance = true;

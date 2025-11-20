@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Setup;
+    
 page 50013 "Industry Segments"
 {
     PageType = List;

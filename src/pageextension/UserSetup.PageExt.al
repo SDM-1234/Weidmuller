@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using System.Security.User;
+    
 pageextension 50003 UserSetup extends "User Setup"
 {
     layout

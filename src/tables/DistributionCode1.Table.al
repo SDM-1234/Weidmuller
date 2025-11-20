@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 table 50007 "Distribution Code1"
 {
     Caption = 'Distribution Code1';

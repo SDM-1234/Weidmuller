@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+    
 table 50002 "Dunning Remarks"
 {
 

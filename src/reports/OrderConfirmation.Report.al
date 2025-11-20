@@ -1,3 +1,16 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Foundation.Shipping;
+using Microsoft.Inventory.Intrastat;
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Archive;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using System.Globalization;
+using System.Utilities;
+    
 report 50001 "Order-Confirmation"
 {
     DefaultLayout = RDLC;

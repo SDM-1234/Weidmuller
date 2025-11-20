@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.NoSeries;
+using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Posting;
+using Microsoft.Inventory.Tracking;
+using Microsoft.Manufacturing.Document;
+using Microsoft.Manufacturing.Setup;
+    
 codeunit 50023 "Prod. Order Reclass Jnl. Mgt."
 {
     trigger OnRun()
@@ -13,7 +22,6 @@ codeunit 50023 "Prod. Order Reclass Jnl. Mgt."
         ManuSetup: Record "Manufacturing Setup";
         ReservEntry2, ReservEntry3 : Record "Reservation Entry";
         ReservEngineMgt: Codeunit "Reservation Engine Mgt.";
-        ReservationPage: Page Reservation;
         RecordsFound: Boolean;
     begin
         if rec."Location Code" = xRec."Location Code" then
@@ -66,7 +74,6 @@ codeunit 50023 "Prod. Order Reclass Jnl. Mgt."
         ItemJnlLine, LastItemJnlLine : Record "Item Journal Line";
         ItemJnlBatchPost: Codeunit "Item Jnl.-Post Batch";
         NoSeries: Codeunit "No. Series";
-        WMSManagement: Codeunit "WMS Management";
     begin
         if NewStatus <> NewStatus::Released then
             exit;

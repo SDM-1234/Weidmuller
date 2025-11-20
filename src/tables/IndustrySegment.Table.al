@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+    
 table 50004 "Industry Segment"
 {
 

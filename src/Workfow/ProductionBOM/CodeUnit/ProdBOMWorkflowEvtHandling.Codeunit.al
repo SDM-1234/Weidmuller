@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Manufacturing.ProductionBOM;
+using System.Automation;
+    
 codeunit 50155 "ProdBOM Workflow Evt Handling"
 
 {

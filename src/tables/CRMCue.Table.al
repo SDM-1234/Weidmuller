@@ -1,3 +1,17 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Contact;
+using Microsoft.CRM.Interaction;
+using Microsoft.CRM.Opportunity;
+using Microsoft.CRM.Task;
+using Microsoft.CRM.Team;
+using Microsoft.Foundation.Task;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.Receivables;
+using System.Automation;
+using System.Security.User;
+    
 table 50001 "CRM Cue"
 {
 

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Dimension;
+    
 pageextension 50019 Dimensions extends Dimensions
 {
     layout

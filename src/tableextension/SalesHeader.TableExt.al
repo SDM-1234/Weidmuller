@@ -1,3 +1,11 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Base;
+using Microsoft.Finance.Reports;
+using Microsoft.Finance.TaxEngine.TaxTypeHandler;
+using Microsoft.Foundation.Attachment;
+using Microsoft.Sales.Document;
+    
 tableextension 50029 SalesHeader extends "Sales Header"
 {
     fields

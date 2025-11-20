@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.History;
+    
 report 50014 "Calculate Industry Segments"
 {
     ApplicationArea = All;

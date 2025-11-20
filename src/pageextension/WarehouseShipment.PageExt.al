@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Document;
+    
 pageextension 50093 WarehouseShipment extends "Warehouse Shipment"
 {
 

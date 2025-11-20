@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Vendor;
+
 pageextension 50039 VendorList extends "Vendor List"
 {
     layout
@@ -7,6 +11,7 @@ pageextension 50039 VendorList extends "Vendor List"
             field("P.A.N. No."; Rec."P.A.N. No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the Permanent Account No. of Party';
             }
 
         }

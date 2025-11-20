@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Journal;
+using System.Automation;
+    
 codeunit 50019 "Phys Invt Jnl workflow Setup"
 {
     trigger OnRun()

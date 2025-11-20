@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Setup;
+using System.Email;
+using System.Utilities;
+    
 codeunit 50022 "Expiring Sales Quote Email"
 {
     trigger OnRun()

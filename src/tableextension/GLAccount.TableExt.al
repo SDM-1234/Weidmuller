@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GeneralLedger.Account;
+    
 tableextension 50015 GLAccount extends "G/L Account"
 {
     fields

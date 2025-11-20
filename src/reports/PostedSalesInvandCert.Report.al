@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 // report 50019 "Posted Sales Inv and Cert."
 // {
 //     DefaultLayout = RDLC;
