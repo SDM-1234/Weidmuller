@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.AuditCodes;
+using Microsoft.Inventory.Transfer;
+    
 tableextension 50056 "DirectTransLine" extends "Direct Trans. Line"
 {
     fields

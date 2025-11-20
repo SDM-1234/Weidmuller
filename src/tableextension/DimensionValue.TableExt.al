@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Dimension;
+    
 tableextension 50028 DimensionValue extends "Dimension Value"
 {
     fields

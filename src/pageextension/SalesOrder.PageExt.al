@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 pageextension 50053 SalesOrder extends "Sales Order"
 {
     layout

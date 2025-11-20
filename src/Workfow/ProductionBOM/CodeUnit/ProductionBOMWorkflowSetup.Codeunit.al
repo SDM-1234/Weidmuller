@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Manufacturing.ProductionBOM;
+using System.Automation;
+    
 codeunit 50154 "Production BOM Workflow Setup"
 {
     trigger OnRun()

@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Dimension;
+using Microsoft.Finance.GeneralLedger.Ledger;
+
 pageextension 50032 GeneralLedgerEntries extends "General Ledger Entries"
 {
     layout
@@ -8,11 +13,13 @@ pageextension 50032 GeneralLedgerEntries extends "General Ledger Entries"
             {
                 Caption = 'Dimension Code';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Dimension Code field.';
             }
             field("Dimension Name"; DimensionName)
             {
                 Caption = 'Dimension Name';
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Dimension Name field.';
             }
         }
     }

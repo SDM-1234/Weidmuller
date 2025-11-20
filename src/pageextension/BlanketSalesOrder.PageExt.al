@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 pageextension 50062 BlanketSalesOrder extends "Blanket Sales Order"
 {
     layout

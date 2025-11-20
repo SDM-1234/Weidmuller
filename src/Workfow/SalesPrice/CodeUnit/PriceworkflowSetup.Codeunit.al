@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Pricing.PriceList;
+using System.Automation;
+    
 codeunit 50152 "Price workflow Setup"
 {
     trigger OnRun()

@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 table 50006 "Key Account"
 {
     Caption = 'Key Account';

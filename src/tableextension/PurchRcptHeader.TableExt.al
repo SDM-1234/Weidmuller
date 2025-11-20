@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 tableextension 50006 PurchRcptHeader extends "Purch. Rcpt. Header"
 {
     fields

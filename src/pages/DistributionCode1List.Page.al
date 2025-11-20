@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 page 50004 "Distribution Code1 List"
 {
     ApplicationArea = All;

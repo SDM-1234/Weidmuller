@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 pageextension 50118 SalesCrMemoSubform extends "Sales Cr. Memo Subform"
 {
     layout

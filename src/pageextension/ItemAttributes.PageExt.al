@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item.Attribute;
+    
 pageextension 50045 ItemAttributes extends "Item Attributes"
 {
     layout

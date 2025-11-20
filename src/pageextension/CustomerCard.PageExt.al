@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+
 pageextension 50043 CustomerCard extends "Customer Card"
 {
     layout
@@ -44,6 +48,7 @@ pageextension 50043 CustomerCard extends "Customer Card"
             field("Weidmuller Industry Code"; Rec."Weidmuller Industry Code")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Weidmuller Industry Code (WIC) - OLD field.';
             }
             field("Industry Code"; Rec."Industry Code")
             {

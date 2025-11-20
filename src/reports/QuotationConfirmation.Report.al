@@ -1,3 +1,16 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.TaxBase;
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Foundation.Shipping;
+using Microsoft.Inventory.Intrastat;
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Archive;
+using Microsoft.Sales.Comment;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+    
 report 50007 "Quotation-Confirmation"
 {
     DefaultLayout = RDLC;
@@ -568,13 +581,13 @@ report 50007 "Quotation-Confirmation"
                             CurrencyCaption := "Sales Header"."Currency Code";
                         end;
 
-                ShiptoAddress.RESET;
+                ShiptoAddress.RESET();
                 ShiptoAddress.SETRANGE(ShiptoAddress.Code, "Ship-to Code");
-                IF ShiptoAddress.FINDFIRST THEN;
+                IF ShiptoAddress.FINDFIRST() THEN;
 
-                PaymentTerms.RESET;
+                PaymentTerms.RESET();
                 PaymentTerms.SETRANGE(PaymentTerms.Code, "Payment Terms Code");
-                IF PaymentTerms.FINDFIRST THEN
+                IF PaymentTerms.FINDFIRST() THEN
                     PaymentTermsDesc := PaymentTerms.Description;
             end;
         }
@@ -614,12 +627,12 @@ report 50007 "Quotation-Confirmation"
         //Language: Record Language;
         ShiptoAddress: Record "Ship-to Address";
         SalesHeaderArchaive: Record "Sales Header Archive";
-        loopint, tempint, Var_Count, No : Integer;
+        Var_Count, No : Integer;
         Taxform: Text[50];
         CurrencyCode: Code[20];
         SalesHeadNo: Code[50];
         AmountCap: Code[30];
-        OrderText, TransPortCode, PaymentTermsDesc, Text5, Text14, Tax5, Tax14, CurrencyCaption, Shipmentcode, space : Text;
+        OrderText, TransPortCode, PaymentTermsDesc, CurrencyCaption, Shipmentcode : Text;
         LineAmt_SalesLine, GstAmount, GrossWeight, Unitcost : Decimal;
 #pragma warning disable
         Tax: Label 'Add VAT';

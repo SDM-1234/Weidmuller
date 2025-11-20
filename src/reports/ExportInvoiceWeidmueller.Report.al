@@ -1,7 +1,22 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Bank.VoucherInterface;
+using Microsoft.CRM.Team;
+using Microsoft.Finance.GST.Base;
+using Microsoft.Finance.TaxBase;
+using Microsoft.Finance.TaxEngine.TaxTypeHandler;
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Foundation.Shipping;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.History;
+using Microsoft.Sales.Receivables;
+using System.Utilities;
+
 report 50009 "Export Invoice -Weidmueller"
 {
     DefaultLayout = RDLC;
-    ApplicationArea =all;
+    ApplicationArea = all;
     UsageCategory = ReportsAndAnalysis;
 
     RDLCLayout = 'src/reportlayout/ExportInvoiceWeidmueller.rdl';
@@ -541,7 +556,7 @@ report 50009 "Export Invoice -Weidmueller"
                     column(Text50000; '')//Text50000
                     {
                     }
-                    column(CurrReport_PAGENO; CurrReport.PAGENO)
+                    column(CurrReport_PAGENO; CurrReport.PAGENO())
                     {
                     }
                     column(NORDSONCaption; NORDSONCaptionLbl)
@@ -814,7 +829,7 @@ report 50009 "Export Invoice -Weidmueller"
                         trigger OnAfterGetRecord()
                         begin
                             IF Counter <= 0 THEN
-                                CurrReport.BREAK
+                                CurrReport.BREAK()
                             ELSE
                                 Counter := Counter - 1;
                         end;
@@ -824,7 +839,7 @@ report 50009 "Export Invoice -Weidmueller"
                     begin
                         HeaderPreSection1();
                         HeaderPresection2();
-                        CompInfo.GET;
+                        CompInfo.GET();
                         CompInfo.CALCFIELDS(Picture);
                     end;
                 }
@@ -855,7 +870,7 @@ report 50009 "Export Invoice -Weidmueller"
                             IF CustLedgEntry1.FIND('-') THEN
                                 REPEAT
                                     CustLedgEntry1.MARK(TRUE);
-                                UNTIL NEXT = 0;
+                                UNTIL NEXT() = 0;
 
                             CustLedgEntry1.SETCURRENTKEY("Entry No.");
                             CustLedgEntry1.SETRANGE("Closed by Entry No.");
@@ -1028,11 +1043,13 @@ report 50009 "Export Invoice -Weidmueller"
                 {
                     Caption = 'No. of  Print';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the No. of  Print field.';
                 }
                 field(DigitalSig; DigitalSig)
                 {
                     Caption = 'Digital Signature';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Digital Signature field.';
                 }
             }
         }
@@ -1060,13 +1077,12 @@ report 50009 "Export Invoice -Weidmueller"
         PandF := 0;
         Freight := 0;
         AdvAmt := 0;
-        CompInfo.GET;
+        CompInfo.GET();
         CompInfo.CALCFIELDS("Digital Signature");
     end;
 
     var
         CusLedgEntry: Record "Cust. Ledger Entry";
-        Trading: Boolean;
         CompInfo: Record "Company Information";
         SalesPerson: Record "Salesperson/Purchaser";
         PaymentTerms: Record "Payment Terms";
@@ -1089,11 +1105,9 @@ report 50009 "Export Invoice -Weidmueller"
         Check: Report "Check Report";
         AmtinWords: array[2] of Text[80];
         Te: Text[20];
-        DetailCustLedgEntry: Record "Detailed Cust. Ledg. Entry";
         AdvAmt: Decimal;
         FrghtItemCharges: Decimal;
         Lob: Code[50];
-        DimVal: Record "Dimension Value";
         Reg: Code[20];
         PF: Decimal;
         SalesInvLine: Record "Sales Invoice Line";
@@ -1103,9 +1117,7 @@ report 50009 "Export Invoice -Weidmueller"
         Address2: Text[50];
         City: Text[30];
         PinCode: Code[20];
-        "--Ravi--": Integer;
         Note: Text[1024];
-        VatPer: Decimal;
         VatCaption: Text[30];
         VatCaption1: Text[30];
         ProdlineDIM: Code[50];
@@ -1116,15 +1128,9 @@ report 50009 "Export Invoice -Weidmueller"
         CG_Billtophone: Text[30];
         Cg_RecState: Record State;
         Cg_statedescrp: Text[100];
-        RecShipment: Record "Shipment Method";
         RecCustomer: Record Customer;
         TxtCustName: Text[200];
         TxtCustNameval: Text[200];
-        TaxAreaLine: Record "Tax Area Line";
-        TaxJurid: Record "Tax Jurisdiction";
-        TaxJuriCode: Code[10];
-        TaxDetail: Record "Tax Detail";
-        Taxper: Text[30];
         FormCaption: Text[50];
         TaxAmt: Decimal;
         DiscountCaption: Text[30];
@@ -1135,12 +1141,6 @@ report 50009 "Export Invoice -Weidmueller"
         BankAddress: Text[60];
         NeftCode: Text[50];
         AccNo: Text[60];
-        ECMS: Boolean;
-        Cust2: Record Customer;
-        Code1: Code[10];
-        Code2: Code[10];
-        Code3: Code[10];
-        Cust: Record Customer;
         NoOfCopies: Integer;
         NoOfLoops: Integer;
         CopyText: Text[10];
@@ -1149,7 +1149,6 @@ report 50009 "Export Invoice -Weidmueller"
         Phone__CaptionLbl: Label 'Phone :';
         Desp_TimeCaptionLbl: Label 'Desp Time';
         Payment_Terms__CaptionLbl: Label 'Payment Terms :';
-        Customer_Sales_Tax_No_CaptionLbl: Label 'Customer GST No.';
         CST_No_CaptionLbl: Label 'Place of Supply:';
         LST_No_CaptionLbl: Label 'LST No.';
         Customer_PO_No____RefCaptionLbl: Label 'Customer PO No. / Ref';
@@ -1241,9 +1240,6 @@ report 50009 "Export Invoice -Weidmueller"
         SGSTAmount: Decimal;
         IGSTRate: Decimal;
         IGSTAmount: Decimal;
-        INsuranceCharges: Decimal;
-        OtherCharges: Decimal;
-        PnFCharges: Decimal;
         TotalCGSTAmount: Decimal;
         TotalSGSTAmount: Decimal;
         TotalIGSTAmount: Decimal;
@@ -1267,23 +1263,18 @@ report 50009 "Export Invoice -Weidmueller"
         StateCodeNo: Code[10];
         GSTUID: Text[20];
         OutputNo: Integer;
-        SalesInvHeader: Record "Sales Invoice Header";
         TaxablevalueCaption: Label 'Taxable Value';
         SalesShipmentHeader: Record "Sales Shipment Header";
         Var_OrderNo: Code[20];
         SalesInvoiceLine: Record "Sales Invoice Line";
         Note_value: Label 'General Terms and Condition as per Quote sent';
-        Panno: Code[20];
         PanCaption: Label 'P.A.N. No.';
         LineType: Integer;
         LUTCaption: Label 'LUT No.';
         GTitle: Text[30];
         NoOfPrint: Boolean;
         DigitalSig: Boolean;
-        ControlBool: Boolean;
         NoteCaptionLbl: Label 'Note: It is a computer generated document. Signature not required.';
-
-        LineAMtToCustomer: Decimal;
         CGSTAmt, CGSTPer : Decimal;
         SGSTAmt, SGSTPer : Decimal;
         IGSTAmt, IGSTPer : Decimal;
@@ -1301,7 +1292,7 @@ report 50009 "Export Invoice -Weidmueller"
 
     procedure HeaderPreSection1()
     begin
-        CompInfo.GET;
+        CompInfo.GET();
         /*SalesInvLine.INIT;
         SalesInvLine.RESET;
         SalesInvLine.SETFILTER(SalesInvLine."Document No.","Sales Invoice Header"."No.");
@@ -1380,7 +1371,7 @@ report 50009 "Export Invoice -Weidmueller"
         ELSE
             CG_Curr2 := "Sales Invoice Header"."Currency Code";
 
-        RecCustomer.RESET;
+        RecCustomer.RESET();
         RecCustomer.SETRANGE(RecCustomer."No.", "Sales Invoice Header"."Bill-to Customer No.");
         IF RecCustomer.FIND('-') THEN BEGIN
             IF RecCustomer.Name = '' THEN
@@ -1392,7 +1383,7 @@ report 50009 "Export Invoice -Weidmueller"
         IF "Sales Invoice Header"."Ship-to Code" <> '' THEN
             TxtCustNameval := "Sales Invoice Header"."Ship-to Name"
         ELSE BEGIN
-            RecCustomer.RESET;
+            RecCustomer.RESET();
             RecCustomer.SETRANGE(RecCustomer."No.", "Sales Invoice Header"."Sell-to Customer No.");
             IF RecCustomer.FIND('-') THEN BEGIN
                 IF RecCustomer.Name = '' THEN
@@ -1407,7 +1398,7 @@ report 50009 "Export Invoice -Weidmueller"
     procedure HeaderPresection2()
     begin
 
-        CompInfo.GET;
+        CompInfo.GET();
         /*
         SalesInvLine.INIT;
         SalesInvLine.RESET;
@@ -1485,7 +1476,7 @@ report 50009 "Export Invoice -Weidmueller"
         ELSE
             CG_Curr2 := "Sales Invoice Header"."Currency Code";
 
-        RecCustomer.RESET;
+        RecCustomer.RESET();
         RecCustomer.SETRANGE(RecCustomer."No.", "Sales Invoice Header"."Bill-to Customer No.");
         IF RecCustomer.FIND('-') THEN BEGIN
             IF RecCustomer.Name = '' THEN
@@ -1497,7 +1488,7 @@ report 50009 "Export Invoice -Weidmueller"
         IF "Sales Invoice Header"."Ship-to Code" <> '' THEN
             TxtCustNameval := "Sales Invoice Header"."Ship-to Name"
         ELSE BEGIN
-            RecCustomer.RESET;
+            RecCustomer.RESET();
             RecCustomer.SETRANGE(RecCustomer."No.", "Sales Invoice Header"."Sell-to Customer No.");
             IF RecCustomer.FIND('-') THEN BEGIN
                 IF RecCustomer.Name = '' THEN
@@ -1531,19 +1522,19 @@ report 50009 "Export Invoice -Weidmueller"
 
         //Total := InvAmt - Disc + PF + ExciseAmt + eCessAmt + VATAmt + CSTAmtForm + CSTAmt + Freight+SHECessAmt;
         Total := InvAmt - Disc + PF + Freight;
-        Check.InitTextVariable;
+        Check.InitTextVariable();
 
         Check.FormatNoText(AmtinWords, ROUND(Total, 1, '='), "Sales Invoice Header"."Currency Code");
 
 
         TotalGST := CGSTAmt + SGSTAmt + IGSTAmt + CessAmt;
         GstAmtinWords[1] := '';
-        NoToWords.InitTextVariable;
+        NoToWords.InitTextVariable();
         NoToWords.FormatNoText(GstAmtinWords, TotalGST, '');
 
 
         VatCaption1 := 'Add : VAT ';
-        SalesInvLine.RESET;
+        SalesInvLine.RESET();
         SalesInvLine.SETFILTER("Document No.", '=%1', "Sales Invoice Header"."No.");
         IF SalesInvLine.FIND('-') THEN BEGIN
             REPEAT
@@ -1551,7 +1542,7 @@ report 50009 "Export Invoice -Weidmueller"
                     VatCaption := STRSUBSTNO('%1', SalesInvLine."VAT %");
                     VatCaption1 := 'Add : VAT ' + VatCaption + ' %';
                 END;
-            UNTIL SalesInvLine.NEXT = 0;
+            UNTIL SalesInvLine.NEXT() = 0;
         END;
 
         IF "Sales Invoice Header"."Currency Code" = '' THEN

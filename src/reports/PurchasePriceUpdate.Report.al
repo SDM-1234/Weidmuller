@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.Pricing;
+using Microsoft.Purchases.Vendor;
+    
 report 50050 "Purchase Price Update"
 {
     DefaultLayout = RDLC;

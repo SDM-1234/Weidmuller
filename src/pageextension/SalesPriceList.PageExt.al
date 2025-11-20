@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Pricing;
+    
 pageextension 50034 SalesPriceList extends "Sales Price List"
 {
     layout

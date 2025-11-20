@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Ledger;
+    
 page 50012 "Actual Inventory"
 {
     PageType = List;

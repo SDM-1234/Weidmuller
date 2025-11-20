@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 pageextension 50007 PostedSalesInvoiceSubform extends "Posted Sales Invoice Subform"
 {
     layout

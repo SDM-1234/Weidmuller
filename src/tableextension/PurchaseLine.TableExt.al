@@ -1,3 +1,10 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Base;
+using Microsoft.Finance.Reports;
+using Microsoft.Finance.TaxEngine.TaxTypeHandler;
+using Microsoft.Purchases.Document;
+    
 tableextension 50032 PurchaseLine extends "Purchase Line"
 {
     fields

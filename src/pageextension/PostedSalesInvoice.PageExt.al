@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 pageextension 50005 PostedSalesInvoice extends "Posted Sales Invoice"
 {
     Editable = true;

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.RoleCenters;
+    
 pageextension 50006 SalesRelationshipMgrRC extends "Sales & Relationship Mgr. RC"
 {
     layout

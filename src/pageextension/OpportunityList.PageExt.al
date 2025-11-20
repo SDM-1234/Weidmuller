@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Opportunity;
+using Microsoft.CRM.Team;
+using System.Security.User;
+
 pageextension 50071 OpportunityList extends "Opportunity List"
 {
 
@@ -13,16 +19,17 @@ pageextension 50071 OpportunityList extends "Opportunity List"
             field("Calendar Week"; Rec."Calendar Week")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Calendar Week field.';
             }
             field(Comment; Comment)
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Comment field.';
             }
         }
     }
 
     var
-        Opportunity: Record Opportunity;
         Team: Record Team;
         Comment: Text[250];
 
@@ -85,7 +92,7 @@ pageextension 50071 OpportunityList extends "Opportunity List"
     var
         User: Record "User Setup";
     begin
-        User.GET(USERSECURITYID);
+        User.GET(USERSECURITYID());
         IF User."Team Code" = '' THEN
             EXIT;
         IF Team.GET(User."Team Code") THEN

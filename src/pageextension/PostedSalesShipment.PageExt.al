@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 pageextension 50004 PostedSalesShipment extends "Posted Sales Shipment"
 {
     actions
@@ -19,10 +23,11 @@ pageextension 50004 PostedSalesShipment extends "Posted Sales Shipment"
                 begin
                     SalesShptHeader.RESET();
                     SalesShptHeader.SETRANGE(SalesShptHeader."No.", Rec."No.");
-                    IF SalesShptHeader.FINDFIRST() THEN BEGIN
-                        //PackingList.SETTABLEVIEW(SalesShptHeader);
-                        //PackingList.RUN();
-                    END;
+                    IF not SalesShptHeader.IsEmpty() THEN;
+                    // BEGIN
+                    //PackingList.SETTABLEVIEW(SalesShptHeader);
+                    //PackingList.RUN();
+                    //END;
 
                     /*
                     InvtPick.SETRANGE(InvtPick."Source No.","No.");

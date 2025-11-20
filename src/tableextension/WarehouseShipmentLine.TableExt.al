@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Warehouse.Document;
+using Microsoft.Warehouse.Structure;
+    
 tableextension 50051 WarehouseShipmentLine extends "Warehouse Shipment Line"
 {
     fields

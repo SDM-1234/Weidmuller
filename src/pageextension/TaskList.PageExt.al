@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Task;
+    
 pageextension 50036 TaskList extends "Task List"
 {
     layout

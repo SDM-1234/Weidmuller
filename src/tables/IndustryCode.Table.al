@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 table 50003 "Industry Code"
 {
     Caption = 'Industry Code';

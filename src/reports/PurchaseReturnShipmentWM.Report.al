@@ -1,3 +1,15 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Segment;
+using Microsoft.CRM.Team;
+using Microsoft.Finance.Dimension;
+using Microsoft.Foundation.Address;
+using Microsoft.Foundation.Company;
+using Microsoft.Inventory.Location;
+using Microsoft.Purchases.History;
+using Microsoft.Purchases.Vendor;
+using System.Utilities;
+    
 report 50029 "Purchase - Return Shipment WM"
 {
     DefaultLayout = RDLC;
@@ -311,7 +323,7 @@ report 50029 "Purchase - Return Shipment WM"
                         trigger OnPreDataItem()
                         begin
                             IF "Return Shipment Header"."Buy-from Vendor No." = "Return Shipment Header"."Pay-to Vendor No." THEN
-                                CurrReport.BREAK;
+                                CurrReport.BREAK();
                         end;
                     }
                     dataitem(Total2; "Integer")
@@ -386,8 +398,6 @@ report 50029 "Purchase - Return Shipment WM"
             }
 
             trigger OnAfterGetRecord()
-            var
-                Language: Record Language;
             begin
                 //CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
                 CompanyInfo.GET();

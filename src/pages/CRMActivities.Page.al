@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+using System.Automation;
+using Microsoft.Foundation.Task;
+
 page 50021 "CRM Activities"
 {
     Caption = 'Activities';

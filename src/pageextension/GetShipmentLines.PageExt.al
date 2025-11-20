@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 pageextension 50083 GetShipmentLines extends "Get Shipment Lines"
 {
     layout

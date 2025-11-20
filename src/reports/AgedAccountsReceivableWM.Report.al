@@ -1,3 +1,13 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Currency;
+using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.History;
+using Microsoft.Sales.Receivables;
+using System.Utilities;
+    
 report 50013 "Aged Accounts Receivable WM"
 {
     DefaultLayout = RDLC;
@@ -805,7 +815,6 @@ report 50013 "Aged Accounts Receivable WM"
         TotalLCYCptnLbl: Label 'Total (LCY)';
         CurrSpecificationCptnLbl: Label 'Currency Specification';
         EnterDateFormulaErr: Label 'Enter a date formula in the Period Length field.';
-        MessageText: Text;
         PurchaseOrderNo: Code[50];
 
     local procedure CalcDates()
@@ -859,7 +868,6 @@ report 50013 "Aged Accounts Receivable WM"
     local procedure InsertTemp(var CustLedgEntry: Record "Cust. Ledger Entry")
     var
         Currency: Record Currency;
-        PaymentDate: Date;
     begin
         IF TempCustLedgEntry.GET(CustLedgEntry."Entry No.") THEN
             EXIT;
@@ -907,7 +915,7 @@ report 50013 "Aged Accounts Receivable WM"
         i: Integer;
     begin
         TempCurrency2.Code := CurrencyCode;
-        IF TempCurrency2.INSERT THEN;
+        IF TempCurrency2.INSERT() THEN;
         FOR i := 1 TO ARRAYLEN(TotalCustLedgEntry) DO BEGIN
             TempCurrencyAmount."Currency Code" := CurrencyCode;
             TempCurrencyAmount.Date := PeriodStartDate[i];
@@ -980,17 +988,17 @@ report 50013 "Aged Accounts Receivable WM"
         DetailedCustLedgEntry.SETCURRENTKEY("Document No.", "Entry Type", "Document Type");
         DetailedCustLedgEntry.SETRANGE("Document No.", TempCustLedgerEntryP."Document No.");
         DetailedCustLedgEntry.SETRANGE("Entry Type", DetailedCustLedgEntry."Entry Type"::"Initial Entry");
-        IF DetailedCustLedgEntry.FINDFIRST THEN
+        IF DetailedCustLedgEntry.FINDFIRST() THEN
             DetailedCustLedgEntry1.SETCURRENTKEY("Entry No.", "Cust. Ledger Entry No.", "Entry Type", "Document No.");
         DetailedCustLedgEntry1.SETRANGE("Cust. Ledger Entry No.", DetailedCustLedgEntry."Cust. Ledger Entry No.");
         DetailedCustLedgEntry1.SETRANGE("Entry Type", DetailedCustLedgEntry1."Entry Type"::Application);
         DetailedCustLedgEntry1.SETFILTER("Document No.", '%1', '@' + 'KTR' + '*');
-        IF DetailedCustLedgEntry1.FINDSET THEN
+        IF DetailedCustLedgEntry1.FINDSET() THEN
             REPEAT
                 CustomerLedgerEntry.SETRANGE("Entry No.", DetailedCustLedgEntry1."Applied Cust. Ledger Entry No.");
-                IF CustomerLedgerEntry.FINDFIRST THEN
+                IF CustomerLedgerEntry.FINDFIRST() THEN
                     PaymentDetail += COPYSTR(FORMAT(CustomerLedgerEntry."Document No.") + '-' + FORMAT(CustomerLedgerEntry."Posting Date") + ';', 1, 200);
-            UNTIL DetailedCustLedgEntry1.NEXT = 0;
+            UNTIL DetailedCustLedgEntry1.NEXT() = 0;
         EXIT(PaymentDetail);
     end;
 

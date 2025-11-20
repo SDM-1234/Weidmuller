@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Ledger;
+    
 tableextension 50027 ItemLedgerEntry extends "Item Ledger Entry"
 {
     fields

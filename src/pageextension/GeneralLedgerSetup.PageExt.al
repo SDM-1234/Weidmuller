@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GeneralLedger.Setup;
+    
 pageextension 50002 GeneralLedgerSetup extends "General Ledger Setup"
 {
     layout

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 pageextension 50108 SalesQuotes extends "Sales Quotes"
 {
     layout

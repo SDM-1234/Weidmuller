@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 permissionset 50100 GeneratedPermission
 {
     Assignable = true;

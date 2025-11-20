@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+    
 report 50011 "Customer Updation"
 {
     ProcessingOnly = true;

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Task;
+    
 report 50170 "WN User Task Utility"
 {
     Caption = 'User Task Utility';
