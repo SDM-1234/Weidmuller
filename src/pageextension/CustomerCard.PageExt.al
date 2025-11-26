@@ -29,6 +29,8 @@ pageextension 50043 CustomerCard extends "Customer Card"
             {
                 ToolTip = 'Specifies the value of the No. of Industry Segments field.';
                 ApplicationArea = All;
+                Caption = 'Weidmuller Industry Code (WIC)';
+
             }
             field("Invoice Print Check"; Rec."Invoice Print Check")
             {
@@ -48,6 +50,8 @@ pageextension 50043 CustomerCard extends "Customer Card"
             field("Weidmuller Industry Code"; Rec."Weidmuller Industry Code")
             {
                 ApplicationArea = All;
+                Caption = 'Weidmuller Industry Code (WIC) - Old';
+
                 ToolTip = 'Specifies the value of the Weidmuller Industry Code (WIC) - OLD field.';
             }
             field("Industry Code"; Rec."Industry Code")
