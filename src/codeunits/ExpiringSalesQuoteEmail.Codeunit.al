@@ -17,6 +17,8 @@ codeunit 50022 "Expiring Sales Quote Email"
         TempBlob.CreateInStream(InStream);
         InStream.ReadText(HtmlContent);
 
+        if HtmlContent = '' then
+            HtmlContent := NoExpiredQuotes_Lbl;
         Body := HtmlContent; // Set the HTML content as the email body
 
         EmailMessage.Create(Recipients, Subject_Lbl, Body, true); // true for HTML body
@@ -35,5 +37,6 @@ codeunit 50022 "Expiring Sales Quote Email"
         HtmlContent: Text;
         Recipients: List of [Text];
         Subject_Lbl: TextConst ENU = 'List of Quotations expired next week';
+        NoExpiredQuotes_Lbl: TextConst ENU = '<b>There are no quotations expiring next week.</b>';
         Body: Text;
 }
