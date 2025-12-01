@@ -3,7 +3,7 @@ namespace WM.WeidmullerDEV;
 using Microsoft.Sales.Setup;
 using System.Email;
 using System.Utilities;
-    
+
 codeunit 50022 "Expiring Sales Quote Email"
 {
     trigger OnRun()
@@ -12,15 +12,13 @@ codeunit 50022 "Expiring Sales Quote Email"
         SalesSetup.TestField("Sales Quote Expiring - Emails");
         Recipients := SalesSetup."Sales Quote Expiring - Emails".Split(';');
         TempBlob.CreateOutStream(OutStream);
-        MyReport.SaveAs(HtmlContent, ReportFormat::Html, OutStream); // Save report as HTML to OutStream
+        if MyReport.SaveAs(HtmlContent, ReportFormat::Html, OutStream) then begin // Save report as HTML to OutStream
 
-        TempBlob.CreateInStream(InStream);
-        InStream.ReadText(HtmlContent);
-
-        if HtmlContent = '' then
-            HtmlContent := NoExpiredQuotes_Lbl;
-        Body := HtmlContent; // Set the HTML content as the email body
-
+            TempBlob.CreateInStream(InStream);
+            InStream.ReadText(HtmlContent);
+            Body := HtmlContent; // Set the HTML content as the email body
+        end else
+            Body := NoExpiredQuotes_Lbl;
         EmailMessage.Create(Recipients, Subject_Lbl, Body, true); // true for HTML body
         Email.Send(EmailMessage);
 

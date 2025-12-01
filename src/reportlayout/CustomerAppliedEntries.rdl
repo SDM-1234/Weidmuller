@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -11,6 +11,88 @@
       <rd:DataSourceID>ca90faf3-f18c-4bb4-a6c6-9ebe2dd8d986</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="PostingDate_TempCustomerLedgerEntry">
+          <DataField>PostingDate_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="CustomerNo_TempCustomerLedgerEntry">
+          <DataField>CustomerNo_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="DocumentType_TempCustomerLedgerEntry">
+          <DataField>DocumentType_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="DocumentNo_TempCustomerLedgerEntry">
+          <DataField>DocumentNo_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="CurrencyCode_TempCustomerLedgerEntry">
+          <DataField>CurrencyCode_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="Amount_TempCustomerLedgerEntry">
+          <DataField>Amount_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="Amount_TempCustomerLedgerEntryFormat">
+          <DataField>Amount_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="RemainingAmount_TempCustomerLedgerEntry">
+          <DataField>RemainingAmount_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="RemainingAmount_TempCustomerLedgerEntryFormat">
+          <DataField>RemainingAmount_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="OriginalAmtLCY_TempCustomerLedgerEntry">
+          <DataField>OriginalAmtLCY_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="OriginalAmtLCY_TempCustomerLedgerEntryFormat">
+          <DataField>OriginalAmtLCY_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="RemainingAmtLCY_TempCustomerLedgerEntry">
+          <DataField>RemainingAmtLCY_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="RemainingAmtLCY_TempCustomerLedgerEntryFormat">
+          <DataField>RemainingAmtLCY_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="PostingDate_CustLedgerEntry">
+          <DataField>PostingDate_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="DueDate_CustLedgerEntry">
+          <DataField>DueDate_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="Amount_CustLedgerEntry">
+          <DataField>Amount_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="Amount_CustLedgerEntryFormat">
+          <DataField>Amount_CustLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="DocumentNo_CustLedgerEntry">
+          <DataField>DocumentNo_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="AmounttoApply_TempCustomerLedgerEntry">
+          <DataField>AmounttoApply_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="AmounttoApply_TempCustomerLedgerEntryFormat">
+          <DataField>AmounttoApply_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="OrgAmount_CustLedgerEntry">
+          <DataField>OrgAmount_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="OrgAmount_CustLedgerEntryFormat">
+          <DataField>OrgAmount_CustLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="DelaysInDays">
+          <DataField>DelaysInDays</DataField>
+        </Field>
+        <Field Name="CustomerName">
+          <DataField>CustomerName</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -62,7 +144,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Invoice No.</Value>
+                                  <Value>Invoice No.</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -100,7 +182,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Invoice Date</Value>
+                                  <Value>Invoice Date</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -138,7 +220,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Invoice Value</Value>
+                                  <Value>Invoice Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -176,7 +258,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Customer Name</Value>
+                                  <Value>Customer Name</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -214,7 +296,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Due Date</Value>
+                                  <Value>Due Date</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -254,7 +336,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Payment Document No.</Value>
+                                  <Value>Payment Document No.</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -292,7 +374,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Payment Adjusted Date</Value>
+                                  <Value>Payment Adjusted Date</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -330,7 +412,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Payment Amount</Value>
+                                  <Value>Payment Amount</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -368,7 +450,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Applied Amount</Value>
+                                  <Value>Applied Amount</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -380,7 +462,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -418,7 +500,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Delay in Days</Value>
+                                  <Value>Delay in Days</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -461,7 +543,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!DocumentNo_CustLedgerEntry.Value</Value>
+                                  <Value>=Fields!DocumentNo_CustLedgerEntry.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -492,7 +574,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PostingDate_CustLedgerEntry.Value</Value>
+                                  <Value>=Fields!PostingDate_CustLedgerEntry.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <Format>d</Format>
@@ -524,7 +606,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!OrgAmount_CustLedgerEntry.Value</Value>
+                                  <Value>=Fields!OrgAmount_CustLedgerEntry.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <Format>0.00;(0.00)</Format>
@@ -556,7 +638,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!CustomerName.Value</Value>
+                                  <Value>=Fields!CustomerName.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -587,7 +669,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!DueDate_CustLedgerEntry.Value</Value>
+                                  <Value>=Fields!DueDate_CustLedgerEntry.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <Format>d</Format>
@@ -619,7 +701,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!DocumentNo_TempCustomerLedgerEntry.Value</Value>
+                                  <Value>=Fields!DocumentNo_TempCustomerLedgerEntry.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -650,7 +732,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PostingDate_TempCustomerLedgerEntry.Value</Value>
+                                  <Value>=Fields!PostingDate_TempCustomerLedgerEntry.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <Format>d</Format>
@@ -682,7 +764,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Amount_TempCustomerLedgerEntry.Value</Value>
+                                  <Value>=Fields!Amount_TempCustomerLedgerEntry.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <Format>0.00;- 0.00</Format>
@@ -714,7 +796,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!AmounttoApply_TempCustomerLedgerEntry.Value</Value>
+                                  <Value>=Fields!AmounttoApply_TempCustomerLedgerEntry.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <Format>0.00;(0.00)</Format>
@@ -746,7 +828,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!DelaysInDays.Value</Value>
+                                  <Value>=Fields!DelaysInDays.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -850,15 +932,15 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">Page No.:</Value>
+                      <Value>Page No.:</Value>
                       <Style />
                     </TextRun>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Globals!PageNumber</Value>
+                      <Value>=Globals!PageNumber</Value>
                       <Style />
                     </TextRun>
                     <TextRun>
-                      <Value xml:space="preserve" EvaluationMode="Auto"> </Value>
+                      <Value xml:space="preserve"> </Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -888,11 +970,11 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">User ID : </Value>
+                      <Value>User ID : </Value>
                       <Style />
                     </TextRun>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=User!UserID</Value>
+                      <Value>=User!UserID</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -924,7 +1006,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">Customer Payment Application Details</Value>
+                      <Value>Customer Payment Application Details</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
                         <FontSize>12pt</FontSize>
@@ -959,6 +1041,8 @@
             </Border>
           </Style>
         </PageHeader>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
         <LeftMargin>0.5in</LeftMargin>
         <RightMargin>0.5in</RightMargin>
         <TopMargin>0.5in</TopMargin>
@@ -967,6 +1051,12 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1006,86 +1096,4 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="PostingDate_TempCustomerLedgerEntry">
-          <DataField>PostingDate_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="CustomerNo_TempCustomerLedgerEntry">
-          <DataField>CustomerNo_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="DocumentType_TempCustomerLedgerEntry">
-          <DataField>DocumentType_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="DocumentNo_TempCustomerLedgerEntry">
-          <DataField>DocumentNo_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="CurrencyCode_TempCustomerLedgerEntry">
-          <DataField>CurrencyCode_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="Amount_TempCustomerLedgerEntry">
-          <DataField>Amount_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="Amount_TempCustomerLedgerEntryFormat">
-          <DataField>Amount_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="RemainingAmount_TempCustomerLedgerEntry">
-          <DataField>RemainingAmount_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="RemainingAmount_TempCustomerLedgerEntryFormat">
-          <DataField>RemainingAmount_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="OriginalAmtLCY_TempCustomerLedgerEntry">
-          <DataField>OriginalAmtLCY_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="OriginalAmtLCY_TempCustomerLedgerEntryFormat">
-          <DataField>OriginalAmtLCY_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="RemainingAmtLCY_TempCustomerLedgerEntry">
-          <DataField>RemainingAmtLCY_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="RemainingAmtLCY_TempCustomerLedgerEntryFormat">
-          <DataField>RemainingAmtLCY_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="PostingDate_CustLedgerEntry">
-          <DataField>PostingDate_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="DueDate_CustLedgerEntry">
-          <DataField>DueDate_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="Amount_CustLedgerEntry">
-          <DataField>Amount_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="Amount_CustLedgerEntryFormat">
-          <DataField>Amount_CustLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="DocumentNo_CustLedgerEntry">
-          <DataField>DocumentNo_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="AmounttoApply_TempCustomerLedgerEntry">
-          <DataField>AmounttoApply_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="AmounttoApply_TempCustomerLedgerEntryFormat">
-          <DataField>AmounttoApply_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="OrgAmount_CustLedgerEntry">
-          <DataField>OrgAmount_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="OrgAmount_CustLedgerEntryFormat">
-          <DataField>OrgAmount_CustLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="DelaysInDays">
-          <DataField>DelaysInDays</DataField>
-        </Field>
-        <Field Name="CustomerName">
-          <DataField>CustomerName</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>
