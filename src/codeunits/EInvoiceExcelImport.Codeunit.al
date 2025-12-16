@@ -41,7 +41,7 @@ codeunit 50025 "E-Invoice Excel Import"
         if TempExcelBuffer.FindLast() then
             MaxRowNo := TempExcelBuffer."Row No.";
 
-        for RowNo := 3 to MaxRowNo do begin
+        for RowNo := 2 to MaxRowNo do begin
             LineNo := LineNo + 10000;
             if SalesInv.get(GetValueAtCell(RowNo, 5)) then begin
                 SalesInv.Validate("IRN Hash", GetValueAtCell(RowNo, 2));

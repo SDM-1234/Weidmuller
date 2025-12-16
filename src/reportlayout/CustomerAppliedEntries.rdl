@@ -11,88 +11,6 @@
       <rd:DataSourceID>ca90faf3-f18c-4bb4-a6c6-9ebe2dd8d986</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="PostingDate_TempCustomerLedgerEntry">
-          <DataField>PostingDate_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="CustomerNo_TempCustomerLedgerEntry">
-          <DataField>CustomerNo_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="DocumentType_TempCustomerLedgerEntry">
-          <DataField>DocumentType_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="DocumentNo_TempCustomerLedgerEntry">
-          <DataField>DocumentNo_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="CurrencyCode_TempCustomerLedgerEntry">
-          <DataField>CurrencyCode_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="Amount_TempCustomerLedgerEntry">
-          <DataField>Amount_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="Amount_TempCustomerLedgerEntryFormat">
-          <DataField>Amount_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="RemainingAmount_TempCustomerLedgerEntry">
-          <DataField>RemainingAmount_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="RemainingAmount_TempCustomerLedgerEntryFormat">
-          <DataField>RemainingAmount_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="OriginalAmtLCY_TempCustomerLedgerEntry">
-          <DataField>OriginalAmtLCY_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="OriginalAmtLCY_TempCustomerLedgerEntryFormat">
-          <DataField>OriginalAmtLCY_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="RemainingAmtLCY_TempCustomerLedgerEntry">
-          <DataField>RemainingAmtLCY_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="RemainingAmtLCY_TempCustomerLedgerEntryFormat">
-          <DataField>RemainingAmtLCY_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="PostingDate_CustLedgerEntry">
-          <DataField>PostingDate_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="DueDate_CustLedgerEntry">
-          <DataField>DueDate_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="Amount_CustLedgerEntry">
-          <DataField>Amount_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="Amount_CustLedgerEntryFormat">
-          <DataField>Amount_CustLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="DocumentNo_CustLedgerEntry">
-          <DataField>DocumentNo_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="AmounttoApply_TempCustomerLedgerEntry">
-          <DataField>AmounttoApply_TempCustomerLedgerEntry</DataField>
-        </Field>
-        <Field Name="AmounttoApply_TempCustomerLedgerEntryFormat">
-          <DataField>AmounttoApply_TempCustomerLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="OrgAmount_CustLedgerEntry">
-          <DataField>OrgAmount_CustLedgerEntry</DataField>
-        </Field>
-        <Field Name="OrgAmount_CustLedgerEntryFormat">
-          <DataField>OrgAmount_CustLedgerEntryFormat</DataField>
-        </Field>
-        <Field Name="DelaysInDays">
-          <DataField>DelaysInDays</DataField>
-        </Field>
-        <Field Name="CustomerName">
-          <DataField>CustomerName</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1051,12 +969,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1096,4 +1008,86 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="PostingDate_TempCustomerLedgerEntry">
+          <DataField>PostingDate_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="CustomerNo_TempCustomerLedgerEntry">
+          <DataField>CustomerNo_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="DocumentType_TempCustomerLedgerEntry">
+          <DataField>DocumentType_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="DocumentNo_TempCustomerLedgerEntry">
+          <DataField>DocumentNo_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="CurrencyCode_TempCustomerLedgerEntry">
+          <DataField>CurrencyCode_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="Amount_TempCustomerLedgerEntry">
+          <DataField>Amount_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="Amount_TempCustomerLedgerEntryFormat">
+          <DataField>Amount_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="RemainingAmount_TempCustomerLedgerEntry">
+          <DataField>RemainingAmount_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="RemainingAmount_TempCustomerLedgerEntryFormat">
+          <DataField>RemainingAmount_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="OriginalAmtLCY_TempCustomerLedgerEntry">
+          <DataField>OriginalAmtLCY_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="OriginalAmtLCY_TempCustomerLedgerEntryFormat">
+          <DataField>OriginalAmtLCY_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="RemainingAmtLCY_TempCustomerLedgerEntry">
+          <DataField>RemainingAmtLCY_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="RemainingAmtLCY_TempCustomerLedgerEntryFormat">
+          <DataField>RemainingAmtLCY_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="PostingDate_CustLedgerEntry">
+          <DataField>PostingDate_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="DueDate_CustLedgerEntry">
+          <DataField>DueDate_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="Amount_CustLedgerEntry">
+          <DataField>Amount_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="Amount_CustLedgerEntryFormat">
+          <DataField>Amount_CustLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="DocumentNo_CustLedgerEntry">
+          <DataField>DocumentNo_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="AmounttoApply_TempCustomerLedgerEntry">
+          <DataField>AmounttoApply_TempCustomerLedgerEntry</DataField>
+        </Field>
+        <Field Name="AmounttoApply_TempCustomerLedgerEntryFormat">
+          <DataField>AmounttoApply_TempCustomerLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="OrgAmount_CustLedgerEntry">
+          <DataField>OrgAmount_CustLedgerEntry</DataField>
+        </Field>
+        <Field Name="OrgAmount_CustLedgerEntryFormat">
+          <DataField>OrgAmount_CustLedgerEntryFormat</DataField>
+        </Field>
+        <Field Name="DelaysInDays">
+          <DataField>DelaysInDays</DataField>
+        </Field>
+        <Field Name="CustomerName">
+          <DataField>CustomerName</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
