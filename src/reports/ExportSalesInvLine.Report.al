@@ -9,23 +9,12 @@ report 50032 "Export Sales Inv. Line"
     {
         dataitem(DataItemName; "Sales Line")
         {
-            DataItemTableView = SORTING("Document No.", "Line No.") WHERE("Document Type" = CONST(Invoice), Type = CONST(Item));
+            DataItemTableView = SORTING("Document No.", "Line No.") WHERE("Document Type" = CONST(Order), Type = CONST(Item));
             trigger OnPreDataItem()
             begin
-                setfilter("Posting Date", '>=%1', CalcDate('<-CM-1M>', Today()));
-                FileName := 'OICSVFile_' + Format(CurrentDateTime) + '.csv';
+                setfilter("Requested Delivery Date", '>=%1', CalcDate('<-CM-1M>', Today()));
+                FileName := 'C082_' + Format(Today, 0, '<Year4><Month,2><Day,2>') + '.txt';
                 TabSeparator := 9; // ASCII value for a tab
-                // TxtBuilder.AppendLine('Free text' + ',' +
-                //     'Order date' + ',' +
-                //     'Requested Delivery date' + ',' +
-                //     'OC no' + ',' +
-                //     'Line no' + ',' +
-                //     'Article no' + ',' +
-                //     'Quantity' + ',' +
-                //     'Amount' + ',' +
-                //     'currency' + ',' +
-                //     'Customer code' + ',' +
-                //     'Customer name');
             end;
 
             trigger OnAfterGetRecord()
@@ -38,7 +27,7 @@ report 50032 "Export Sales Inv. Line"
                 TxtBuilder.Append(Format(TabSeparator));
                 TxtBuilder.Append(Format(SalesHeader."Order Date", 0, '<Year4><Month,2><Day,2>'));
                 TxtBuilder.Append(Format(TabSeparator));
-                TxtBuilder.Append(Format(SalesHeader."Requested Delivery Date", 0, '<Year4><Month,2><Day,2>'));
+                TxtBuilder.Append(Format("Requested Delivery Date", 0, '<Year4><Month,2><Day,2>'));
                 TxtBuilder.Append(Format(TabSeparator));
                 TxtBuilder.Append("Document No.");
                 TxtBuilder.Append(Format(TabSeparator));
