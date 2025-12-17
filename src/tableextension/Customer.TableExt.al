@@ -100,8 +100,8 @@ tableextension 50023 Customer extends Customer
         {
             Caption = 'Key Account Relation';
             DataClassification = CustomerContent;
-            OptionCaption = 'Direct,Indirect';
-            OptionMembers = Direct,Indirect;
+            OptionCaption = ',Direct,Indirect';
+            OptionMembers = "",Direct,Indirect;
         }
         field(50009; "Distribution Code1"; Code[20])
         {
