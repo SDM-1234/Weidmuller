@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Manufacturing.ProductionBOM;
+    
 enumextension 50003 BomStatus extends "Bom Status"
 {
 

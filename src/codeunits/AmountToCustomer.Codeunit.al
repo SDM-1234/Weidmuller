@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Base;
+using Microsoft.Sales.History;
+using Microsoft.Sales.Receivables;
+    
 codeunit 50012 "Amount To Customer"
 {
     trigger OnRun()

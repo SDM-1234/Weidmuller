@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Counting.Journal;
+using Microsoft.Inventory.Journal;
+using System.Automation;
+    
 pageextension 50025 PhysInventoryJournal extends "Phys. Inventory Journal"
 {
     layout

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+    
 pageextension 50040 ItemCard extends "Item Card"
 {
     layout

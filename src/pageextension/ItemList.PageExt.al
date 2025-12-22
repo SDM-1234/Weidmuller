@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+    
 pageextension 50044 ItemList extends "Item List"
 {
     Caption = 'Article No';

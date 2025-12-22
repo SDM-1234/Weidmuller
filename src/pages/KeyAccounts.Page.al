@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 page 50003 "Key Accounts"
 {
     ApplicationArea = All;

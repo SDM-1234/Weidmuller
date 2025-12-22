@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using System.Security.User;
+    
 report 50025 "Update Posting Range"
 {
     DefaultLayout = RDLC;

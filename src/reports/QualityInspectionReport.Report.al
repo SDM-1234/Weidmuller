@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Company;
+using Microsoft.Inventory.Transfer;
+    
 report 50010 "Quality Inspection Report"
 {
     UsageCategory = ReportsAndAnalysis;

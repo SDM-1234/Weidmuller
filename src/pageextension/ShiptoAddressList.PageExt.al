@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+    
 pageextension 50041 ShiptoAddressList extends "Ship-to Address List"
 {
     layout

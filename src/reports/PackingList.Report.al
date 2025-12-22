@@ -1,3 +1,13 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Dimension;
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.History;
+using System.Utilities;
+    
 report 50004 "Packing List"
 {
     DefaultLayout = RDLC;
@@ -276,25 +286,25 @@ report 50004 "Packing List"
 
             trigger OnAfterGetRecord()
             begin
-                Var_companyinfo.GET;
+                Var_companyinfo.GET();
                 Var_companyinfo.CALCFIELDS(Var_companyinfo.Picture);
 
                 Var_DimDesc := '';
-                Rec_Dim.RESET;
+                Rec_Dim.RESET();
                 Rec_Dim.SETRANGE(Rec_Dim.Code, "Sales Shipment Header"."Shortcut Dimension 1 Code");
-                IF Rec_Dim.FINDFIRST THEN
+                IF Rec_Dim.FINDFIRST() THEN
                     Var_DimDesc := Rec_Dim.Name;
 
-                IF salesheader.FINDFIRST THEN;
-                Cust.RESET;
+                IF salesheader.FINDFIRST() THEN;
+                Cust.RESET();
                 IF Cust.GET("Sales Shipment Header"."Bill-to Customer No.") THEN;
 
-                ShiptoAddress.RESET;
+                ShiptoAddress.RESET();
                 ShiptoAddress.SETRANGE(ShiptoAddress.Code, "Ship-to Code");
-                IF ShiptoAddress.FINDFIRST THEN;
+                IF ShiptoAddress.FINDFIRST() THEN;
 
                 IF "Sales Shipment Header"."Payment Terms Code" = '' THEN
-                    PaymentTerms.INIT
+                    PaymentTerms.INIT()
                 ELSE BEGIN
                     PaymentTerms.GET("Sales Shipment Header"."Payment Terms Code");
                     PaymentTerms.TranslateDescription(PaymentTerms, "Sales Shipment Header"."Language Code");
@@ -321,7 +331,6 @@ report 50004 "Packing List"
     var
     #Pragma Disable Warning Disable: AL0433 // The variable is never used
         Var_companyinfo: Record "Company Information";
-        Var_salesLine: Record "Sales Shipment Line";
         Var_Count: Integer;
         "Var_SLNo.": Integer;
         Rec_Dim: Record "Dimension Value";
@@ -359,9 +368,6 @@ report 50004 "Packing List"
         TotalnoofBoxesCaptionLbl: Label 'Total No of Boxes:';
         DeliveryNoCaptionLbl: Label 'Delivery No.';
         PhoneNoCaptionLbl: Label 'Phone No.';
-        loopint: Integer;
-        tempint: Integer;
-        space: Text;
         Cust: Record Customer;
         salesheader: Record "Sales Header";
         CustomerNoCaptionLbl: Label 'Customer No.';
@@ -370,7 +376,6 @@ report 50004 "Packing List"
         PINCaptionLbl: Label 'PIN';
         GSTINCaptionLbl: Label 'GSTIN';
         ShiptoAddress: Record "Ship-to Address";
-        SalesLine: Record "Sales Line";
         PaymentTerms: Record "Payment Terms";
         BinCodeCaptionLbl: Label 'Bin Code';
         #Pragma Enable Warning AL0433 // The variable is never used

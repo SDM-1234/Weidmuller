@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Document;
+    
 pageextension 50093 WarehouseShipment extends "Warehouse Shipment"
 {
 
@@ -9,6 +13,7 @@ pageextension 50093 WarehouseShipment extends "Warehouse Shipment"
             {
                 Visible = false;
                 ApplicationArea = All;
+                ToolTip = 'Specifies the EAN No. for the Warehouse Shipment.';
 
 
                 trigger OnValidate()
@@ -19,22 +24,27 @@ pageextension 50093 WarehouseShipment extends "Warehouse Shipment"
             field("LR/RR No."; Rec."LR/RR No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the LR/RR No. for the Warehouse Shipment.';
             }
             field("LR/RR Date"; Rec."LR/RR Date")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the LR/RR Date for the Warehouse Shipment.';
             }
             field("Vehicle No."; Rec."Vehicle No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the Vehicle No. for the Warehouse Shipment.';
             }
             field("Time of Removal"; Rec."Time of Removal")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the Time of Removal for the Warehouse Shipment.';
             }
             field("Date of Removal"; Rec."Date of Removal")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the Date of Removal for the Warehouse Shipment.';
             }
 
         }
@@ -50,6 +60,32 @@ pageextension 50093 WarehouseShipment extends "Warehouse Shipment"
                 Provider = WhseShptLines;
                 SubPageLink = "Item No." = field("Item No.");
                 ApplicationArea = All;
+            }
+        }
+
+
+    }
+    actions
+    {
+        addafter("Registered P&ick Lines")
+        {
+            action(ClearBins)
+            {
+                Caption = 'ClearBins';
+                ApplicationArea = All;
+                ToolTip = 'Clear all the bins in the warehouse receipt lines.';
+                Image = Bins;
+
+                trigger OnAction()
+                begin
+                    Rec.ClearBins();
+                end;
+            }
+        }
+        addafter("Registered P&ick Lines_Promoted")
+        {
+            actionref(ClearBins_Promoted; ClearBins)
+            {
             }
         }
     }

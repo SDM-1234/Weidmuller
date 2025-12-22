@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Manufacturing.ProductionBOM;
+using System.Automation;
+    
 pageextension 50026 ProductionBOM extends "Production BOM"
 {
     layout

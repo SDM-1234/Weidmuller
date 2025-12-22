@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 pageextension 50112 SalesQuoteSubform extends "Sales Quote Subform"
 {
     layout

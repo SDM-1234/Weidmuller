@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Contact;
+    
 pageextension 50060 ContactCard extends "Contact Card"
 {
     layout

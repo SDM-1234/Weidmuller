@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.Sales;
+    
 codeunit 50024 "GST Subscriber"
 {
     trigger OnRun()

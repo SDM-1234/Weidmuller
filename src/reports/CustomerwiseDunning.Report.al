@@ -1,3 +1,10 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Company;
+using Microsoft.Foundation.PaymentTerms;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Receivables;
+    
 report 50024 "Customer-wise Dunning"
 {
     DefaultLayout = RDLC;

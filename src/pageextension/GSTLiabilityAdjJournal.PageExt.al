@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GST.ReturnSettlement;
+    
 pageextension 50028 GSTLiabilityAdjJournal extends "GST Liability Adj. Journal"
 {
     actions
@@ -26,9 +30,6 @@ pageextension 50028 GSTLiabilityAdjJournal extends "GST Liability Adj. Journal"
         */
         //end;
     }
-
-    var
-        PostCreditLiability: Label 'Do you want to Post GST Credit & Liability Adjustment?';
 
     //Unsupported feature: Property Deletion (CaptionML).
 

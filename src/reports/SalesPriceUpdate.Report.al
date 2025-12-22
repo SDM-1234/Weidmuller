@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 // report 50027 "Sales Price Update"
 // {
 //     DefaultLayout = RDLC;

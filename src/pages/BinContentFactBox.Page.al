@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Warehouse.Ledger;
+using Microsoft.Warehouse.Structure;
+    
 page 50000 "BinContent FactBox"
 {
     Caption = 'Bin Content - Details';

@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Receivables;
+    
 report 50026 "Customer Applied Entries"
 {
     DefaultLayout = RDLC;

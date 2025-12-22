@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using System.Diagnostics;
+using System.Reflection;
+using System.Security.AccessControl;
+    
 
 #pragma warning disable AS0039
 table 50155 "WMChange Log Entry"

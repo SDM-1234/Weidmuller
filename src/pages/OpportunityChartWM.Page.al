@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Opportunity;
+using System.Utilities;
+using System.Visualization;
+using System.Integration;
+
+
+
 page 50010 "Opportunity Chart WM"
 {
     Caption = 'Opportunities';
@@ -17,7 +26,7 @@ page 50010 "Opportunity Chart WM"
                 ToolTip = 'Specifies the status of the chart.';
                 ApplicationArea = All;
             }
-            usercontrol(BusinessChart; BusinessChart)
+            usercontrol(BusinessChart; "BusinessChart")
             {
                 ApplicationArea = RelationshipMgmt;
 

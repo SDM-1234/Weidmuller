@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+using System.Automation;
+    
 pageextension 50091 RequeststoApprove extends "Requests to Approve"
 {
     actions

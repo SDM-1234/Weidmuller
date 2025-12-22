@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Address;
+using Microsoft.Purchases.History;
+    
 reportextension 50000 PurchaseCreditMemo extends "Purchase - Credit Memo"
 {
     dataset

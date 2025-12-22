@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.History;
+    
 pageextension 50047 SalesInvoiceStatistics extends "Sales Invoice Statistics"
 {
 

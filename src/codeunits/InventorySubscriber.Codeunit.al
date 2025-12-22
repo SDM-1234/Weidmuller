@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Dimension;
+using Microsoft.Inventory.Availability;
+using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Item.Attribute;
+using Microsoft.Sales.Document;
+using System.Automation;
+    
 codeunit 50006 "Inventory Subscriber"
 {
     trigger OnRun()

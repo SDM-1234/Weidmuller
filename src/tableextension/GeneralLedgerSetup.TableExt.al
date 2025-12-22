@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GeneralLedger.Setup;
+    
 tableextension 50013 GeneralLedgerSetup extends "General Ledger Setup"
 {
     fields

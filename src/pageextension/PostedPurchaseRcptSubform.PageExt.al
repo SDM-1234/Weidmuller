@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 pageextension 50009 PostedPurchaseRcptSubform extends "Posted Purchase Rcpt. Subform"
 {
 

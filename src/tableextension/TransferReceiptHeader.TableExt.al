@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Transfer;
+    
 tableextension 50042 TransferReceiptHeader extends "Transfer Receipt Header"
 {
     fields

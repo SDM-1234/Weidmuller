@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+    
 pageextension 50033 CustomerList extends "Customer List"
 {
     layout

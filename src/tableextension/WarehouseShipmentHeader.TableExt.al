@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Item;
+using Microsoft.Warehouse.Document;
+    
 tableextension 50050 WarehouseShipmentHeader extends "Warehouse Shipment Header"
 {
     fields
@@ -51,6 +56,17 @@ tableextension 50050 WarehouseShipmentHeader extends "Warehouse Shipment Header"
         L_Item.SETRANGE("EAN No.", L_EAN_No);
         IF NOT L_Item.ISEMPTY THEN
             ERROR(Text031_Tok);
+    end;
+
+    procedure ClearBins()
+    var
+        WarehouseShipmentLine: Record "Warehouse Shipment Line";
+    begin
+        WarehouseShipmentLine.RESET();
+        WarehouseShipmentLine.SETCURRENTKEY("No.", "Bin Code");
+        WarehouseShipmentLine.SETRANGE("No.", "No.");
+        WarehouseShipmentLine.SETFILTER("Bin Code", '<>%1', '');
+        WarehouseShipmentLine.MODIFYALL("Bin Code", '');
     end;
 
     var

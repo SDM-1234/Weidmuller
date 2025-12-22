@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+using System.Automation;
+using Microsoft.Foundation.Task;
+
 page 50021 "CRM Activities"
 {
     Caption = 'Activities';
@@ -40,6 +46,13 @@ page 50021 "CRM Activities"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the number of interactions this month.';
+                }
+                field("Requests to Approve"; Rec."Requests to Approve")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the number of requests to approve.';
+                    DrillDownPageId = "Requests to Approve";
+                    LookupPageId = "Requests to Approve";
                 }
             }
             cuegroup("For Quotations and Order Processing")

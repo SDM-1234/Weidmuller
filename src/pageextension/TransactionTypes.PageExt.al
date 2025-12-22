@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Intrastat;
+    
 pageextension 50042 TransactionTypes extends "Transaction Types"
 {
     layout

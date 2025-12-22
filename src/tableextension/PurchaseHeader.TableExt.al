@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Attachment;
+using Microsoft.Purchases.Document;
+    
 tableextension 50031 PurchaseHeader extends "Purchase Header"
 {
     fields
@@ -55,8 +60,5 @@ tableextension 50031 PurchaseHeader extends "Purchase Header"
         IF RecordLink.IsEmpty THEN
             ERROR('Link attachment is mandatory to send approval request');
     end;
-
-    var
-        GSTRegNoErr: Label 'You cannot select GST Reg. No. for Vendor Type.';
 }
 

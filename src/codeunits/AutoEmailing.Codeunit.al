@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Receivables;
+using System.Email;
+using System.Text;
+using System.Utilities;
+    
 codeunit 50002 "Auto Emailing"
 {
     trigger OnRun()

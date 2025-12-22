@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Foundation.Company;
+    
 tableextension 50053 CompanyInformationWM extends "Company Information"
 {
     fields

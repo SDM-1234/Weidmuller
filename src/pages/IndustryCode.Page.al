@@ -1,3 +1,5 @@
+namespace WM.WeidmullerDEV;
+
 page 50002 "Industry Code"
 {
     ApplicationArea = All;

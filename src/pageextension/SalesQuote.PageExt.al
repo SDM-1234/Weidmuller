@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Document;
+    
 pageextension 50051 SalesQuote extends "Sales Quote"
 {
     layout
@@ -28,5 +32,5 @@ pageextension 50051 SalesQuote extends "Sales Quote"
         Rec.UpdatePONo();
     end;
 }
-    
+
 

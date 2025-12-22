@@ -1,3 +1,10 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Opportunity;
+using Microsoft.CRM.Team;
+using System.Utilities;
+using System.Visualization;
+    
 codeunit 50010 "Oppor Chart Mgt. WM"
 {
     trigger OnRun()

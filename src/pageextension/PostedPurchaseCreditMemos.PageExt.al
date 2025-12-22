@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+
 pageextension 50016 PostedPurchaseCreditMemos extends "Posted Purchase Credit Memos"
 {
     layout
@@ -7,6 +11,7 @@ pageextension 50016 PostedPurchaseCreditMemos extends "Posted Purchase Credit Me
             field("Currency Factor"; Rec."Currency Factor")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Currency Factor field.';
             }
         }
     }

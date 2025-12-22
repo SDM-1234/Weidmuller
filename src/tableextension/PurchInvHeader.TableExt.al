@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 tableextension 50008 PurchInvHeader extends "Purch. Inv. Header"
 {
     fields

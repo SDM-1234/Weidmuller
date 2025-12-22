@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Setup;
+    
 tableextension 50020 SalesReceivablesSetup extends "Sales & Receivables Setup"
 {
     fields

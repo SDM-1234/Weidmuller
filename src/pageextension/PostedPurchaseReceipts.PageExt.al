@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 pageextension 50014 PostedPurchaseReceipts extends "Posted Purchase Receipts"
 {
     actions
@@ -15,9 +19,6 @@ pageextension 50014 PostedPurchaseReceipts extends "Posted Purchase Receipts"
                     ToolTip = 'Executes the Goods Receipt Note action.';
 
                     trigger OnAction()
-                    var
-                        GoodsReceiptNote: Report GoodsReceiptNote;
-                        L_PurchRcptHeader: Record "Purch. Rcpt. Header";
                     begin
                         CurrPage.SETSELECTIONFILTER(Rec);
                         PurchRcptHdr.RESET();

@@ -1,3 +1,27 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Contact;
+using Microsoft.CRM.Task;
+using Microsoft.Finance.Currency;
+using Microsoft.Finance.GeneralLedger.Posting;
+using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Finance.GST.Sales;
+using Microsoft.Finance.ReceivablesPayables;
+using Microsoft.Foundation.ExtendedText;
+using Microsoft.Foundation.Reporting;
+using Microsoft.Inventory.Availability;
+using Microsoft.Inventory.Item;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.History;
+using Microsoft.Sales.Posting;
+using Microsoft.Sales.Receivables;
+using Microsoft.Sales.Setup;
+using Microsoft.Utilities;
+using Microsoft.Warehouse.Document;
+using Microsoft.Warehouse.History;
+using System.Automation;
+    
 codeunit 50100 SalesSubscriber
 {
 
@@ -139,7 +163,7 @@ codeunit 50100 SalesSubscriber
             exit;
         SalesHeader.TESTFIELD("Currency Code");
         SalesHeader.TESTFIELD("External Document No.");
-        SalesHeader.CheckIndustrySegments();
+        //SalesHeader.CheckIndustrySegments();
         SalesPriceManagement.ApprovalProcessMandatory(SalesHeader);
     end;
 

@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Task;
+    
 pageextension 50068 CreateTask extends "Create Task"
 {
 
@@ -90,9 +94,6 @@ pageextension 50068 CreateTask extends "Create Task"
         */
         //end;
     }
-
-    var
-        Contact: Record Contact;
 
 
     //Unsupported feature: Code Modification on "ShowStep(PROCEDURE 2)".

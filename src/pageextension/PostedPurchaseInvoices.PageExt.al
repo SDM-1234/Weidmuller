@@ -1,3 +1,7 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Purchases.History;
+    
 pageextension 50015 PostedPurchaseInvoices extends "Posted Purchase Invoices"
 {
     layout

@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Location;
+using Microsoft.Manufacturing.Setup;
+    
 tableextension 50021 ManufacturingSetup extends "Manufacturing Setup"
 {
     fields

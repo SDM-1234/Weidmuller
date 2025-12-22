@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.CRM.Contact;
+using Microsoft.CRM.Task;
+    
 tableextension 50038 Todo extends "To-do"
 {
 

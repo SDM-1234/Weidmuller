@@ -1,3 +1,10 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Finance.Currency;
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.History;
+using System.IO;
+    
 report 50012 "Industry Segments Report"
 {
     DefaultLayout = RDLC;

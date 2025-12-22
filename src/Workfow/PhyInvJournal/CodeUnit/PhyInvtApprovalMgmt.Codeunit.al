@@ -1,3 +1,12 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Inventory.Costing;
+using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Posting;
+using Microsoft.Warehouse.Journal;
+using System.Automation;
+    
 codeunit 50018 "Phy Invt Approval Mgmt"
 {
 

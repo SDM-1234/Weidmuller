@@ -1,3 +1,9 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Pricing.PriceList;
+using Microsoft.Sales.Pricing;
+using Microsoft.Utilities;
+    
 codeunit 50151 "Price Approval Mgmt"
 {
     trigger OnRun()

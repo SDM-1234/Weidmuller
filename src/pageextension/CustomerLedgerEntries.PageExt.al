@@ -1,3 +1,8 @@
+namespace WM.WeidmullerDEV;
+
+using Microsoft.Sales.Customer;
+using Microsoft.Sales.Receivables;
+
 pageextension 50037 CustomerLedgerEntries extends "Customer Ledger Entries"
 {
     layout
@@ -8,6 +13,7 @@ pageextension 50037 CustomerLedgerEntries extends "Customer Ledger Entries"
             field(CustName; CustName)
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the CustName field.';
             }
         }
     }
