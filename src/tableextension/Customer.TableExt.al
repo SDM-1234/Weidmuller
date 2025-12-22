@@ -3,7 +3,8 @@ namespace WM.WeidmullerDEV;
 using Microsoft.Finance.GeneralLedger.Account;
 using Microsoft.Sales.Customer;
 using System.EMail;
-    
+using WeidmullerDEV.WeidmullerDEV;
+
 tableextension 50023 Customer extends Customer
 {
     fields
@@ -96,12 +97,10 @@ tableextension 50023 Customer extends Customer
             DataClassification = CustomerContent;
             TableRelation = "Key Account"."Code";
         }
-        field(50008; "Key Account Relation"; Option)
+        field(50008; "Key Account Relation"; enum KeyAccountRelation)
         {
             Caption = 'Key Account Relation';
             DataClassification = CustomerContent;
-            OptionCaption = ',Direct,Indirect';
-            OptionMembers = "",Direct,Indirect;
         }
         field(50009; "Distribution Code1"; Code[20])
         {
