@@ -37,7 +37,7 @@ report 50032 "Export Sales Inv. Line"
                 TxtBuilder.Append(Format(TabSeparator));
                 TxtBuilder.Append(TypeHelper.FormatDecimal(Round(Quantity, 1, '='), '', ''));
                 TxtBuilder.Append(Format(TabSeparator));
-                TxtBuilder.Append(TypeHelper.FormatDecimal(Round(Amount, 1, '='), '', 'de-DE'));
+                TxtBuilder.Append(TypeHelper.FormatDecimal(Round(Amount, 1, '='), '', ''));
                 TxtBuilder.Append(Format(TabSeparator));
                 TxtBuilder.Append(SalesHeader."Currency Code");
                 TxtBuilder.Append(Format(TabSeparator));
