@@ -113,6 +113,13 @@ tableextension 50030 SalesLine extends "Sales Line"
         {
             DataClassification = ToBeClassified;
         }
+        field(60000; "Shipment Date Updated"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Editable = false;
+            Caption = 'Shipment Date Updated';
+            ToolTip = 'Indicates whether the shipment date has been updated.';
+        }
     }
     keys
     {

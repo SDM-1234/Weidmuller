@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Foundation.Company;
-    
+
 pageextension 50001 CompanyInformationWM extends "Company Information"
 {
     layout
@@ -17,6 +17,12 @@ pageextension 50001 CompanyInformationWM extends "Company Information"
             {
                 Caption = 'Terms Picture';
                 ToolTip = 'Specifies the value of the Terms Picture field.';
+                ApplicationArea = All;
+            }
+            field("Report Draft Picture"; Rec."Report Draft Picture")
+            {
+                Caption = 'Draft Picture';
+                ToolTip = 'Specifies the picture to be printed on draft reports.';
                 ApplicationArea = All;
             }
         }

@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Foundation.Company;
-    
+
 tableextension 50053 CompanyInformationWM extends "Company Information"
 {
     fields
@@ -32,6 +32,13 @@ tableextension 50053 CompanyInformationWM extends "Company Information"
             DataClassification = ToBeClassified;
             Description = 'SE-E969';
             SubType = Bitmap;
+        }
+        field(50007; "Report Draft Picture"; Blob)
+        {
+            DataClassification = ToBeClassified;
+            ToolTip = 'Specifies the picture to be printed on draft reports.';
+            Caption = 'Draft Picture';
+            Subtype = Bitmap;
         }
     }
 }

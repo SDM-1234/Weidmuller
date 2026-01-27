@@ -13,6 +13,14 @@ pageextension 50057 SalesOrderSubform extends "Sales Order Subform"
             ToolTip = 'Specifies the article number of the item.';
             ApplicationArea = All;
         }
+        modify("Shipment Date")
+        {
+            Editable = not Rec."Shipment Date Updated";
+        }
+        modify("Requested Delivery Date")
+        {
+            Editable = not Rec."Shipment Date Updated";
+        }
         addafter("No.")
         {
             field(Inventory; InventoryStock)
