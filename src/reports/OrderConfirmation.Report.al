@@ -10,7 +10,7 @@ using Microsoft.Sales.Customer;
 using Microsoft.Sales.Document;
 using System.Globalization;
 using System.Utilities;
-    
+
 report 50001 "Order-Confirmation"
 {
     DefaultLayout = RDLC;
@@ -289,6 +289,10 @@ report 50001 "Order-Confirmation"
             column(ShiptoAddress_GSTRNo; ShiptoAddress."GST Registration No.")
             {
             }
+            column(DraftPicture; CompanyInfo."Report Draft Picture")
+            {
+
+            }
             dataitem("Sales Line"; "Sales Line")
             {
                 DataItemLink = "Document Type" = FIELD("Document Type"),
@@ -519,6 +523,8 @@ report 50001 "Order-Confirmation"
             }
 
             trigger OnAfterGetRecord()
+            var
+                SalesLine: Record "Sales Line";
             begin
 
                 IF "Document Type" = "Document Type"::Order THEN
@@ -558,9 +564,6 @@ report 50001 "Order-Confirmation"
                     TransPortCode := TransportMethod.Description;
                 END;
 
-                // IF "Sales Header"."Form Code" = 'C' THEN
-                //     Taxform := 'C Form';
-
                 IF "Sales Header"."Currency Code" IN ['', 'INR'] THEN BEGIN
                     CurrencyCode := 'INR';
                     CurrencyCaption := 'INR';
@@ -575,7 +578,6 @@ report 50001 "Order-Confirmation"
                 END;
 
                 ShiptoAddress.RESET();
-                //ZE_LIJO 26.6.2019
                 ShiptoAddress.SETFILTER(ShiptoAddress."Customer No.", "Sales Header"."Sell-to Customer No.");
                 //
                 ShiptoAddress.SETFILTER(ShiptoAddress.Code, "Ship-to Code");
@@ -586,11 +588,12 @@ report 50001 "Order-Confirmation"
                 IF PaymentTerms.FINDFIRST() THEN
                     PaymentTermsDesc := PaymentTerms.Description;
 
-                // ItemCrossReference.RESET;
-                // ItemCrossReference.SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Cross-Reference Type", "Cross-Reference Type No.", "Cross-Reference No.");
-                // ItemCrossReference.SETRANGE("Cross-Reference Type", ItemCrossReference."Cross-Reference Type"::Customer);
-                // ItemCrossReference.SETRANGE("Cross-Reference Type No.", "Sales Header"."Sell-to Customer No.");
-                // IF ItemCrossReference.FINDFIRST THEN;
+                SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
+                SalesLine.SetRange("Document No.", "Sales Header"."No.");
+                SalesLine.SetRange(Type, SalesLine.Type::Item);
+                SalesLine.SetRange("Shipment Date Updated", false);
+                if not SalesLine.IsEmpty then
+                    CompanyInfo.CalcFields("Report Draft Picture");
             end;
         }
     }
@@ -771,6 +774,5 @@ report 50001 "Order-Confirmation"
         GrossWeightCaptionLbl: Label 'Gross Weight';
         UoMCaptionLbl: Label 'UOM';
         ContinuedLbl: Label 'Continued..........';
-    //ItemCrossReference: Record "5717";
 }
 

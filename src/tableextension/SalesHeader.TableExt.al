@@ -5,7 +5,7 @@ using Microsoft.Finance.Reports;
 using Microsoft.Finance.TaxEngine.TaxTypeHandler;
 using Microsoft.Foundation.Attachment;
 using Microsoft.Sales.Document;
-    
+
 tableextension 50029 SalesHeader extends "Sales Header"
 {
     fields
@@ -18,6 +18,33 @@ tableextension 50029 SalesHeader extends "Sales Header"
                 SalesPriceManagement: Codeunit "Sales Price Management";
             begin
                 SalesPriceManagement.ConfirmTransactionType(Rec, xRec);
+            end;
+        }
+        modify("Shipment Date")
+        {
+            trigger OnAfterValidate()
+            var
+                SalesLine: Record "Sales Line";
+            begin
+                SalesLine.SetRange("Document Type", "Document Type");
+                SalesLine.SetRange("Document No.", "No.");
+                SalesLine.setrange("Shipment Date Updated", true);
+                if not salesline.IsEmpty then
+                    Error('Shipment Date cannot be changed as it is already updated once.');
+            end;
+        }
+
+        modify("Requested Delivery Date")
+        {
+            trigger OnAfterValidate()
+            var
+                SalesLine: Record "Sales Line";
+            begin
+                SalesLine.SetRange("Document Type", "Document Type");
+                SalesLine.SetRange("Document No.", "No.");
+                SalesLine.setrange("Shipment Date Updated", true);
+                if not salesline.IsEmpty then
+                    Error('Requested Delivery Date cannot be changed as Shipment Date is already updated once.');
             end;
         }
 

@@ -7,7 +7,7 @@ using Microsoft.Sales.Document;
 using Microsoft.Warehouse.Document;
 using System.Automation;
 using System.Reflection;
-    
+
 Codeunit 50080 WMWorkflowResponses
 {
     procedure FieldMandatory(): code[128]
@@ -20,6 +20,11 @@ Codeunit 50080 WMWorkflowResponses
         EXIT('CHECKMANDATORYATTACHMENTS');
     end;
 
+    procedure ShipmentDateSLMandatory(): code[128]
+    begin
+        EXIT('CHECKSHIPMENTDATESL');
+    end;
+
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Response Handling", 'OnAddWorkflowResponsesToLibrary', '', true, true)]
     local procedure AddMyWorkflowResponsesToLibrary()
     var
@@ -27,6 +32,7 @@ Codeunit 50080 WMWorkflowResponses
     begin
         WorkflowResponseHandling.AddResponseToLibrary(FieldMandatory(), 0, 'Check Mandatory Fields.', 'GROUP 50000');
         WorkflowResponseHandling.AddResponseToLibrary(AttachmentMandatory(), 0, 'Check Mandatory Attachments.', 'GROUP 50000');
+        WorkflowResponseHandling.AddResponseToLibrary(ShipmentDateSLMandatory(), 0, 'Check Shipment Date in Sales Line.', 'GROUP 50000');
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Response Handling", 'OnExecuteWorkflowResponse', '', true, true)]
@@ -46,6 +52,11 @@ Codeunit 50080 WMWorkflowResponses
                         MandatoryAttachmentWorkflowResponse(Variant);
                         ResponseExecuted := TRUE;
                     END;
+                ShipmentDateSLMandatory():
+                    BEGIN
+                        CheckShipmentDateSLMandatory(Variant);
+                        ResponseExecuted := TRUE;
+                    End;
             END;
     end;
 
@@ -129,6 +140,24 @@ Codeunit 50080 WMWorkflowResponses
                     if DocAttachment.IsEmpty then
                         Error('No attachment found for %1 %2', recRef.Caption, FieldRef.Value);
                 end;
+        end;
+    end;
+
+    local procedure CheckShipmentDateSLMandatory(Variant: Variant)
+    var
+        SalesLine: Record "Sales Line";
+        RecRef: RecordRef;
+        FieldRef: FieldRef;
+    begin
+        recRef.GetTable(Variant);
+        if recRef.Number = DATABASE::"Sales Header" then begin
+            FieldRef := recRef.Field(3);
+            SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
+            SalesLine.SetRange("Document No.", FieldRef.Value);
+            SalesLine.SetRange(Type, SalesLine.Type::Item);
+            SalesLine.SetRange("Shipment Date Updated", false);
+            if not SalesLine.IsEmpty then
+                Error('Shipment Date is not updated in Sales Line for Sales Order %1', FieldRef.Value);
         end;
     end;
 }
