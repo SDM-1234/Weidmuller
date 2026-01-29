@@ -320,6 +320,23 @@ codeunit 50100 SalesSubscriber
         //IsHandled := true;
     end;
 
+
+    // In case of 
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Release Sales Document", OnBeforePerformManualRelease, '', false, false)]
+    local procedure ReleaseSalesDocument_OnBeforePerformManualRelease(var SalesHeader: Record "Sales Header")
+    var
+        SalesLine: Record "Sales Line";
+        eInvoiceExportIssue: Label 'E-Invoice export issue: More than 100 lines found for Sales Document %1. this can be casue when generate E-Invnoice.';
+    begin
+
+        SalesLine.SetRange("Document No.", SalesHeader."No.");
+        SalesLine.SetRange("Document Type", SalesHeader."Document Type");
+        if SalesLine.FindSet() then
+            if SalesLine.Count() > 100 then
+                Error(eInvoiceExportIssue, SalesLine."Document No.")
+    end;
+
     [EventSubscriber(ObjectType::Table, Database::"Report Selections", OnBeforePrintDocument, '', false, false)]
     local procedure "Report Selections_OnBeforePrintDocument"(TempReportSelections: Record "Report Selections" temporary; IsGUI: Boolean; var RecVarToPrint: Variant; var IsHandled: Boolean)
     begin
