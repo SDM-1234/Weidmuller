@@ -323,7 +323,7 @@ codeunit 50100 SalesSubscriber
 
     // In case of 
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Release Sales Document", OnBeforePerformManualRelease, '', false, false)]
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnBeforePerformManualRelease, '', false, false)]
     local procedure ReleaseSalesDocument_OnBeforePerformManualRelease(var SalesHeader: Record "Sales Header")
     var
         SalesLine: Record "Sales Line";
@@ -334,7 +334,7 @@ codeunit 50100 SalesSubscriber
         SalesLine.SetRange("Document Type", SalesHeader."Document Type");
         if SalesLine.FindSet() then
             if SalesLine.Count() > 100 then
-                Error(eInvoiceExportIssue, SalesLine."Document No.")
+                Message(eInvoiceExportIssue, SalesLine."Document No.")
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Report Selections", OnBeforePrintDocument, '', false, false)]

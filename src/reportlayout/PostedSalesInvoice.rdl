@@ -7406,6 +7406,70 @@ Cstr(Fields!LUTNo_CompanyInfo.Value)+Chr(177) +
                         <VerticalAlign>Top</VerticalAlign>
                       </Style>
                     </Textbox>
+                    <Textbox Name="Textbox42">
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value EvaluationMode="Constant">LUT / ARN No.</Value>
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox21</rd:DefaultName>
+                      <Top>3.11617cm</Top>
+                      <Left>1.89863in</Left>
+                      <Height>12.99984pt</Height>
+                      <Width>1.91164cm</Width>
+                      <ZIndex>16</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                    <Textbox Name="Textbox73">
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!LUTARNNo.Value, "DataSet_Result")</Value>
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox21</rd:DefaultName>
+                      <Top>3.18672cm</Top>
+                      <Left>2.67763in</Left>
+                      <Height>10.99997pt</Height>
+                      <Width>2.67462cm</Width>
+                      <ZIndex>17</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
                   </ReportItems>
                   <KeepTogether>true</KeepTogether>
                   <Top>1.88118cm</Top>
@@ -8063,6 +8127,9 @@ RQAUUUUAN20bcCnUUAR+Wd38NHl/SpKKBWKd7oltqS4uLa2uF9JIw3H4isO++C3hHU/+Pnwt4cuc9fN0
         </Field>
         <Field Name="PricesInclVAT_SalesInvHdrCaption">
           <DataField>PricesInclVAT_SalesInvHdrCaption</DataField>
+        </Field>
+        <Field Name="LUTARNNo">
+          <DataField>LUTARNNo</DataField>
         </Field>
         <Field Name="BillToCustomerNo_SalesInvHdr">
           <DataField>BillToCustomerNo_SalesInvHdr</DataField>
