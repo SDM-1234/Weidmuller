@@ -97,18 +97,18 @@ tableextension 50030 SalesLine extends "Sales Line"
         }
         field(50080; MOQ; Decimal)
         {
-            CalcFormula = Lookup(Item."Minimum Order Quantity" WHERE("No." = FIELD("No.")));
+            CalcFormula = lookup(Item."Minimum Order Quantity" where("No." = field("No.")));
             Description = 'ZE_LIJO';
             FieldClass = FlowField;
             editable = false;
         }
-        field(50081; Status; Option)
+
+        field(50081; Status; enum "Sales Document Status")
         {
             DataClassification = ToBeClassified;
             Editable = false;
-            OptionCaption = 'Open,Released,Pending Approval,Pending Prepayment';
-            OptionMembers = Open,Released,"Pending Approval","Pending Prepayment";
         }
+
         field(50082; "Payment Terms Code"; Code[10])
         {
             DataClassification = ToBeClassified;
