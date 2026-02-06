@@ -323,18 +323,36 @@ codeunit 50100 SalesSubscriber
 
     // In case of 
 
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnAfterValidateEvent, 'Status', false, false)]
+    local procedure SH_StatusOnAfterValidateEvent(var Rec: Record "Sales Header"; var xRec: Record "Sales Header")
+    var
+        SalesLine: Record "Sales Line";
+    begin
+
+        if Rec.Status <> XRec.Status then begin
+            SalesLine.SetRange("Document No.", Rec."No.");
+            SalesLine.SetRange("Document Type", Rec."Document Type");
+            if SalesLine.FindSet() then
+                repeat
+                    SalesLine.Status := Rec.Status;
+                    SalesLine.Modify();
+                until SalesLine.Next() = 0;
+        end;
+    end;
+
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnBeforePerformManualRelease, '', false, false)]
     local procedure ReleaseSalesDocument_OnBeforePerformManualRelease(var SalesHeader: Record "Sales Header")
     var
         SalesLine: Record "Sales Line";
-        eInvoiceExportIssue: Label 'E-Invoice export issue: More than 100 lines found for Sales Document %1. this can be casue when generate E-Invnoice.';
+        eInvoiceExportIssueMsg: Label 'More than 100 lines found for  %1. this can be casue when generate E-Invnoice.', Comment = '%1=Sales Document No.';
     begin
 
         SalesLine.SetRange("Document No.", SalesHeader."No.");
         SalesLine.SetRange("Document Type", SalesHeader."Document Type");
         if SalesLine.FindSet() then
             if SalesLine.Count() > 100 then
-                Message(eInvoiceExportIssue, SalesLine."Document No.")
+                Message(eInvoiceExportIssueMsg, SalesLine."Document No.")
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Report Selections", OnBeforePrintDocument, '', false, false)]
