@@ -49,6 +49,7 @@ report 50005 "Posted Sales Invoice"
             column(PricesInclVAT_SalesInvHdrCaption; "Sales Invoice Header".FIELDCAPTION("Prices Including VAT"))
             {
             }
+            column(LUTARNNo; LUTARNNo) { }
             column(BillToCustomerNo_SalesInvHdr; "Sales Invoice Header"."Bill-to Customer No.")
             {
             }
@@ -821,7 +822,13 @@ report 50005 "Posted Sales Invoice"
             var
                 States: Record State;
                 NumToWords: Codeunit AmountToWords;
+                LUTARN: Record "LUT / ARN Master";
+
             begin
+
+
+                LUTARNNo := LUTARN.GetARNNo("Sales Invoice Header"."Posting Date", "Sales Invoice Header"."Location Code");
+
                 //CurrReport.LANGUAGE := LanguageVar.get("Language Code");
                 IsGSTApplicable := CheckGSTDoc("Sales Invoice Line");
                 Customer.GET("Bill-to Customer No.");
@@ -1196,6 +1203,8 @@ report 50005 "Posted Sales Invoice"
         GSTRegistrationCaptionLbl: Label 'GST#';
         PANCaptionLbl: Label 'PAN#';
         LUTCaptionlbl: Label 'LUT#';
+        LUTARNNo: Code[50];
+
         GSTINCaptionLbl: Label 'GSTIN';
         CustomerIDCaptionLbl: Label 'Customer ID';
         CustomerPOCaptionLbl: Label 'Customer PO';

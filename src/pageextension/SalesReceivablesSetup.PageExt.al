@@ -16,6 +16,16 @@ pageextension 50050 SalesReceivablesSetup extends "Sales & Receivables Setup"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Sales Quote Expiring - Emails field.';
                 }
+                field("Starting Line No."; Rec."Starting Line No.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Starting Line No. field.', Comment = '%';
+                }
+                field("Ending Line No."; Rec."Ending Line No.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Ending Line No. field.', Comment = '%';
+                }
                 field("Request Delivery Date Formula"; Rec."Request Delivery Date Formula")
                 {
                     ApplicationArea = All;

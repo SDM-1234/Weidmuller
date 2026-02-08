@@ -56,6 +56,8 @@ permissionset 50100 GeneratedPermission
         page "Opportunity Chart WM" = X,
         tabledata "WF Mandatory Fields" = RIMD,
         table "WF Mandatory Fields" = X,
+        tabledata "LUT / ARN Master" = RIMD,
+        table "LUT / ARN Master" = X,
         report "Aged Accounts Payable-WM" = X,
         report "Aged Accounts Receivable WM" = X,
         report "Export Invoice -Weidmueller" = X,
