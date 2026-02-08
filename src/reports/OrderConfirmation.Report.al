@@ -760,7 +760,7 @@ report 50001 "Order-Confirmation"
         Text005: Label 'Any change after preparation of documents cannot be accepted!';
         Text006: Label 'Taxes extra as applicable';
         RequestDateCaptionLbl: Label 'Requested Date';
-        DeliveryDateCaptionLbl: Label 'Delivery Date';
+        DeliveryDateCaptionLbl: Label 'Expected Delivery Date';
         Var_Count: Integer;
         CurrencyCaptionLbl1: Label 'Currency';
         GSTAmountCaptionLbl: Label 'GST Amount';
