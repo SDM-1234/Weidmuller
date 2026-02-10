@@ -370,7 +370,7 @@ report 50001 "Order-Confirmation"
                 column(Req_Date_SalesLine; "Sales Line"."Requested Delivery Date")
                 {
                 }
-                column(Promised_Date_SalesLine; "Sales Line"."Confirm Shipping Date")
+                column(Promised_Date_SalesLine; "Sales Line"."Shipment Date")
                 {
                 }
                 column(AllowInvoiceDisYesNo; FORMAT("Sales Line"."Allow Invoice Disc."))

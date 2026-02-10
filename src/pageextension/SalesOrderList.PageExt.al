@@ -64,7 +64,7 @@ pageextension 50109 SalesOrderList extends "Sales Order List"
                         for RowNo := 2 to MaxRowNo do begin
                             Evaluate(LineNo, GetValueAtCell(RowNo, 2));
                             if SalesLine.get(1, GetValueAtCell(RowNo, 1), LineNo) then begin
-                                Evaluate(SalesLine."Confirm Shipping Date", GetValueAtCell(RowNo, 4));
+                                Evaluate(SalesLine."Shipment Date", GetValueAtCell(RowNo, 4));
                                 SalesLine.Validate("Shipment Date Updated", true);
                                 SalesLine.Modify();
                             End;
