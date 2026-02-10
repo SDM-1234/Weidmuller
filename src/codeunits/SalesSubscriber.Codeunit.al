@@ -21,7 +21,7 @@ using Microsoft.Utilities;
 using Microsoft.Warehouse.Document;
 using Microsoft.Warehouse.History;
 using System.Automation;
-    
+
 codeunit 50100 SalesSubscriber
 {
 
@@ -319,25 +319,6 @@ codeunit 50100 SalesSubscriber
         //SE-E859.e
         //IsHandled := true;
     end;
-
-
-    [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnAfterValidateEvent, 'Status', false, false)]
-    local procedure SH_StatusOnAfterValidateEvent(var Rec: Record "Sales Header"; var xRec: Record "Sales Header")
-    var
-        SalesLine: Record "Sales Line";
-    begin
-
-        if Rec.Status <> XRec.Status then begin
-            SalesLine.SetRange("Document No.", Rec."No.");
-            SalesLine.SetRange("Document Type", Rec."Document Type");
-            if SalesLine.FindSet() then
-                repeat
-                    SalesLine.Status := Rec.Status;
-                    SalesLine.Modify();
-                until SalesLine.Next() = 0;
-        end;
-    end;
-
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnAfterValidateEvent, 'Status', false, false)]
     local procedure SH_StatusOnAfterValidateEvent(var Rec: Record "Sales Header"; var xRec: Record "Sales Header")
