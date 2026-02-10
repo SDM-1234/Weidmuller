@@ -321,7 +321,22 @@ codeunit 50100 SalesSubscriber
     end;
 
 
-    // In case of 
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnAfterValidateEvent, 'Status', false, false)]
+    local procedure SH_StatusOnAfterValidateEvent(var Rec: Record "Sales Header"; var xRec: Record "Sales Header")
+    var
+        SalesLine: Record "Sales Line";
+    begin
+
+        if Rec.Status <> XRec.Status then begin
+            SalesLine.SetRange("Document No.", Rec."No.");
+            SalesLine.SetRange("Document Type", Rec."Document Type");
+            if SalesLine.FindSet() then
+                repeat
+                    SalesLine.Status := Rec.Status;
+                    SalesLine.Modify();
+                until SalesLine.Next() = 0;
+        end;
+    end;
 
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnAfterValidateEvent, 'Status', false, false)]
@@ -354,6 +369,9 @@ codeunit 50100 SalesSubscriber
             if SalesLine.Count() > 100 then
                 Message(eInvoiceExportIssueMsg, SalesLine."Document No.")
     end;
+
+
+
 
     [EventSubscriber(ObjectType::Table, Database::"Report Selections", OnBeforePrintDocument, '', false, false)]
     local procedure "Report Selections_OnBeforePrintDocument"(TempReportSelections: Record "Report Selections" temporary; IsGUI: Boolean; var RecVarToPrint: Variant; var IsHandled: Boolean)
