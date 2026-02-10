@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Sales.Setup;
-    
+
 tableextension 50020 SalesReceivablesSetup extends "Sales & Receivables Setup"
 {
     fields
@@ -25,6 +25,12 @@ tableextension 50020 SalesReceivablesSetup extends "Sales & Receivables Setup"
             DataClassification = CustomerContent;
             Caption = 'Ending Line No.';
             ToolTip = 'Specifies the Ending Line No. to be export posted sales invoice in case of more than 100 lines.';
+        }
+        field(50003; "Request Delivery Date Formula"; DateFormula)
+        {
+            Caption = 'Sales Order Auto Reserve - Request Delivery Date Formula';
+            ToolTip = 'Specifies the formula to calculate the Request Delivery Date for sales order lines during the auto-reserve process.';
+            DataClassification = ToBeClassified;
         }
     }
 
