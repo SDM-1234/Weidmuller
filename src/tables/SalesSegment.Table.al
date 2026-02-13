@@ -1,7 +1,7 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.CRM.Setup;
-    
+
 table 50005 "Sales Segment"
 {
     DrillDownPageID = "Sales Segments";
@@ -15,7 +15,7 @@ table 50005 "Sales Segment"
         }
         field(2; "Industry Group Code"; Code[20])
         {
-            TableRelation = "Industry Group";
+            TableRelation = "Industry Segment"."Industry Group Code" where("Customer No." = field("Customer No."));
         }
         field(3; "Sales Invoice No."; Code[20])
         {

@@ -1,7 +1,8 @@
 namespace WM.WeidmullerDEV;
 
 using Microsoft.Sales.Document;
-    
+using Microsoft.Sales.History;
+
 pageextension 50054 SalesInvoice extends "Sales Invoice"
 {
     layout
@@ -55,35 +56,46 @@ pageextension 50054 SalesInvoice extends "Sales Invoice"
                 trigger OnAction()
                 var
                     SalesSegment: Record "Sales Segment";
-                    IndustrySegment: Record "Industry Segment";
-                    ExistingSalesSegment: Record "Sales Segment";
+                    SalesLine: Record "Sales Line";
+                    SalesShipmentLine: Record "Sales Shipment Line";
+                    NewSalesSegment: Record "Sales Segment";
                 begin
-                    IndustrySegment.RESET();
-                    IndustrySegment.SETRANGE("Customer No.", Rec."Sell-to Customer No.");
-                    IF IndustrySegment.IsEmpty THEN
-                        ERROR('Industry Segments are not defined for customer ' + Rec."Sell-to Customer No.");
-
                     Rec.TESTFIELD(Status, Rec.Status::Released);
                     SalesSegment.RESET();
-                    SalesSegment.SETRANGE("Sales Order No.", Rec."No.");
-                    IF SalesSegment.FINDSET() THEN BEGIN
-                        IF CONFIRM('Industrial Segments are already assigned, do you want to reassign?') THEN BEGIN
+                    SalesSegment.SETRANGE("Customer No.", Rec."Sell-to Customer No.");
+                    SalesSegment.SETRANGE("Sales Invoice No.", Rec."No.");
+                    IF SalesSegment.FINDSET() THEN
+                        IF CONFIRM('Industry segments already exist; do you want to recalculate?') THEN BEGIN
                             SalesSegment.DELETEALL();
                             Rec.InsertSalesSegments();
-                            MESSAGE('Industry segments are calculated');
-                        END ELSE BEGIN
-                            ExistingSalesSegment.RESET();
-                            ExistingSalesSegment.SETRANGE("Sales Order No.", Rec."No.");
-                            ExistingSalesSegment.SETRANGE("Customer No.", Rec."Sell-to Customer No.");
-                            IF ExistingSalesSegment.FINDSET() THEN
-                                REPEAT
-                                    ExistingSalesSegment.Amount := (Rec.Amount + Rec.GetGSTAmounts()) * (ExistingSalesSegment."Sales %" / 100);
-                                    ExistingSalesSegment.MODIFY();
-                                UNTIL ExistingSalesSegment.NEXT() = 0;
-                        END;
-                    END ELSE BEGIN
-                        Rec.InsertSalesSegments();
-                        MESSAGE('Industry segments are calculated');
+                        END ELSE
+                            REPEAT
+                                SalesSegment.Amount := (Rec.Amount + Rec.GetGSTAmounts()) * (SalesSegment."Sales %" / 100);
+                                SalesSegment.MODIFY()
+                            UNTIL SalesSegment.NEXT() = 0;
+
+                    IF NOT SalesSegment.FINDSET() THEN BEGIN
+                        SalesLine.RESET();
+                        SalesLine.SETRANGE("Document Type", SalesLine."Document Type"::Invoice);
+                        SalesLine.SETRANGE("Document No.", Rec."No.");
+                        SalesLine.SETFILTER("Shipment No.", '<>%1', '');
+                        IF SalesLine.FINDFIRST() THEN BEGIN
+                            SalesShipmentLine.RESET();
+                            IF SalesShipmentLine.GET(SalesLine."Shipment No.", SalesLine."Shipment Line No.") THEN BEGIN
+                                SalesSegment.RESET();
+                                SalesSegment.SETRANGE("Sales Order No.", SalesShipmentLine."Order No.");
+                                SalesSegment.SETFILTER("Sales Invoice No.", '%1', '');
+                                IF SalesSegment.FINDSET() THEN
+                                    REPEAT
+                                        NewSalesSegment.INIT();
+                                        NewSalesSegment.TRANSFERFIELDS(SalesSegment);
+                                        NewSalesSegment."Sales Invoice No." := SalesLine."Document No.";
+                                        NewSalesSegment.Amount := (Rec.Amount + Rec.GetGSTAmounts()) * (SalesSegment."Sales %" / 100);
+                                        NewSalesSegment.INSERT();
+                                    UNTIL SalesSegment.NEXT() = 0;
+                            END;
+                        END ELSE
+                            Rec.InsertSalesSegments();
                     END;
                 end;
             }

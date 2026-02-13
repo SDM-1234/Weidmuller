@@ -153,7 +153,10 @@ tableextension 50029 SalesHeader extends "Sales Header"
                 SalesSegment.INIT();
                 SalesSegment."Customer No." := IndustrySegment."Customer No.";
                 SalesSegment."Industry Group Code" := IndustrySegment."Industry Group Code";
-                SalesSegment."Sales Order No." := "No.";
+                IF Rec."Document Type" = Rec."Document Type"::Invoice THEN
+                    SalesSegment."Sales Invoice No." := "No.";
+                if Rec."Document Type" = Rec."Document Type"::Order THEN
+                    SalesSegment."Sales Order No." := "No.";
                 SalesSegment."Sales %" := IndustrySegment."Sales %";
                 SalesSegment.Amount := (Amount + GetGSTAmounts()) * (IndustrySegment."Sales %" / 100);
                 SalesSegment.INSERT();
