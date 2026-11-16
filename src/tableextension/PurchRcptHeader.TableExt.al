@@ -6,6 +6,10 @@ tableextension 50006 PurchRcptHeader extends "Purch. Rcpt. Header"
 {
     fields
     {
+        modify("Vendor Shipment No.")
+        {
+            Caption = 'Vendor Invoice No.';
+        }
         field(50000; "WE Your Reference"; Code[100])
         {
             Caption = 'Your Reference';
@@ -33,8 +37,16 @@ tableextension 50006 PurchRcptHeader extends "Purch. Rcpt. Header"
         {
             Caption = 'Net Weight';
             DataClassification = ToBeClassified;
-            Tooltip = 'Net Weight';
         }
+        // field(50005; "Bill of Entry No."; Code[35])
+        // {
+        //     Caption = 'Bill of Entry No.';
+        //     DataClassification = CustomerContent;
+        // }
+        // field(50006; "Bill of Entry Date"; Date)
+        // {
+        //     Caption = 'Bill of Entry Date';
+        //     DataClassification = CustomerContent;
+        // }
     }
 }
-

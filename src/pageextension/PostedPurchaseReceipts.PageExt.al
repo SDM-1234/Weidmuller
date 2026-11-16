@@ -34,4 +34,3 @@ pageextension 50014 PostedPurchaseReceipts extends "Posted Purchase Receipts"
     var
         PurchRcptHdr: Record "Purch. Rcpt. Header";
 }
-

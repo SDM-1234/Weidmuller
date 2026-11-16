@@ -106,12 +106,12 @@ codeunit 50003 "Customer Credit Check"
                 CustLedger.SETFILTER(CustLedger."Remaining Amount", '>%1', 0);
                 IF CustLedger.FINDSET() THEN
                     REPEAT
-                        IF ((TODAY - CustLedger."Due Date") >= 31) THEN
-                            EXIT(FALSE);
-                    UNTIL CustLedger.NEXT() = 0;
-            END;
-        END;
-        EXIT(TRUE);
+                        IF (((TODAY - CustLedger."Due Date") >= 11)) THEN
+                            exit(false);
+                    until CustLedger.NEXT() = 0;
+            end;
+        end;
+        exit(true);
 
     end;
 
