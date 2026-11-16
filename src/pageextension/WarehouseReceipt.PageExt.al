@@ -30,6 +30,19 @@ pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
                 end;
             }
         }
+        addafter("Vendor Shipment No.")
+        {
+            field("Bill of Entry No."; Rec."Bill of Entry No.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the Bill of Entry number associated with the vendor invoice.';
+            }
+            field("Bill of Entry Date"; Rec."Bill of Entry Date")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the Bill of Entry date associated with the vendor invoice.';
+            }
+        }
         addafter(Control1900383207)
         {
             part("BinContent FactBox"; 50000)
@@ -274,4 +287,3 @@ pageextension 50084 WarehouseReceipt extends "Warehouse Receipt"
             Error('You cannot delete an approved warehouse receipt.');
     end;
 }
-

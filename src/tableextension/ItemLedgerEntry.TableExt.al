@@ -12,6 +12,16 @@ tableextension 50027 ItemLedgerEntry extends "Item Ledger Entry"
             ToolTip = 'Specifies the quality inspection number for the transfer order.';
             DataClassification = ToBeClassified;
         }
+        field(50001; "Bill of Entry No."; Code[35])
+        {
+            Caption = 'Bill of Entry No.';
+            DataClassification = CustomerContent;
+        }
+        field(50002; "Bill of Entry Date"; Date)
+        {
+            Caption = 'Bill of Entry Date';
+            DataClassification = CustomerContent;
+        }
     }
     keys
     {
@@ -20,4 +30,3 @@ tableextension 50027 ItemLedgerEntry extends "Item Ledger Entry"
         }
     }
 }
-

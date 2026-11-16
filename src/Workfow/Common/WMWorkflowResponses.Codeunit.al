@@ -160,4 +160,16 @@ Codeunit 50080 WMWorkflowResponses
                 Error('Shipment Date is not updated in Sales Line for Sales Order %1', FieldRef.Value);
         end;
     end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Post Receipt (Yes/No)", OnBeforeConfirmWhseReceiptPost, '', false, false)]
+    local procedure OnBeforeConfirmWhseReceiptPost(var WhseReceiptLine: Record "Warehouse Receipt Line")
+    var
+
+        WhseRcptHeader: Record "Warehouse Receipt Header";
+
+    begin
+        if WhseRcptHeader.Get(WhseReceiptLine."No.") then
+            MandatoryAttachmentWorkflowResponse(WhseReceiptLine);
+    end;
 }

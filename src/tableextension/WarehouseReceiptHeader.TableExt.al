@@ -23,6 +23,16 @@ tableextension 50045 WarehouseReceiptHeader extends "Warehouse Receipt Header"
                     CheckIsValidEAN("EAN No.");
             end;
         }
+        field(50001; "Bill of Entry No."; Code[35])
+        {
+            Caption = 'Bill of Entry No.';
+            DataClassification = CustomerContent;
+        }
+        field(50002; "Bill of Entry Date"; Date)
+        {
+            Caption = 'Bill of Entry Date';
+            DataClassification = CustomerContent;
+        }
     }
 
     local procedure CheckIsValidEAN(L_EAN_No: Code[13])
@@ -56,4 +66,3 @@ tableextension 50045 WarehouseReceiptHeader extends "Warehouse Receipt Header"
         Text030_Tok: Label 'Your EAN number is not valid. Its is less than 13.';
         Text031_Tok: Label 'Your EAN number is Already Existing.';
 }
-

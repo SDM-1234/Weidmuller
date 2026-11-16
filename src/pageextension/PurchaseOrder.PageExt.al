@@ -23,4 +23,3 @@ pageextension 50061 PurchaseOrder extends "Purchase Order"
         }
     }
 }
-

@@ -61,4 +61,3 @@ tableextension 50031 PurchaseHeader extends "Purchase Header"
             ERROR('Link attachment is mandatory to send approval request');
     end;
 }
-

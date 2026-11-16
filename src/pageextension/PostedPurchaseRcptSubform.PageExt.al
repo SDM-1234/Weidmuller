@@ -13,12 +13,19 @@ pageextension 50009 PostedPurchaseRcptSubform extends "Posted Purchase Rcpt. Sub
         {
             field("Vendor Ship No."; Rec."Vendor Ship No.")
             {
-                ToolTip = 'Specifies the value of the Vendor Ship No. field.';
-                Caption = 'Vendor Ship No.';
+                ToolTip = 'Specifies the vendor invoice number for the posted receipt.';
                 ApplicationArea = All;
-
+            }
+            field("Bill of Entry No."; Rec."Bill of Entry No.")
+            {
+                ToolTip = 'Specifies the Bill of Entry number for the posted receipt.';
+                ApplicationArea = All;
+            }
+            field("Bill of Entry Date"; Rec."Bill of Entry Date")
+            {
+                ToolTip = 'Specifies the Bill of Entry date for the posted receipt.';
+                ApplicationArea = All;
             }
         }
     }
 }
-

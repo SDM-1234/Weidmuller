@@ -6,6 +6,19 @@ pageextension 50008 PostedPurchaseReceipt extends "Posted Purchase Receipt"
 {
     layout
     {
+        addafter("Vendor Shipment No.")
+        {
+            field("Bill of Entry No."; Rec."Bill of Entry No.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the Bill of Entry number for the posted receipt.';
+            }
+            field("Bill of Entry Date"; Rec."Bill of Entry Date")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the Bill of Entry date for the posted receipt.';
+            }
+        }
     }
     actions
     {
@@ -36,4 +49,3 @@ pageextension 50008 PostedPurchaseReceipt extends "Posted Purchase Receipt"
         }
     }
 }
-

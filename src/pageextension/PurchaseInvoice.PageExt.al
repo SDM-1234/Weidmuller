@@ -40,4 +40,3 @@ pageextension 50069 PurchaseInvoice extends "Purchase Invoice"
         //end;
     }
 }
-
