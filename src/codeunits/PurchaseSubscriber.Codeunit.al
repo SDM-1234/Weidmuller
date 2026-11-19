@@ -67,6 +67,7 @@ codeunit 50005 "Purchase Subscriber"
 
         if not FoundReceipt then
             exit;
+        PurchaseHeader.Validate("Vendor Invoice No.", FirstReceiptHeader."Vendor Shipment No.");
 
         PurchaseHeader.Validate("Vendor Shipment No.", FirstReceiptHeader."Vendor Shipment No.");
         PurchaseHeader.Validate("Bill of Entry No.", FirstReceiptHeader."Bill of Entry No.");
