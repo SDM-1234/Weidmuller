@@ -6,7 +6,7 @@ using Microsoft.Sales.Receivables;
 using System.Email;
 using System.Text;
 using System.Utilities;
-    
+
 codeunit 50002 "Auto Emailing"
 {
     trigger OnRun()
@@ -65,10 +65,9 @@ codeunit 50002 "Auto Emailing"
                             TempBlob.CreateOutStream(ReportOutStream);
                             IF DE_CustDunning.SaveAs('', ReportFormat::Pdf, ReportOutStream) THEN BEGIN
                                 TempBlob.CreateInStream(ReportInStream);
-                                SMTPMail.SetRecipients(EmailRecipientType::"To", DE_CustEmail);
+                                SMTPMail.Create(DE_CustEmail, 'Dunning Report' + DE_Customer."No.", '', true);
                                 SMTPMail.SetRecipients(EmailRecipientType::Cc, 'hitesh.poonacha@weidmueller.com');
-                                SMTPMail.SetSubject('Dunning Report' + DE_Customer."No.");
-                                SMTPMail.AddAttachment('Customer-wise Dunning', DE_Customer."No." + '.pdf', Base64.ToBase64(ReportInStream));
+                                SMTPMail.AddAttachment('Customer-wise Dunning ' + DE_Customer."No." + '.pdf', 'application/pdf', Base64.ToBase64(ReportInStream));
                                 SMTPMail.AppendToBody('Dear Sir/Madam');
                                 SMTPMail.AppendToBody('<br><br>');
                                 SMTPMail.AppendToBody('<HR>');
@@ -90,4 +89,3 @@ codeunit 50002 "Auto Emailing"
         END;
     end;
 }
-
